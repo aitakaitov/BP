@@ -84,7 +84,7 @@ class Crawler:
                     return
                 self.links_to_visit.remove(self.links_to_visit[0])
                 # check if we have already visited the link or its domain
-                if any(visited is LibraryMethods.strip_url(link) for visited in self.visited_links):
+                if any(visited in LibraryMethods.strip_url(link) for visited in self.visited_links) and all(whitelisted not in LibraryMethods.strip_url(link) for whitelisted in self.whitelisted_domains):
                     self.log.log("[CRAWLER] Domain {} already visited, skipping.".format(LibraryMethods.strip_url(link)))
                     continue
                 else:
@@ -251,7 +251,12 @@ class Crawler:
 
         current_depth += 1
 
-        html_text = LibraryMethods.download_page_html(self.driver, url)
+        try:
+            html_text = LibraryMethods.download_page_html(self.driver, url)
+        except WebDriverException:
+            self.log.log("[CRAWLER] Error loading page, skipping.")
+            return
+
         soup = BeautifulSoup(html_text, features="html.parser")
         # filtrovani tagu
         LibraryMethods.filter_html(soup)
