@@ -1,6 +1,7 @@
 from const import Const
 import time
 from bs4 import BeautifulSoup
+from urllib import parse
 
 
 class LibraryMethods:
@@ -44,29 +45,32 @@ class LibraryMethods:
         :param url: URL
         :return: Only domains
         """
+
+        return parse.urlparse(url).netloc
+
         # remove GET
-        index_qmark = url.find("?")
+        #index_qmark = url.find("?")
         # remove http
-        index_http = url.find("http://")
+        #index_http = url.find("http://")
         # remove https
-        index_https = url.find("https://")
+        #index_https = url.find("https://")
         # remove www
-        index_www = url.find("www.")
+        #index_www = url.find("www.")
 
-        if index_qmark >= 0:
-            url = url[0:index_qmark]
-        if index_www >= 0:
-            url = url[index_www + 4:]
-        elif index_https >= 0:
-            url = url[8:len(url)]
-        elif index_http >= 0:
-            url = url[7:len(url)]
+        #if index_qmark >= 0:
+        #    url = url[0:index_qmark]
+        #if index_www >= 0:
+        #    url = url[index_www + 4:]
+        #elif index_https >= 0:
+        #    url = url[8:len(url)]
+        #elif index_http >= 0:
+        #    url = url[7:len(url)]
 
-        index_slash = url.find("/")
-        if index_slash >= 0:
-            url = url[0:index_slash]
+        #index_slash = url.find("/")
+        #if index_slash >= 0:
+        #    url = url[0:index_slash]
 
-        return url
+        #return url
 
     @staticmethod
     def download_page_html(driver, url: str):

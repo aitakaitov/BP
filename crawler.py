@@ -95,6 +95,9 @@ class Crawler:
                 self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
                 self.links_to_visit.remove(self.links_to_visit[0])
 
+        self.driver.quit()
+        return
+
     def crawl_page(self, url: str):
         """
         Crawls a page. Loads and downloads the page code. Extracts all links, adds links to the queue, extracts cookies
@@ -126,8 +129,6 @@ class Crawler:
         # by doing this, we can visit other pages of e.g. results, but wont visit the same results page again
         if all(wl_domain not in LibraryMethods.strip_url(url) for wl_domain in self.whitelisted_domains):
             self.visited_links.append(LibraryMethods.strip_url(url))
-        else:
-            self.visited_links.append(url)
 
         # parse the html
         soup = BeautifulSoup(htmltext, features="html.parser")
@@ -160,6 +161,7 @@ class Crawler:
         :param links: Links to filter
         """
         self.log.log("[CRAWLER] Collecting links-to-visit.")
+        relevant_count = 0
         relevant_links = []
         for link in links:
             link_href = link.get("href")
@@ -178,14 +180,14 @@ class Crawler:
                         if all(visited not in link_href for visited in self.visited_links):
                             if all(to_visit not in link_href for to_visit in self.links_to_visit):
                                 if all(scraped not in link_href for scraped in self.scraped_terms_cookies):
-                                    relevant_links.append(link_href)
+                                    relevant_count += 1
+                                    self.links_to_visit.append(link_href)
             except (TypeError, IndexError):
                 # type error means we got an irregular structure from bs4 and we will ignore it
                 # index error means that href is empty and we will ignore it
                 continue
         relevant_links = list(set(relevant_links))
-        self.log.log("[CRAWLER] Collected {} links-to-visit out of {} available links on page.".format(len(relevant_links), len(links)))
-        [self.links_to_visit.append(link) for link in relevant_links]
+        self.log.log("[CRAWLER] Collected {} links-to-visit out of {} available links on page.".format(relevant_count, len(links)))
 
     def collect_terms_cookies_links(self, links: list, current_url_stripped) -> tuple:
         """
