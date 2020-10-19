@@ -108,6 +108,19 @@ class Crawler:
         # acquire html code
         htmltext = LibraryMethods.download_page_html(self.driver, url)
 
+        folder_name = re.sub("[^0-9a-zA-Z]+", "_", self.driver.current_url)
+        # create a folder for our url
+        try:
+            os.mkdir(folder_name)
+            os.mkdir(folder_name + "/cookies")
+            os.mkdir(folder_name + "/terms")
+            f = open(folder_name + "/url.txt", "w", encoding="utf-8")
+            f.write(url)
+            f.close()
+        except OSError:
+            self.log.log("[CRAWLER] Folder for page {} has already been created, skipping.".format(url))
+            return
+
         # if the domain is not whitelisted, we add it to visited_links, otherwise we add the link
         # by doing this, we can visit other pages of e.g. results, but wont visit the same results page again
         if all(wl_domain not in LibraryMethods.strip_url(url) for wl_domain in self.whitelisted_domains):
@@ -133,20 +146,6 @@ class Crawler:
 
         self.log.log("[CRAWLER] Collected {} links-to-visit, {} terms links, {} cookies links".format(len(self.links_to_visit)-links_before, len(terms_links), len(cookies_links)))
 
-        folder_name = re.sub("[^0-9a-zA-Z]+", "_", self.driver.current_url)
-
-        # create a folder for our url
-        try:
-            os.mkdir(folder_name)
-            os.mkdir(folder_name + "/cookies")
-            os.mkdir(folder_name + "/terms")
-            f = open(folder_name + "/url.txt", "w", encoding="utf-8")
-            f.write(url)
-            f.close()
-        except OSError:
-            self.log.log("[CRAWLER] Folder for page {} has already been created, skipping.".format(url))
-            return
-
         for link in cookies_links:
             self.scrape_page(link, folder_name, "cookies")
 
@@ -171,7 +170,7 @@ class Crawler:
                         link_href = "http:" + link_href
                     if link_href[0] == "/":
                         link_href = "http://" + current_url_stripped + link_href
-                    if link_href[0] == "./":
+                    if link_href[0:2] == "./":
                         link_href = "http://" + current_url_stripped + link_href[1:]
                     if ".cz" in link_href and link_href[0] != "#":
                         if all(visited not in link_href for visited in self.visited_links):
