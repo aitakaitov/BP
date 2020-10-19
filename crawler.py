@@ -15,6 +15,7 @@ from bs4 import BeautifulSoup
 
 import os
 import re
+import traceback
 
 
 class Crawler:
@@ -24,8 +25,14 @@ class Crawler:
     """
     def __init__(self):
         chrome_options = Options()
-        chrome_options.add_argument("--headless")
         chrome_options.add_argument("--incognito")
+        chrome_options.add_argument("--enable-automation")
+        chrome_options.add_argument("--disable-notifications")
+        chrome_options.add_argument("--disable-browser-side-navigation")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.headless = True
         self.log = Log(Const.log_path)
 
         ''' Selenium driver for chrome'''
@@ -77,11 +84,13 @@ class Crawler:
                     return
                 self.links_to_visit.remove(self.links_to_visit[0])
                 # check if we have already visited the link or its domain
-                if any(visited in LibraryMethods.strip_url(link) for visited in self.visited_links):
+                if any(visited is LibraryMethods.strip_url(link) for visited in self.visited_links):
+                    self.log.log("[CRAWLER] Domain {} already visited, skipping.".format(LibraryMethods.strip_url(link)))
                     continue
                 else:
                     self.crawl_page(link)
             except WebDriverException:
+                traceback.print_exc()
                 self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
                 self.links_to_visit.remove(self.links_to_visit[0])
 

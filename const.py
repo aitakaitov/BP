@@ -6,7 +6,7 @@ class Const:
     chromedriver_path = "/home/vojtech/Desktop/BP/chromedriver"
 
     ''' Keywords that terms and conditions links would contain '''
-    terms_keywords = ["podminky", "podmínky", "smluvni", "smluvní", "ochrana", "soukromi", "soukromí", "uzivani", "užívání", "osobni", "osobní", "terms", "conditions",
+    terms_keywords = ["podminky", "podmínky", "smluvni", "smluvní", "ochrana", "soukromi", "soukromí", "uzivani", "užívání", "osobni", "terms", "conditions",
                     "policy", "privacy", "údaj", "zpracování", "udaj", "zpracovani"]
 
     ''' Keywords that cookies links would contain '''
