@@ -16,6 +16,7 @@ from bs4 import BeautifulSoup
 import os
 import re
 import traceback
+import shutil
 
 
 class Crawler:
@@ -142,6 +143,7 @@ class Crawler:
 
         if len(cookies_links) == 0 and len(terms_links) == 0:
             self.log.log("[CRAWLER] Collected no terms or cookies links, {} will be skipped.".format(url))
+            shutil.rmtree(folder_name)
             return
 
         self.log.log("[CRAWLER] Collected {} links-to-visit, {} terms links, {} cookies links".format(len(self.links_to_visit)-links_before, len(terms_links), len(cookies_links)))

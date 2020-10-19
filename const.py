@@ -3,10 +3,10 @@ class Const:
     Contains constants
     """
     ''' Path to chromedriver executable '''
-    chromedriver_path = "/home/vojtech/Desktop/BP/chromedriver"
+    chromedriver_path = "C:/Users/Vojtěch Bartička/Desktop/BP/BP/geckodriver.exe"
 
     ''' Keywords that terms and conditions links would contain '''
-    terms_keywords = ["podminky", "podmínky", "smluvni", "smluvní", "ochrana", "soukromi", "soukromí", "uzivani", "užívání", "osobni", "terms", "conditions",
+    terms_keywords = ["podminky", "podmínky", "smluvni", "smluvní", "ochrana", "soukromi", "soukromí", "uzivani", "užívání", "osobní", "terms", "conditions",
                     "policy", "privacy", "údaj", "zpracování", "udaj", "zpracovani"]
 
     ''' Keywords that cookies links would contain '''
