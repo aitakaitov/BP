@@ -46,7 +46,10 @@ class LibraryMethods:
         :return: Only domains
         """
 
-        return parse.urlparse(url).netloc
+        stripped_url = parse.urlparse(url).netloc
+        if stripped_url[:4] == "www.":
+            stripped_url = stripped_url[4:]
+        return stripped_url
 
     @staticmethod
     def download_page_html(driver, url: str):

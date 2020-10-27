@@ -1,4 +1,6 @@
 # selenium
+from typing import List
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import WebDriverException
@@ -24,6 +26,8 @@ class Crawler:
         Crawls the web from a starting point, navigating trough all valid links, not visiting the same domain twice, and
         scraping cookies and terms for domains.
     """
+    visited_links: List[str]
+
     def __init__(self):
         chrome_options = Options()
         chrome_options.add_argument("--incognito")
@@ -68,10 +72,6 @@ class Crawler:
         :return:
         """
 
-        # We add the starting point to the whitelist, so we can visit the domain again
-        # (for example our starting point could be search results, and we can go to the nex page)
-        self.whitelisted_domains.append(LibraryMethods.strip_url(start_url))
-
         try:
             self.crawl_page(start_url)
         except WebDriverException:
@@ -85,26 +85,19 @@ class Crawler:
             self.scraped_terms_cookies.remove(self.scraped_terms_cookies[0])
 
         while True:
+
+            if len(self.links_to_visit) == 0:
+                self.log.log("[CRAWLER] No more pages to visit, exiting.")
+                self.driver.quit()
+                return
+
+            link = self.links_to_visit[0]
+            self.links_to_visit.remove(self.links_to_visit[0])
             try:
-                try:
-                    link = self.links_to_visit[0]
-                except IndexError:
-                    self.log.log("[CRAWLER] No more pages to visit, exiting.")
-                    return
-                self.links_to_visit.remove(self.links_to_visit[0])
-                # check if we have already visited the link or its domain
-                if any(visited in LibraryMethods.strip_url(link) for visited in self.visited_links) and all(whitelisted not in LibraryMethods.strip_url(link) for whitelisted in self.whitelisted_domains):
-                    self.log.log("[CRAWLER] Domain {} already visited, skipping.".format(LibraryMethods.strip_url(link)))
-                    continue
-                else:
-                    self.crawl_page(link)
+                self.crawl_page(link)
             except WebDriverException:
                 traceback.print_exc()
                 self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
-                self.links_to_visit.remove(self.links_to_visit[0])
-
-        self.driver.quit()
-        return
 
     def crawl_page(self, url: str):
         """
@@ -120,20 +113,19 @@ class Crawler:
         # acquire html code
         htmltext = LibraryMethods.download_page_html(self.driver, url)
 
-        # if the domain is not whitelisted, we add it to visited_links, otherwise we add the link
-        # by doing this, we can visit other pages of e.g. results, but wont visit the same results page again
-        if all(wl_domain not in LibraryMethods.strip_url(url) for wl_domain in self.whitelisted_domains):
-            self.visited_links.append(LibraryMethods.strip_url(url))
-
         # parse the html
         soup = BeautifulSoup(htmltext, features="html.parser")
 
         # find all links
         links = soup.find_all('a')
-
         links_before = len(self.links_to_visit)
+
         # add links to links_to_visit
         self.collect_links_to_visit(links, LibraryMethods.strip_url(url))
+
+        if any(visited == LibraryMethods.strip_url(url) for visited in self.visited_links):
+            self.log.log("[CRAWLER] Domain already scraped, collected {} links-to-visit.".format(len(self.links_to_visit) - links_before))
+            return
 
         terms_links, cookies_links = self.collect_terms_cookies_links(links, LibraryMethods.strip_url(url))
 
@@ -144,7 +136,7 @@ class Crawler:
             self.no_links_file.flush()
             return
 
-        folder_name = re.sub("[^0-9a-zA-Z]+", "_", self.driver.current_url)
+        folder_name = re.sub("[^0-9a-zA-Z]+", "_", LibraryMethods.strip_url(self.driver.current_url))
         # create a folder for our url
         try:
             os.mkdir(Const.pages_path + "/" + folder_name)
@@ -155,15 +147,25 @@ class Crawler:
             f.close()
         except OSError:
             self.log.log("[CRAWLER] Folder for page {} has already been created, skipping.".format(url))
+            traceback.print_exc()
             return
 
         self.log.log("[CRAWLER] Collected {} links-to-visit, {} terms links, {} cookies links".format(len(self.links_to_visit)-links_before, len(terms_links), len(cookies_links)))
 
         for link in cookies_links:
-            self.scrape_page(link, Const.pages_path + "/" + folder_name, "cookies")
+            try:
+                self.scrape_page(link, Const.pages_path + "/" + folder_name, "cookies")
+            except WebDriverException:
+                self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
 
         for link in terms_links:
-            self.scrape_page(link, Const.pages_path + "/" + folder_name, "terms")
+            try:
+                self.scrape_page(link, Const.pages_path + "/" + folder_name, "terms")
+            except WebDriverException:
+                self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
+
+        self.visited_links.append(LibraryMethods.strip_url(url));
+
 
     def collect_links_to_visit(self, links: list, current_url_stripped):
         """
@@ -171,7 +173,6 @@ class Crawler:
         :param links: Links to filter
         """
         self.log.log("[CRAWLER] Collecting links-to-visit.")
-        relevant_count = 0
         relevant_links = []
         for link in links:
             link_href = link.get("href")
@@ -179,25 +180,23 @@ class Crawler:
                 # ignore emails, anything that contains an already visited domain, links we are going to visit and
                 # anything that does not start with a letter or number
                 # we limit the search to .cz domains
-                if "mailto" not in link_href:
+                if "mailto" not in link_href and link_href[0] != "#":
                     if link_href[0:2] == "//":
                         link_href = "http:" + link_href
                     if link_href[0] == "/":
                         link_href = "http://" + current_url_stripped + link_href
                     if link_href[0:2] == "./":
                         link_href = "http://" + current_url_stripped + link_href[1:]
-                    if ".cz" == current_url_stripped[-3:] and link_href[0] != "#":
-                        if all(visited not in link_href for visited in self.visited_links):
-                            if all(to_visit not in link_href for to_visit in self.links_to_visit):
-                                if all(scraped not in link_href for scraped in self.scraped_terms_cookies):
-                                    relevant_count += 1
-                                    self.links_to_visit.append(link_href)
+                    if ".cz" == current_url_stripped[-3:] and all(extension not in link_href[-4:] for extension in Const.blacklisted_extensions):
+                        if all(to_visit not in link_href for to_visit in self.links_to_visit):
+                            relevant_links.append(link_href)
             except (TypeError, IndexError):
                 # type error means we got an irregular structure from bs4 and we will ignore it
                 # index error means that href is empty and we will ignore it
                 continue
         relevant_links = list(set(relevant_links))
-        self.log.log("[CRAWLER] Collected {} links-to-visit out of {} available links on page.".format(relevant_count, len(links)))
+        [self.links_to_visit.append(link) for link in relevant_links]
+        self.log.log("[CRAWLER] Collected {} links-to-visit out of {} available links on page.".format(len(relevant_links), len(links)))
 
     def collect_terms_cookies_links(self, links: list, current_url_stripped) -> tuple:
         """
@@ -247,7 +246,6 @@ class Crawler:
             except IndexError:
                 continue
 
-        self.log.log("[CRAWLER] Collected {} terms links and {} cookies links.".format(len(terms_links), len(cookies_links)))
         return list(set(terms_links)), list(set(cookies_links))
 
     def scrape_page(self, url: str, dir_path: str, page_type: str, current_depth=0):
@@ -264,11 +262,7 @@ class Crawler:
 
         current_depth += 1
 
-        try:
-            html_text = LibraryMethods.download_page_html(self.driver, url)
-        except WebDriverException:
-            self.log.log("[CRAWLER] Error loading page, skipping.")
-            return
+        html_text = LibraryMethods.download_page_html(self.driver, url)
 
         soup = BeautifulSoup(html_text, features="html.parser")
         # filtrovani tagu

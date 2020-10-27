@@ -32,4 +32,6 @@ class Const:
 
     max_filename_length = 250
 
-    start_url = "https://search.seznam.cz/?q=inurl%3Ah"
+    start_url = "https://seznam.cz/"
+
+    blacklisted_extensions = [".jpg", ".png"]
