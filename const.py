@@ -20,6 +20,14 @@ class Const:
 
     log_path = "log.txt"
 
+    pages_path = "pages"
+
+    queue_filename = "inqueue.txt"
+
+    visited_filename = "visited.txt"
+
+    no_links_filename = "nolinks.txt"
+
     max_scrolls = 10
 
     max_filename_length = 250

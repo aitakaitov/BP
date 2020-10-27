@@ -52,6 +52,14 @@ class Crawler:
             like search results '''
         self.whitelisted_domains = []
 
+        try:
+            os.mkdir("./" + Const.pages_path)
+        except OSError:
+            self.log.log("[CRAWLER] Pages directory already exists.")
+
+        self.no_links_file = open(Const.no_links_filename, "a");
+
+
     def start_crawler(self, start_url: str):
         """
         Starts the crawler from a starting url. The crawler will collect all usable links and then place then in a queue,
@@ -112,19 +120,6 @@ class Crawler:
         # acquire html code
         htmltext = LibraryMethods.download_page_html(self.driver, url)
 
-        folder_name = re.sub("[^0-9a-zA-Z]+", "_", self.driver.current_url)
-        # create a folder for our url
-        try:
-            os.mkdir(folder_name)
-            os.mkdir(folder_name + "/cookies")
-            os.mkdir(folder_name + "/terms")
-            f = open(folder_name + "/url.txt", "w", encoding="utf-8")
-            f.write(url)
-            f.close()
-        except OSError:
-            self.log.log("[CRAWLER] Folder for page {} has already been created, skipping.".format(url))
-            return
-
         # if the domain is not whitelisted, we add it to visited_links, otherwise we add the link
         # by doing this, we can visit other pages of e.g. results, but wont visit the same results page again
         if all(wl_domain not in LibraryMethods.strip_url(url) for wl_domain in self.whitelisted_domains):
@@ -144,16 +139,31 @@ class Crawler:
 
         if len(cookies_links) == 0 and len(terms_links) == 0:
             self.log.log("[CRAWLER] Collected no terms or cookies links, {} will be skipped.".format(url))
-            shutil.rmtree(folder_name)
+            self.no_links_file.write(url + "\n")
+            # self.no_links_file.write(LibraryMethods.strip_url(url) + "\n")
+            self.no_links_file.flush()
+            return
+
+        folder_name = re.sub("[^0-9a-zA-Z]+", "_", self.driver.current_url)
+        # create a folder for our url
+        try:
+            os.mkdir(Const.pages_path + "/" + folder_name)
+            os.mkdir(Const.pages_path + "/" + folder_name + "/cookies")
+            os.mkdir(Const.pages_path + "/" + folder_name + "/terms")
+            f = open(Const.pages_path + "/" + folder_name + "/url.txt", "w", encoding="utf-8")
+            f.write(url)
+            f.close()
+        except OSError:
+            self.log.log("[CRAWLER] Folder for page {} has already been created, skipping.".format(url))
             return
 
         self.log.log("[CRAWLER] Collected {} links-to-visit, {} terms links, {} cookies links".format(len(self.links_to_visit)-links_before, len(terms_links), len(cookies_links)))
 
         for link in cookies_links:
-            self.scrape_page(link, folder_name, "cookies")
+            self.scrape_page(link, Const.pages_path + "/" + folder_name, "cookies")
 
         for link in terms_links:
-            self.scrape_page(link, folder_name, "terms")
+            self.scrape_page(link, Const.pages_path + "/" + folder_name, "terms")
 
     def collect_links_to_visit(self, links: list, current_url_stripped):
         """
@@ -176,7 +186,7 @@ class Crawler:
                         link_href = "http://" + current_url_stripped + link_href
                     if link_href[0:2] == "./":
                         link_href = "http://" + current_url_stripped + link_href[1:]
-                    if ".cz" in link_href and link_href[0] != "#":
+                    if ".cz" == current_url_stripped[-3:] and link_href[0] != "#":
                         if all(visited not in link_href for visited in self.visited_links):
                             if all(to_visit not in link_href for to_visit in self.links_to_visit):
                                 if all(scraped not in link_href for scraped in self.scraped_terms_cookies):
