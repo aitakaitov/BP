@@ -44,12 +44,12 @@ class Crawler:
         self.driver = webdriver.Chrome(executable_path=Const.chromedriver_path, options=chrome_options)
         ''' Page load timeout'''
         self.driver.set_page_load_timeout(Const.webdriver_timeout)
-        ''' Already visited and processed links (mainly domains)'''
-        self.visited_links = ["--------------------------------------"]
+        ''' Scraped links'''
+        self.scraped_links = ["--------------------------------------"]
         ''' List of links to visit '''
         self.links_to_visit = ["--------------------------------------"]
-        ''' List of already scraped links '''
-        self.scraped_terms_cookies = ["--------------------------------------"]
+        ''' List of visited links '''
+        self.visited_links = ["--------------------------------------"]
         ''' List of links, that wont be added to the visited_links as domains but as links
             This is done because we dont want to visit the same domain twice, as it will have
             the same cookies policy, but there are some domains we want to visit more than once
@@ -62,7 +62,6 @@ class Crawler:
             self.log.log("[CRAWLER] Pages directory already exists.")
 
         self.no_links_file = open(Const.no_links_filename, "a");
-
 
     def start_crawler(self, start_url: str):
         """
@@ -80,9 +79,9 @@ class Crawler:
 
         # remove the placeholders
         self.links_to_visit.remove(self.links_to_visit[0])
-        self.visited_links.remove(self.visited_links[0])
-        if len(self.scraped_terms_cookies) > 1:
-            self.scraped_terms_cookies.remove(self.scraped_terms_cookies[0])
+        self.scraped_links.remove(self.scraped_links[0])
+        if len(self.visited_links) > 1:
+            self.visited_links.remove(self.visited_links[0])
 
         while True:
 
@@ -113,6 +112,8 @@ class Crawler:
         # acquire html code
         htmltext = LibraryMethods.download_page_html(self.driver, url)
 
+        self.visited_links.append(url)
+
         # parse the html
         soup = BeautifulSoup(htmltext, features="html.parser")
 
@@ -123,7 +124,7 @@ class Crawler:
         # add links to links_to_visit
         self.collect_links_to_visit(links, LibraryMethods.strip_url(url))
 
-        if any(visited == LibraryMethods.strip_url(url) for visited in self.visited_links):
+        if any(visited == LibraryMethods.strip_url(url) for visited in self.scraped_links):
             self.log.log("[CRAWLER] Domain already scraped, collected {} links-to-visit.".format(len(self.links_to_visit) - links_before))
             return
 
@@ -164,7 +165,7 @@ class Crawler:
             except WebDriverException:
                 self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
 
-        self.visited_links.append(LibraryMethods.strip_url(url));
+        self.scraped_links.append(LibraryMethods.strip_url(url));
 
 
     def collect_links_to_visit(self, links: list, current_url_stripped):
@@ -188,8 +189,9 @@ class Crawler:
                     if link_href[0:2] == "./":
                         link_href = "http://" + current_url_stripped + link_href[1:]
                     if ".cz" == current_url_stripped[-3:] and all(extension not in link_href[-4:] for extension in Const.blacklisted_extensions):
-                        if all(to_visit not in link_href for to_visit in self.links_to_visit):
-                            relevant_links.append(link_href)
+                        if all(to_visit != link_href for to_visit in self.links_to_visit):
+                            if all(visited != link_href for visited in self.visited_links):
+                                relevant_links.append(link_href)
             except (TypeError, IndexError):
                 # type error means we got an irregular structure from bs4 and we will ignore it
                 # index error means that href is empty and we will ignore it
@@ -258,7 +260,7 @@ class Crawler:
         :return: None
         """
         self.log.log("[CRAWLER] Scraping page {} as a {} page with current depth {}.".format(url, page_type, current_depth))
-        self.scraped_terms_cookies.append(url)
+        self.visited_links.append(url)
 
         current_depth += 1
 
