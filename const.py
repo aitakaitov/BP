@@ -26,7 +26,11 @@ class Const:
 
     visited_filename = "visited.txt"
 
+    scraped_filename = "scraped.txt"
+
     no_links_filename = "nolinks.txt"
+
+    persistent_path = "persistent"
 
     max_scrolls = 10
 

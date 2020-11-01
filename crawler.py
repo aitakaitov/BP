@@ -11,6 +11,7 @@ from const import Const
 # static methods
 from library_methods import LibraryMethods
 from log import Log
+from persistent_list import PersistentList
 
 # html parsing
 from bs4 import BeautifulSoup
@@ -26,7 +27,6 @@ class Crawler:
         Crawls the web from a starting point, navigating trough all valid links, not visiting the same domain twice, and
         scraping cookies and terms for domains.
     """
-    visited_links: List[str]
 
     def __init__(self):
         chrome_options = Options()
@@ -45,11 +45,17 @@ class Crawler:
         ''' Page load timeout'''
         self.driver.set_page_load_timeout(Const.webdriver_timeout)
         ''' Scraped links'''
-        self.scraped_links = ["--------------------------------------"]
+        self.scraped_links = PersistentList(Const.scraped_filename)
+        if len(self.scraped_links) == 0:
+            self.scraped_links.append("--------------------------------------")
         ''' List of links to visit '''
-        self.links_to_visit = ["--------------------------------------"]
+        self.links_to_visit = PersistentList(Const.queue_filename)
+        if len(self.links_to_visit) == 0:
+            self.links_to_visit.append("--------------------------------------")
         ''' List of visited links '''
-        self.visited_links = ["--------------------------------------"]
+        self.visited_links = PersistentList(Const.visited_filename)
+        if len(self.visited_links) == 0:
+            self.visited_links.append("--------------------------------------")
         ''' List of links, that wont be added to the visited_links as domains but as links
             This is done because we dont want to visit the same domain twice, as it will have
             the same cookies policy, but there are some domains we want to visit more than once
@@ -61,7 +67,7 @@ class Crawler:
         except OSError:
             self.log.log("[CRAWLER] Pages directory already exists.")
 
-        self.no_links_file = open(Const.no_links_filename, "a");
+        self.no_links_file = open(Const.no_links_filename, "a")
 
     def start_crawler(self, start_url: str):
         """
@@ -78,9 +84,11 @@ class Crawler:
             return
 
         # remove the placeholders
-        self.links_to_visit.remove(self.links_to_visit[0])
-        self.scraped_links.remove(self.scraped_links[0])
-        if len(self.visited_links) > 1:
+        if self.links_to_visit[0] == "--------------------------------------":
+            self.links_to_visit.remove(self.links_to_visit[0])
+        if self.scraped_links[0] == "--------------------------------------":
+            self.scraped_links.remove(self.scraped_links[0])
+        if len(self.visited_links) > 1 and self.visited_links[0] == "--------------------------------------":
             self.visited_links.remove(self.visited_links[0])
 
         while True:
@@ -111,6 +119,9 @@ class Crawler:
 
         # acquire html code
         htmltext = LibraryMethods.download_page_html(self.driver, url)
+        if LibraryMethods.strip_url(self.driver.current_url)[:-3] == ".cz":
+            self.log.log("[CRAWLER] Redirected to non-.cz domain, skipping.")
+            return
 
         self.visited_links.append(url)
 
@@ -148,7 +159,6 @@ class Crawler:
             f.close()
         except OSError:
             self.log.log("[CRAWLER] Folder for page {} has already been created, skipping.".format(url))
-            traceback.print_exc()
             return
 
         self.log.log("[CRAWLER] Collected {} links-to-visit, {} terms links, {} cookies links".format(len(self.links_to_visit)-links_before, len(terms_links), len(cookies_links)))
@@ -166,7 +176,6 @@ class Crawler:
                 self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
 
         self.scraped_links.append(LibraryMethods.strip_url(url));
-
 
     def collect_links_to_visit(self, links: list, current_url_stripped):
         """
@@ -285,7 +294,7 @@ class Crawler:
             return
         else:
             links = soup.find_all('a')
-            terms_links, cookies_links = self.collect_terms_cookies_links(links)
+            terms_links, cookies_links = self.collect_terms_cookies_links(links, LibraryMethods.strip_url(url))
             if page_type == "cookies":
                 for link in cookies_links:
                     self.scrape_page(link, dir_path, page_type, current_depth)
