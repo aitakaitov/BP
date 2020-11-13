@@ -6,7 +6,7 @@ class Const:
     chromedriver_path = "C:/Users/Vojtěch Bartička/Desktop/BP/BP/geckodriver.exe"
 
     ''' Keywords that terms and conditions links would contain '''
-    terms_keywords = ["podminky", "podmínky", "smluvni", "smluvní", "ochrana", "soukromi", "soukromí", "uzivani", "užívání", "osobní", "terms", "conditions",
+    terms_keywords = ["podminky", "podmínky", "podmínkami", "protection", "smluvni", "smluvní", "ochrana", "soukromi", "soukromí", "uzivani", "užívání", "osobní", "terms", "conditions",
                     "policy", "privacy", "údaj", "zpracování", "udaj", "zpracovani"]
 
     ''' Keywords that cookies links would contain '''

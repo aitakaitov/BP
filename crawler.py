@@ -4,6 +4,7 @@ from typing import List
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import JavascriptException
 
 # constants
 from const import Const
@@ -79,7 +80,7 @@ class Crawler:
 
         try:
             self.crawl_page(start_url)
-        except WebDriverException:
+        except (WebDriverException, JavascriptException):
             self.log.log("[CRAWLER] Error loading starting page, will exit.")
             return
 
@@ -102,7 +103,7 @@ class Crawler:
             self.links_to_visit.remove(self.links_to_visit[0])
             try:
                 self.crawl_page(link)
-            except WebDriverException:
+            except (WebDriverException, JavascriptException):
                 traceback.print_exc()
                 self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
 
@@ -238,11 +239,11 @@ class Crawler:
                 continue
             try:
                 # test for cookies keywords in URL
-                if any(keyword in link_href for keyword in Const.cookies_keywords):
+                if any(keyword in link_href.lower() for keyword in Const.cookies_keywords):
                     cookies_links.append(link_href)
                     continue
                 # test for cookies keywords in link text
-                elif any(keyword in link.contents[0] for keyword in Const.cookies_keywords):
+                elif any(keyword in link.contents[0].lower() for keyword in Const.cookies_keywords):
                     cookies_links.append(link_href)
                     continue
             except IndexError:
@@ -250,9 +251,9 @@ class Crawler:
                 continue
             try:
                 # do the same for terms
-                if any(keyword in link_href for keyword in Const.terms_keywords):
+                if any(keyword in link_href.lower() for keyword in Const.terms_keywords):
                     terms_links.append(link_href)
-                elif any(keyword in link.contents[0] for keyword in Const.terms_keywords):
+                elif any(keyword in link.contents[0].lower() for keyword in Const.terms_keywords):
                     terms_links.append(link_href)
             except IndexError:
                 continue
