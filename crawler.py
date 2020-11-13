@@ -115,11 +115,11 @@ class Crawler:
         """
         self.driver.delete_all_cookies()
 
-        self.log.log("[CRAWLER - NEW PAGE] Crawling page " + url)
+        self.log.log("[CRAWLER - NEW PAGE] Crawling page " + self.driver.current_url)
 
         # acquire html code
         htmltext = LibraryMethods.download_page_html(self.driver, url)
-        if LibraryMethods.strip_url(self.driver.current_url)[:-3] == ".cz":
+        if LibraryMethods.strip_url(self.driver.current_url)[-3:] != ".cz":
             self.log.log("[CRAWLER] Redirected to non-.cz domain, skipping.")
             return
 
