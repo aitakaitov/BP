@@ -16,6 +16,7 @@ from persistent_list import PersistentList
 
 # html parsing
 from bs4 import BeautifulSoup
+import urllib.parse
 
 import os
 import re
@@ -134,13 +135,13 @@ class Crawler:
         links_before = len(self.links_to_visit)
 
         # add links to links_to_visit
-        self.collect_links_to_visit(links, LibraryMethods.strip_url(url))
+        self.collect_links_to_visit(links, self.driver.current_url)
 
         if any(visited == LibraryMethods.strip_url(url) for visited in self.scraped_links):
             self.log.log("[CRAWLER] Domain already scraped, collected {} links-to-visit.".format(len(self.links_to_visit) - links_before))
             return
 
-        terms_links, cookies_links = self.collect_terms_cookies_links(links, LibraryMethods.strip_url(url))
+        terms_links, cookies_links = self.collect_terms_cookies_links(links, self.driver.current_url)
 
         if len(cookies_links) == 0 and len(terms_links) == 0:
             self.log.log("[CRAWLER] Collected no terms or cookies links, {} will be skipped.".format(url))
@@ -176,15 +177,16 @@ class Crawler:
             except WebDriverException:
                 self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
 
-        self.scraped_links.append(LibraryMethods.strip_url(url));
+        self.scraped_links.append(LibraryMethods.strip_url(url))
 
-    def collect_links_to_visit(self, links: list, current_url_stripped):
+    def collect_links_to_visit(self, links: list, current_url_full):
         """
         Finds valid links we havent visited yet and are not in the to-visit queue and adds them to the to-visit queue
         :param links: Links to filter
         """
         self.log.log("[CRAWLER] Collecting links-to-visit.")
         relevant_links = []
+        current_url_stripped = LibraryMethods.strip_url(current_url_full)
         for link in links:
             link_href = link.get("href")
             try:
@@ -194,10 +196,11 @@ class Crawler:
                 if "mailto" not in link_href and link_href[0] != "#":
                     if link_href[0:2] == "//":
                         link_href = "http:" + link_href
-                    if link_href[0] == "/":
-                        link_href = "http://" + current_url_stripped + link_href
-                    if link_href[0:2] == "./":
-                        link_href = "http://" + current_url_stripped + link_href[1:]
+                    #if link_href[0] == "/":
+                    #    link_href = "http://" + current_url_stripped + link_href
+                    #if link_href[0:2] == "./":
+                    #    link_href = "http://" + current_url_stripped + link_href[1:]
+                    link_href = urllib.parse.urljoin(current_url_full, link_href)
                     if ".cz" == current_url_stripped[-3:] and all(extension not in link_href[-4:] for extension in Const.blacklisted_extensions):
                         if all(to_visit != link_href for to_visit in self.links_to_visit):
                             if all(visited != link_href for visited in self.visited_links):
@@ -210,7 +213,7 @@ class Crawler:
         [self.links_to_visit.append(link) for link in relevant_links]
         self.log.log("[CRAWLER] Collected {} links-to-visit out of {} available links on page.".format(len(relevant_links), len(links)))
 
-    def collect_terms_cookies_links(self, links: list, current_url_stripped) -> tuple:
+    def collect_terms_cookies_links(self, links: list, current_url_full) -> tuple:
         """
         Finds links pointing to cookies and terms pages
         :param links: Links
@@ -226,14 +229,17 @@ class Crawler:
                 # filter out invalid links
                 if "mailto" in link_href:
                     continue
+                if link_href[0] == '#':
+                    continue
+
                 if link_href[0:2] == "//":
                     link_href = "http:" + link_href
-                if link_href[0] == "/":
-                    link_href = "http://" + current_url_stripped + link_href
-                if link_href[0:2] == "./":
-                    link_href = "http://" + current_url_stripped + link_href[1:]
-                if not link_href[0].isalnum():
-                    continue
+
+                link_href = urllib.parse.urljoin(current_url_full, link_href)
+                #if link_href[0] == "/":
+                #    link_href = "http://" + current_url_stripped + link_href
+                #if link_href[0:2] == "./":
+                #    link_href = "http://" + current_url_stripped + link_href[1:]
             except (TypeError, IndexError):
                 # in case href is empty or not there at all
                 continue
@@ -246,7 +252,7 @@ class Crawler:
                 elif any(keyword in link.contents[0].lower() for keyword in Const.cookies_keywords):
                     cookies_links.append(link_href)
                     continue
-            except IndexError:
+            except (IndexError, TypeError):
                 # in case link has no contents
                 continue
             try:
@@ -255,7 +261,7 @@ class Crawler:
                     terms_links.append(link_href)
                 elif any(keyword in link.contents[0].lower() for keyword in Const.terms_keywords):
                     terms_links.append(link_href)
-            except IndexError:
+            except (IndexError, TypeError):
                 continue
 
         return list(set(terms_links)), list(set(cookies_links))
