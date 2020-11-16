@@ -32,82 +32,77 @@ imajs.io;none
 info-koronavirus.cz;none
 inzerce.forum24.cz;none
 itras.cz;none
-
-itunes.apple.com
-j2rinascimento.cz
-jarduvsvet.cz
-karrmann.cz
-key-service.cz
-klient.seznam.cz
-klubkosmas.cz
-kovoservis.cz
-kraluv-dvur.cz
-licence.mapy.cz
-locksystems.cz
-login.szn.cz
-mapy.cz
-mariannebydleni.cz
-mix24.cz
-mkak.cz
-mzv.cz
-nasezdravotnictvi.cz
-ona-pharm.cz
-onlymen.cz
-pelhrimov-pohrebni-sluzba.cz
-pensionkrakonos.cz
-penzion-l.wbs.cz
-pivovarmonopol.cz
-platmobilem.cz
-plugo.cz
-plzenskeucetnictvi.cz
-pneuservis-pavlik.cz
-pravednes.cz
-pravo.cz
-profimedia.cz
-prokoho.cz
-protetika-plzen.cz
-reflex.cz
-resovske-vodopady.cz
-respiracnirouska.cz
-revueforum.cz
-revueforum.cz
-rohatec.cz
-rollsystem.cz
-ropumerch.cz
-saunajizni.cz
-secure.echomedia.cz
-sherpas.cz
-skakacihradyvysocina.cz
-spth.gob.es
-stoplusjednicka.cz
-sustee-corytime.com
-svetojetychvozu.cz
-testyojetin.cz
-toplist.cz
-topnem.cz
-travel.gov.gr
-treking.cz
-tumasro.eu
-tumblr.com
-ubytovnanovovysocanska.eu
-ubytovnatip.cz
-vk.com
-vshosting.cz
-vyskov-obec.cz
-wiki.magazinplus.cz
-windy.com
-youtube.com
-zamecnici-pohotovost.cz
-zamecnictvi-keynonstop.cz
-zamecnictvi-tsap.cz
-zazitkovylet.cz
-zbozi.cz
-zivotvsatelitu.cz
+j2rinascimento.cz;none
+jarduvsvet.cz;none
+karrmann.cz;none
+key-service.cz;none
+klient.seznam.cz;none
+klubkosmas.cz;none
+kovoservis.cz;none
+locksystems.cz;none
+login.szn.cz;none
+mapy.cz;none
+mix24.cz;none
+mkak.cz;none
+mzv.cz;none
+nasezdravotnictvi.cz;none
+ona-pharm.cz;none
+pelhrimov-pohrebni-sluzba.cz;none
+pensionkrakonos.cz;none
+penzion-l.wbs.cz;none
+pivovarmonopol.cz;none
+platmobilem.cz;none
+plugo.cz;none
+plzenskeucetnictvi.cz;none
+pneuservis-pavlik.cz;none
+pravednes.cz;none
+pravo.cz;none
+prokoho.cz;err
+protetika-plzen.cz;none
+resovske-vodopady.cz;none
+respiracnirouska.cz;none
+revueforum.cz;none
+rohatec.cz;none
+rollsystem.cz;none
+ropumerch.cz;none
+saunajizni.cz;none
+secure.echomedia.cz;none
+sherpas.cz;none
+skakacihradyvysocina.cz;none
+sustee-corytime.com;err
+svetojetychvozu.cz;none
+toplist.cz;none
+topnem.cz;none
+tumasro.eu;none
+tumblr.com;none
+ubytovnanovovysocanska.eu;none
+ubytovnatip.cz;none
+vshosting.cz;none
+vyskov-obec.cz;none
+wiki.magazinplus.cz;err
+windy.com;none
+zamecnici-pohotovost.cz;none
+zamecnictvi-keynonstop.cz;none
+zamecnictvi-tsap.cz;none
+zazitkovylet.cz;none
+zivotvsatelitu.cz;none
 
 
 SOLVED:
 idea-nabytek.cz; Cookies x cookies
+treking.cz;cookies jsou, začínají ..	- urllib parse urljoin
 
 NOT SOLVED:
 cs.johnnybet.com;podmínky jsou pod # odkazem a aktivují skript, někdy se otevře nnové okno a někdy vyskočí popup, těžko podchytitelné. Většinou navíc # odkazují a jinou část stejné stránky
 flo.uri.sh;z nějakého důvodu selenium skončí na javascriptexception, možná kvůli redirectu
+spth.gob.es;jsou cookies, detekce podle textu odkazu by neměla být problém
+testyojetin.cz;odkaz je button a otevře js applet
+reflex.cz;obojí tam je, nějaký prob,ém s načítáním hádám
+profimedia.cz;cookies nic, terms jsou jako odkaz
+onlymen.cz;podmínky tam jsou, měly být chyceny přes klíčová slova
+mariannebydleni.cz; jsou jako pdf, což se aktuálně ignoruje - není kontrola nad tím, kdy se stáhnou ani kam se stáhnou  s jakým názvem, složku pro stahování lze definovat jenom při spuštění driveru
+licence.mapy.cz; terms nejsou odkaz, řeší to nějaký javascript
+
+NOT SOLVABLE:
+travel.gov.gr; terms jsou, do odkazu je href přiřazen jiným způsobem
+kraluv-dvur.cz; cookies jsou v záložce o webu 
