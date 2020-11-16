@@ -95,14 +95,13 @@ treking.cz;cookies jsou, začínají ..	- urllib parse urljoin
 NOT SOLVED:
 cs.johnnybet.com;podmínky jsou pod # odkazem a aktivují skript, někdy se otevře nnové okno a někdy vyskočí popup, těžko podchytitelné. Většinou navíc # odkazují a jinou část stejné stránky
 flo.uri.sh;z nějakého důvodu selenium skončí na javascriptexception, možná kvůli redirectu
-spth.gob.es;jsou cookies, detekce podle textu odkazu by neměla být problém
 testyojetin.cz;odkaz je button a otevře js applet
-reflex.cz;obojí tam je, nějaký prob,ém s načítáním hádám
-profimedia.cz;cookies nic, terms jsou jako odkaz
-onlymen.cz;podmínky tam jsou, měly být chyceny přes klíčová slova
-mariannebydleni.cz; jsou jako pdf, což se aktuálně ignoruje - není kontrola nad tím, kdy se stáhnou ani kam se stáhnou  s jakým názvem, složku pro stahování lze definovat jenom při spuštění driveru
-licence.mapy.cz; terms nejsou odkaz, řeší to nějaký javascript
 
 NOT SOLVABLE:
 travel.gov.gr; terms jsou, do odkazu je href přiřazen jiným způsobem
-kraluv-dvur.cz; cookies jsou v záložce o webu 
+kraluv-dvur.cz; cookies jsou v záložce o webu
+profimedia.cz;cookies nic, terms jsou jako odkaz na pdf
+mariannebydleni.cz; jsou jako pdf, což se aktuálně ignoruje - není kontrola nad tím, kdy se stáhnou ani kam se stáhnou  s jakým názvem, složku pro stahování lze definovat jenom při spuštění driveru
+licence.mapy.cz; terms nejsou odkaz, řeší to nějaký javascript
+
+

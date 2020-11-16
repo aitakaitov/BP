@@ -117,15 +117,15 @@ class Crawler:
         """
         self.driver.delete_all_cookies()
 
-        self.log.log("[CRAWLER - NEW PAGE] Crawling page " + self.driver.current_url)
-
         # acquire html code
         htmltext = LibraryMethods.download_page_html(self.driver, url)
-        if LibraryMethods.strip_url(self.driver.current_url)[-3:] != ".cz":
-            self.log.log("[CRAWLER] Redirected to non-.cz domain, skipping.")
-            return
+        #if LibraryMethods.strip_url(self.driver.current_url)[-3:] != ".cz":
+        #    self.log.log("[CRAWLER] Redirected to non-.cz domain, skipping.")
+        #    return
 
-        self.visited_links.append(url)
+        self.log.log("[CRAWLER - NEW PAGE] Crawling page " + self.driver.current_url)
+
+        self.visited_links.append(self.driver.current_url)
 
         # parse the html
         soup = BeautifulSoup(htmltext, features="html.parser")
@@ -201,6 +201,8 @@ class Crawler:
                     #if link_href[0:2] == "./":
                     #    link_href = "http://" + current_url_stripped + link_href[1:]
                     link_href = urllib.parse.urljoin(current_url_full, link_href)
+                    if link_href[-1] != "/":
+                        link_href += "/"
                     if ".cz" == current_url_stripped[-3:] and all(extension not in link_href[-4:] for extension in Const.blacklisted_extensions):
                         if all(to_visit != link_href for to_visit in self.links_to_visit):
                             if all(visited != link_href for visited in self.visited_links):
