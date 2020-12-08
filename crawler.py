@@ -22,6 +22,7 @@ import os
 import re
 import traceback
 import shutil
+import random
 
 
 class Crawler:
@@ -58,11 +59,6 @@ class Crawler:
         self.visited_links = PersistentList(Const.visited_filename)
         if len(self.visited_links) == 0:
             self.visited_links.append("--------------------------------------")
-        ''' List of links, that wont be added to the visited_links as domains but as links
-            This is done because we dont want to visit the same domain twice, as it will have
-            the same cookies policy, but there are some domains we want to visit more than once
-            like search results '''
-        self.whitelisted_domains = []
 
         try:
             os.mkdir("./" + Const.pages_path)
@@ -117,7 +113,7 @@ class Crawler:
         """
         self.driver.delete_all_cookies()
 
-        # acquire html code
+        # acquire html
         htmltext = LibraryMethods.download_page_html(self.driver, url)
         #if LibraryMethods.strip_url(self.driver.current_url)[-3:] != ".cz":
         #    self.log.log("[CRAWLER] Redirected to non-.cz domain, skipping.")
@@ -196,10 +192,6 @@ class Crawler:
                 if "mailto" not in link_href and link_href[0] != "#":
                     if link_href[0:2] == "//":
                         link_href = "http:" + link_href
-                    #if link_href[0] == "/":
-                    #    link_href = "http://" + current_url_stripped + link_href
-                    #if link_href[0:2] == "./":
-                    #    link_href = "http://" + current_url_stripped + link_href[1:]
                     link_href = urllib.parse.urljoin(current_url_full, link_href)
                     if link_href[-1] != "/":
                         link_href += "/"
@@ -214,6 +206,53 @@ class Crawler:
         relevant_links = list(set(relevant_links))
         [self.links_to_visit.append(link) for link in relevant_links]
         self.log.log("[CRAWLER] Collected {} links-to-visit out of {} available links on page.".format(len(relevant_links), len(links)))
+
+    def collect_links_to_visit_alt(self, links: list, current_url_full: str):
+        """
+        Finds valid links we havent visited yet and are not in the to-visit queue and adds them to the to-visit queue
+        Uses an alternative algorithm to prevent selecting too many links pointing to the same domain
+        :param links: Links to filter
+        """
+        self.log.log("[CRAWLER] Collecting links-to-visit.")
+        relevant_links = []
+        same_domain_links = []
+        current_url_stripped = LibraryMethods.strip_url(current_url_full)
+        for link in links:
+            link_href = link.get("href")
+            try:
+                # ignore emails, anything that contains an already visited domain, links we are going to visit and
+                # anything that does not start with a letter or number
+                # we limit the search to .cz domains
+                if "mailto" not in link_href and link_href[0] != "#":
+                    if link_href[0:2] == "//":
+                        link_href = "http:" + link_href
+                    link_href = urllib.parse.urljoin(current_url_full, link_href)
+                    if link_href[-1] != "/":
+                        link_href += "/"
+                    if ".cz" == current_url_stripped[-3:] and all(
+                            extension not in link_href[-4:] for extension in Const.blacklisted_extensions):
+                        if all(to_visit != link_href for to_visit in self.links_to_visit):
+                            if all(visited != link_href for visited in self.visited_links):
+                                if current_url_stripped == LibraryMethods.strip_url(link_href):     # if the domain is the same one we are scraping
+                                    same_domain_links.append(link_href)
+                                else:
+                                    relevant_links.append(link_href)
+            except (TypeError, IndexError):
+                # type error means we got an irregular structure from bs4 and we will ignore it
+                # index error means that href is empty and we will ignore it
+                continue
+
+        same_domain_links = list(set(same_domain_links))        # select links to add at random
+        for i in range(Const.domain_links_coll):
+            r = random.randrange(0, len(same_domain_links))
+            relevant_links.append(same_domain_links[r])
+            same_domain_links.remove(same_domain_links[r])
+
+        relevant_links = list(set(relevant_links))                      # then add the selected + ones pointing to other domains to to_visit
+        [self.links_to_visit.append(link) for link in relevant_links]
+        self.log.log(
+            "[CRAWLER] Collected {} links-to-visit out of {} available links on page.".format(len(relevant_links),
+                                                                                              len(links)))
 
     def collect_terms_cookies_links(self, links: list, current_url_full) -> tuple:
         """
@@ -238,10 +277,6 @@ class Crawler:
                     link_href = "http:" + link_href
 
                 link_href = urllib.parse.urljoin(current_url_full, link_href)
-                #if link_href[0] == "/":
-                #    link_href = "http://" + current_url_stripped + link_href
-                #if link_href[0:2] == "./":
-                #    link_href = "http://" + current_url_stripped + link_href[1:]
             except (TypeError, IndexError):
                 # in case href is empty or not there at all
                 continue
