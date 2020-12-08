@@ -16,7 +16,7 @@ class Const:
     webdriver_timeout = 10
 
     ''' Max link depth for scraping terms and cookies pages'''
-    max_depth = 1
+    max_depth = 2
 
     log_path = "log.txt"
 
@@ -36,6 +36,6 @@ class Const:
 
     max_filename_length = 250
 
-    start_url = "https://seznam.cz/"
+    start_url = "http://seznam.cz"
 
     blacklisted_extensions = [".jpg", ".png"]

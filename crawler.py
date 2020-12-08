@@ -146,7 +146,7 @@ class Crawler:
         if len(cookies_links) == 0 and len(terms_links) == 0:
             self.log.log("[CRAWLER] Collected no terms or cookies links, {} will be skipped.".format(url))
             self.no_links_file.write(url + "\n")
-            # self.no_links_file.write(LibraryMethods.strip_url(url) + "\n")
+            self.no_links_file.write(LibraryMethods.strip_url(url) + "\n")
             self.no_links_file.flush()
             return
 
@@ -268,7 +268,7 @@ class Crawler:
 
         return list(set(terms_links)), list(set(cookies_links))
 
-    def scrape_page(self, url: str, dir_path: str, page_type: str, current_depth=0):
+    def scrape_page(self, url: str, dir_path: str, page_type: str, current_depth = 1):
         """
         Downloads HTML of a web page, can recursively download pages from links
         :param url: URL to scrape
@@ -279,8 +279,6 @@ class Crawler:
         """
         self.log.log("[CRAWLER] Scraping page {} as a {} page with current depth {}.".format(url, page_type, current_depth))
         self.visited_links.append(url)
-
-        current_depth += 1
 
         html_text = LibraryMethods.download_page_html(self.driver, url)
 
@@ -294,21 +292,23 @@ class Crawler:
         if len(file_name) > Const.max_filename_length:
             file_name = file_name[:Const.max_filename_length]
         file = open(dir_path + "/" + page_type + "/" + file_name, "w", encoding="utf-8")
-        file.write("SITE URL: " + url + "\n")
+        file.write("URL: " + url + "\n" + "DEPTH: " + str(current_depth) + "\n")
         file.write(htmltext)
         file.close()
 
-        # TODO catch links pointing to this page
         if current_depth == Const.max_depth:
             return
         else:
+            current_depth += 1
             links = soup.find_all('a')
             terms_links, cookies_links = self.collect_terms_cookies_links(links, LibraryMethods.strip_url(url))
             if page_type == "cookies":
                 for link in cookies_links:
-                    self.scrape_page(link, dir_path, page_type, current_depth)
+                    if link != url:
+                        self.scrape_page(link, dir_path, page_type, current_depth)
             elif page_type == "terms":
                 for link in terms_links:
-                    self.scrape_page(link, dir_path, page_type, current_depth)
+                    if link != url:
+                        self.scrape_page(link, dir_path, page_type, current_depth)
 
         return
