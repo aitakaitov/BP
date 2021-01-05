@@ -30,6 +30,10 @@ class Const:
 
     no_links_filename = "nolinks.txt"
 
+    no_terms_filename = "noterms.txt"
+
+    no_cookies_filename = "nocookies.txt"
+
     persistent_path = "persistent"
 
     max_scrolls = 10
@@ -39,3 +43,5 @@ class Const:
     start_url = "http://seznam.cz"
 
     blacklisted_extensions = [".jpg", ".png"]
+
+    domain_links_coll = 10

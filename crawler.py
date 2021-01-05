@@ -44,7 +44,7 @@ class Crawler:
         self.log = Log(Const.log_path)
 
         ''' Selenium driver for chrome'''
-        self.driver = webdriver.Chrome(executable_path=Const.chromedriver_path, options=chrome_options)
+        self.driver = webdriver.Firefox(executable_path=Const.chromedriver_path, options=chrome_options)
         ''' Page load timeout'''
         self.driver.set_page_load_timeout(Const.webdriver_timeout)
         ''' Scraped links'''
@@ -66,6 +66,10 @@ class Crawler:
             self.log.log("[CRAWLER] Pages directory already exists.")
 
         self.no_links_file = open(Const.no_links_filename, "a")
+
+        self.no_terms_file = open(Const.no_terms_filename, "a")
+
+        self.no_cookies_file = open(Const.no_cookies_filename, "a")
 
     def start_crawler(self, start_url: str):
         """
@@ -142,9 +146,15 @@ class Crawler:
         if len(cookies_links) == 0 and len(terms_links) == 0:
             self.log.log("[CRAWLER] Collected no terms or cookies links, {} will be skipped.".format(url))
             self.no_links_file.write(url + "\n")
-            self.no_links_file.write(LibraryMethods.strip_url(url) + "\n")
+            #self.no_links_file.write(LibraryMethods.strip_url(url) + "\n")
             self.no_links_file.flush()
             return
+        elif len(cookies_links) == 0 and len(terms_links) != 0:
+            self.no_cookies_file.write(url + "\n")
+            self.no_cookies_file.flush()
+        elif len(cookies_links) != 0 and len(terms_links) == 0:
+            self.no_terms_file.write(url + "\n")
+            self.no_terms_file.flush()
 
         folder_name = re.sub("[^0-9a-zA-Z]+", "_", LibraryMethods.strip_url(self.driver.current_url))
         # create a folder for our url

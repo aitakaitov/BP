@@ -96,12 +96,12 @@ NOT SOLVED:
 cs.johnnybet.com;podmínky jsou pod # odkazem a aktivují skript, někdy se otevře nnové okno a někdy vyskočí popup, těžko podchytitelné. Většinou navíc # odkazují a jinou část stejné stránky
 flo.uri.sh;z nějakého důvodu selenium skončí na javascriptexception, možná kvůli redirectu
 testyojetin.cz;odkaz je button a otevře js applet
+licence.mapy.cz; terms nejsou odkaz, řeší to nějaký javascript
 
 NOT SOLVABLE:
-travel.gov.gr; terms jsou, do odkazu je href přiřazen jiným způsobem
-kraluv-dvur.cz; cookies jsou v záložce o webu
-profimedia.cz;cookies nic, terms jsou jako odkaz na pdf
+travel.gov.gr; terms jsou, do odkazu je href přiřazen jiným způsobem - nelze detekovat, že se jedná o odkaz z HTML
+kraluv-dvur.cz; cookies jsou v záložce o webu - aktuálně nelze vyřešit
 mariannebydleni.cz; jsou jako pdf, což se aktuálně ignoruje - není kontrola nad tím, kdy se stáhnou ani kam se stáhnou  s jakým názvem, složku pro stahování lze definovat jenom při spuštění driveru
-licence.mapy.cz; terms nejsou odkaz, řeší to nějaký javascript
+profimedia.cz;cookies nic, terms jsou jako odkaz na pdf - ditto
 
 
