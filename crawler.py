@@ -2,7 +2,8 @@
 from typing import List
 
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+#from selenium.webdriver.chrome.options import Options
+from selenium.webdriver import FirefoxOptions
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import JavascriptException
 
@@ -83,6 +84,7 @@ class Crawler:
             self.crawl_page(start_url)
         except (WebDriverException, JavascriptException):
             self.log.log("[CRAWLER] Error loading starting page, will exit.")
+            traceback.print_exc()
             return
 
         # remove the placeholders
