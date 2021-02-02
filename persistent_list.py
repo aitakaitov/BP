@@ -3,6 +3,7 @@ import os.path
 from log import Log
 from const import Const
 
+
 class PersistentList:
     def __init__(self, file_path):
         self.path = Const.persistent_path + "/" + file_path
