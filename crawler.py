@@ -1,9 +1,7 @@
 # selenium
-from typing import List
-
 from selenium import webdriver
-#from selenium.webdriver.chrome.options import Options
-from selenium.webdriver import FirefoxOptions
+from selenium.webdriver.chrome.options import Options
+#from selenium.webdriver import FirefoxOptions
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import JavascriptException
 
@@ -22,7 +20,6 @@ import urllib.parse
 import os
 import re
 import traceback
-import shutil
 import random
 
 
@@ -34,18 +31,12 @@ class Crawler:
 
     def __init__(self):
         chrome_options = Options()
+        chrome_options.add_argument("--headless")
         chrome_options.add_argument("--incognito")
-        chrome_options.add_argument("--enable-automation")
-        chrome_options.add_argument("--disable-notifications")
-        chrome_options.add_argument("--disable-browser-side-navigation")
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.headless = True
         self.log = Log(Const.log_path)
 
         ''' Selenium driver for chrome'''
-        self.driver = webdriver.Firefox(executable_path=Const.chromedriver_path, options=chrome_options)
+        self.driver = webdriver.Chrome(executable_path=Const.chromedriver_path, options=chrome_options)
         ''' Page load timeout'''
         self.driver.set_page_load_timeout(Const.webdriver_timeout)
         ''' Scraped links'''
@@ -80,20 +71,22 @@ class Crawler:
         :return:
         """
 
-        try:
-            self.crawl_page(start_url)
-        except (WebDriverException, JavascriptException):
-            self.log.log("[CRAWLER] Error loading starting page, will exit.")
-            traceback.print_exc()
-            return
+        # Test if we have links from previous run
+        if len(self.links_to_visit) == 1:
+            try:
+                self.crawl_page(start_url)
+            except (WebDriverException, JavascriptException):
+                self.log.log("[CRAWLER] Error loading starting page, will exit.")
+                traceback.print_exc()
+                return
 
-        # remove the placeholders
-        if self.links_to_visit[0] == "--------------------------------------":
-            self.links_to_visit.remove(self.links_to_visit[0])
-        if self.scraped_links[0] == "--------------------------------------":
-            self.scraped_links.remove(self.scraped_links[0])
-        if len(self.visited_links) > 1 and self.visited_links[0] == "--------------------------------------":
-            self.visited_links.remove(self.visited_links[0])
+            # remove the placeholders
+            if self.links_to_visit[0] == "--------------------------------------":
+                self.links_to_visit.remove(self.links_to_visit[0])
+            if self.scraped_links[0] == "--------------------------------------":
+                self.scraped_links.remove(self.scraped_links[0])
+            if len(self.visited_links) > 1 and self.visited_links[0] == "--------------------------------------":
+                self.visited_links.remove(self.visited_links[0])
 
         while True:
 
@@ -121,9 +114,9 @@ class Crawler:
 
         # acquire html
         htmltext = LibraryMethods.download_page_html(self.driver, url)
-        #if LibraryMethods.strip_url(self.driver.current_url)[-3:] != ".cz":
-        #    self.log.log("[CRAWLER] Redirected to non-.cz domain, skipping.")
-        #    return
+        if LibraryMethods.strip_url(self.driver.current_url)[-3:] != ".cz":
+            self.log.log("[CRAWLER] Redirected to non-.cz domain, skipping (rd from {}).".format(self.driver.current_url))
+            return
 
         self.log.log("[CRAWLER - NEW PAGE] Crawling page " + self.driver.current_url)
 
@@ -137,7 +130,7 @@ class Crawler:
         links_before = len(self.links_to_visit)
 
         # add links to links_to_visit
-        self.collect_links_to_visit(links, self.driver.current_url)
+        self.collect_links_to_visit_alt(links, self.driver.current_url)
 
         if any(visited == LibraryMethods.strip_url(url) for visited in self.scraped_links):
             self.log.log("[CRAWLER] Domain already scraped, collected {} links-to-visit.".format(len(self.links_to_visit) - links_before))
@@ -148,7 +141,6 @@ class Crawler:
         if len(cookies_links) == 0 and len(terms_links) == 0:
             self.log.log("[CRAWLER] Collected no terms or cookies links, {} will be skipped.".format(url))
             self.no_links_file.write(url + "\n")
-            #self.no_links_file.write(LibraryMethods.strip_url(url) + "\n")
             self.no_links_file.flush()
             return
         elif len(cookies_links) == 0 and len(terms_links) != 0:
@@ -175,13 +167,15 @@ class Crawler:
 
         for link in cookies_links:
             try:
-                self.scrape_page(link, Const.pages_path + "/" + folder_name, "cookies")
+                if link[-4:] != ".pdf":
+                    self.scrape_page(link, Const.pages_path + "/" + folder_name, "cookies")
             except WebDriverException:
                 self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
 
         for link in terms_links:
             try:
-                self.scrape_page(link, Const.pages_path + "/" + folder_name, "terms")
+                if link[-4:] != ".pdf":
+                    self.scrape_page(link, Const.pages_path + "/" + folder_name, "terms")
             except WebDriverException:
                 self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
 
@@ -256,6 +250,8 @@ class Crawler:
 
         same_domain_links = list(set(same_domain_links))        # select links to add at random
         for i in range(Const.domain_links_coll):
+            if len(same_domain_links) == 0:
+                break
             r = random.randrange(0, len(same_domain_links))
             relevant_links.append(same_domain_links[r])
             same_domain_links.remove(same_domain_links[r])
@@ -295,11 +291,17 @@ class Crawler:
             try:
                 # test for cookies keywords in URL
                 if any(keyword in link_href.lower() for keyword in Const.cookies_keywords):
-                    cookies_links.append(link_href)
+                    if ('ochrana' in link_href.lower() and 'zdravi' in link_href.lower()):
+                        continue
+                    else:
+                        cookies_links.append(link_href)
                     continue
                 # test for cookies keywords in link text
                 elif any(keyword in link.contents[0].lower() for keyword in Const.cookies_keywords):
-                    cookies_links.append(link_href)
+                    if ('ochrana' in link.contents[0].lower() and 'zdraví' in link.contents[0].lower()):
+                        continue
+                    else:
+                        cookies_links.append(link_href)
                     continue
             except (IndexError, TypeError):
                 # in case link has no contents
@@ -307,9 +309,15 @@ class Crawler:
             try:
                 # do the same for terms
                 if any(keyword in link_href.lower() for keyword in Const.terms_keywords):
-                    terms_links.append(link_href)
+                    if ('podminky' in link_href.lower() and ('soutez' in link_href.lower() or 'obchodni' in link_href.lower())):
+                        continue
+                    else:
+                        terms_links.append(link_href)
                 elif any(keyword in link.contents[0].lower() for keyword in Const.terms_keywords):
-                    terms_links.append(link_href)
+                    if ('podmínky' in link_href.lower() and ('soutěž' in link_href.lower() or 'obchodní' in link_href.lower())):
+                        continue
+                    else:
+                        terms_links.append(link_href)
             except (IndexError, TypeError):
                 continue
 
@@ -351,11 +359,11 @@ class Crawler:
             terms_links, cookies_links = self.collect_terms_cookies_links(links, LibraryMethods.strip_url(url))
             if page_type == "cookies":
                 for link in cookies_links:
-                    if link != url:
+                    if link != url and link[-4:] != ".pdf":
                         self.scrape_page(link, dir_path, page_type, current_depth)
             elif page_type == "terms":
                 for link in terms_links:
-                    if link != url:
+                    if link != url and link[-4:] != ".pdf":
                         self.scrape_page(link, dir_path, page_type, current_depth)
 
         return
