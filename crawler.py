@@ -167,15 +167,13 @@ class Crawler:
 
         for link in cookies_links:
             try:
-                if link[-4:] != ".pdf":
-                    self.scrape_page(link, Const.pages_path + "/" + folder_name, "cookies")
+                self.scrape_page(link, Const.pages_path + "/" + folder_name, "cookies")
             except WebDriverException:
                 self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
 
         for link in terms_links:
             try:
-                if link[-4:] != ".pdf":
-                    self.scrape_page(link, Const.pages_path + "/" + folder_name, "terms")
+                self.scrape_page(link, Const.pages_path + "/" + folder_name, "terms")
             except WebDriverException:
                 self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
 
@@ -229,6 +227,8 @@ class Crawler:
                 # ignore emails, anything that contains an already visited domain, links we are going to visit and
                 # anything that does not start with a letter or number
                 # we limit the search to .cz domains
+                if link_href[0:4] == 'sms:' or link_href[0:4] == 'tel:':
+                    continue
                 if "mailto" not in link_href and link_href[0] != "#":
                     if link_href[0:2] == "//":
                         link_href = "http:" + link_href
@@ -236,7 +236,7 @@ class Crawler:
                     if link_href[-1] != "/":
                         link_href += "/"
                     if ".cz" == current_url_stripped[-3:] and all(
-                            extension not in link_href[-4:] for extension in Const.blacklisted_extensions):
+                            extension not in link_href[-5:-1] for extension in Const.blacklisted_extensions):
                         if all(to_visit != link_href for to_visit in self.links_to_visit):
                             if all(visited != link_href for visited in self.visited_links):
                                 if current_url_stripped == LibraryMethods.strip_url(link_href):     # if the domain is the same one we are scraping
@@ -280,9 +280,14 @@ class Crawler:
                     continue
                 if link_href[0] == '#':
                     continue
-
+                if link_href[0:4] == 'sms:' or link_href[0:4] == 'tel:':
+                    continue
                 if link_href[0:2] == "//":
                     link_href = "http:" + link_href
+                if link_href[-1] != '/':
+                    link_href += '/'
+                if link_href[-5:-1] == '.pdf':
+                    continue
 
                 link_href = urllib.parse.urljoin(current_url_full, link_href)
             except (TypeError, IndexError):
