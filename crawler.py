@@ -1,7 +1,6 @@
 # selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-#from selenium.webdriver import FirefoxOptions
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import JavascriptException
 
@@ -42,7 +41,7 @@ class Crawler:
         ''' Scraped links'''
         self.scraped_links = PersistentList(Const.scraped_filename)
         if len(self.scraped_links) == 0:
-            self.scraped_links.append("--------------------------------------")
+            self.scraped_links.append("--------------------------------------")     # placeholders for all behaviour on empty lists
         ''' List of links to visit '''
         self.links_to_visit = PersistentList(Const.queue_filename)
         if len(self.links_to_visit) == 0:
@@ -63,18 +62,28 @@ class Crawler:
 
         self.no_cookies_file = open(Const.no_cookies_filename, "a")
 
-    def start_crawler(self, start_url: str):
+    def start_crawler(self):
         """
         Starts the crawler from a starting url. The crawler will collect all usable links and then place then in a queue,
         collecting more links as it goes.
-        :param start_url: Starting point
         :return:
         """
 
-        # Test if we have links from previous run
+        url_to_start = None
+
+        # Test if we have no links from previous run
         if len(self.links_to_visit) == 1:
+            # if we have one starting url
+            if len(Const.start_urls) == 1:
+                url_to_start = Const.start_urls[0]
+            else:
+                # if we have multiple starting urls - this is done because of placeholders
+                url_to_start = Const.start_urls[0]
+                for i in range(1, len(Const.start_urls)):
+                    self.links_to_visit.append(Const.start_urls[i])
+
             try:
-                self.crawl_page(start_url)
+                self.crawl_page(url_to_start)
             except (WebDriverException, JavascriptException):
                 self.log.log("[CRAWLER] Error loading starting page, will exit.")
                 traceback.print_exc()

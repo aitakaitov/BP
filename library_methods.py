@@ -70,7 +70,10 @@ class LibraryMethods:
             new_height = driver.execute_script("return document.body.scrollHeight")
             scrolls += 1
             if new_height == last_height or scrolls == Const.max_scrolls:
-                break
+                if driver.execute_script("return document.readyState") == 'complete':
+                    break
+                else:
+                    time.sleep(Const.scroll_pause)
             last_height = new_height
 
         return driver.page_source
