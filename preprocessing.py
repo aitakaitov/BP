@@ -1,229 +1,278 @@
 import os
 import random
 import re
+from tensorflow.keras.preprocessing.text import Tokenizer
+import numpy as np
 
 
-def create_dataset(relevant_pages_dir: str, irrelevant_pages_dir: str, train_dir: str, test_dir: str, vocab_file: str):
-    """
-    Preprocesses the pages and creates a dataset, then saves vocabulary in a file
-    :param relevant_pages_dir: Directory with relevant pages. Inside, a folder for each page is expected. In that folder,
-     terms and cookies folders with pages are expected. Folder with no pages in it is ignored
-    :param irrelevant_pages_dir: Directory with irrelevant pages. Inside it, files with page contents are expected.
-    :param train_dir: Dir to write the training dataset into, contains a file for each page - the format is class;text. 0 is irrelevant,
-    1 is cookies and 2 is terms
-    :param test_dir: Dir to write the testing dataset into, contains a file for each page - the format is class;text, one page per line. 0 is irrelevant,
-    1 is cookies and 2 is terms
-    :param vocab_file: File to which the vocabulary will be saved, words separated by space
-    :return: None
-    """
+class Preprocessing:
 
-    # check if the directories exist
-    os.makedirs(relevant_pages_dir, exist_ok=True)
-    #os.makedirs(irrelevant_pages_dir, exist_ok=True)
-    os.makedirs(train_dir, exist_ok=True)
-    os.makedirs(test_dir, exist_ok=True)
+    def __init__(self):
+        self.tokenizer = Tokenizer(
+            num_words=None,
+            filters="!#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n\"\'1234567890",
+            lower=True,
+            split=' ',
+            char_level=False
+        )
+        self.vocabulary = None
+        self.Tokenizer = None
+        self.embedding_matrix = None
+        self.doc_max_len = 0
 
-    # contains (path, class, train/test)
-    pages_info = []
+    def create_dataset(self, relevant_pages_dir: str, irrelevant_pages_dir: str, train_dir: str, test_dir: str,
+                       vocab_file: str):
+        """
+        Preprocesses the pages and creates a dataset, then saves vocabulary in a file
+        :param relevant_pages_dir: Directory with relevant pages. Inside, a folder for each page is expected. In that folder,
+         terms and cookies folders with pages are expected. Folder with no pages in it is ignored
+        :param irrelevant_pages_dir: Directory with irrelevant pages. Inside it, files with page contents are expected.
+        :param train_dir: Dir to write the training dataset into, contains a file for each page - the format is class text. 0 is irrelevant,
+        1 is cookies and 2 is terms
+        :param test_dir: Dir to write the testing dataset into, contains a file for each page - the format is class text, one page per line. 0 is irrelevant,
+        1 is cookies and 2 is terms
+        :param vocab_file: File to which the vocabulary will be saved, words separated by space
+        :return: None
+        """
 
-    # collect all page paths
-    print("Collecting all page paths")
-    tcpaths = collect_rel_pages_paths(relevant_pages_dir)
-    terms_pages_paths = tcpaths[0]
-    cookies_pages_paths = tcpaths[1]
-    #irrelevant_pages_paths = collect_irr_pages_paths(irrelevant_pages_dir)
+        # check if the directories exist
+        os.makedirs(relevant_pages_dir, exist_ok=True)
+        # os.makedirs(irrelevant_pages_dir, exist_ok=True)
+        os.makedirs(train_dir, exist_ok=True)
+        os.makedirs(test_dir, exist_ok=True)
 
-    # split into train and test
-    print("Splitting pages into train and test datasets")
-    pgs = split_pages(terms_pages_paths)
+        # contains (path, class, train/test)
+        pages_info = []
 
-    # create info
-    pinf = create_page_info(pgs[0], 2, True)
-    pinf2 = create_page_info(pgs[1], 2, False)
+        # collect all page paths
+        print("Collecting all page paths")
+        tcpaths = self.__collect_rel_pages_paths(relevant_pages_dir)
+        terms_pages_paths = tcpaths[0]
+        cookies_pages_paths = tcpaths[1]
+        # irrelevant_pages_paths = collect_irr_pages_paths(irrelevant_pages_dir)
 
-    # add info to pages_info
-    [pages_info.append(info) for info in pinf]
-    [pages_info.append(info) for info in pinf2]
+        # split into train and test
+        print("Splitting pages into train and test datasets")
+        pgs = self.__split_pages(terms_pages_paths)
 
-    # do that for other classes
-    pgs = split_pages(cookies_pages_paths)
-    pinf = create_page_info(pgs[0], 1, True)
-    pinf2 = create_page_info(pgs[1], 1, False)
-    [pages_info.append(info) for info in pinf]
-    [pages_info.append(info) for info in pinf2]
+        # create info
+        pinf = self.__create_page_info(pgs[0], 2, True)
+        pinf2 = self.__create_page_info(pgs[1], 2, False)
+        # add info to pages_info
+        [pages_info.append(info) for info in pinf]
+        [pages_info.append(info) for info in pinf2]
 
-    #pgs = split_pages(irrelevant_pages_paths)
-    #pinf = create_page_info(pgs[0], 0, True)
-    #pinf2 = create_page_info(pgs[1], 0, False)
-    #[pages_info.append(info) for info in pinf]
-    #[pages_info.append(info) for info in pinf2]
+        # do that for other classes
+        pgs = self.__split_pages(cookies_pages_paths)
+        pinf = self.__create_page_info(pgs[0], 1, True)
+        pinf2 = self.__create_page_info(pgs[1], 1, False)
+        [pages_info.append(info) for info in pinf]
+        [pages_info.append(info) for info in pinf2]
 
-    # shuffle the pages
-    random.shuffle(pages_info)
+        # pgs = split_pages(irrelevant_pages_paths)
+        # pinf = create_page_info(pgs[0], 0, True)
+        # pinf2 = create_page_info(pgs[1], 0, False)
+        # [pages_info.append(info) for info in pinf]
+        # [pages_info.append(info) for info in pinf2]
 
-    # create vocab, preprocess pages
-    print("Creating vocabulary, writing pages into test and train directories")
-    vocabulary = dict()
-    for i in range(len(pages_info)):
-        if pages_info[i][2]:
-            target_dir = train_dir
-        else:
-            target_dir = test_dir
-        page_vc = preprocess_page(pages_info[i], target_dir, i)
+        # shuffle the pages
+        random.shuffle(pages_info)
 
-        for key, value in page_vc.items():
-            try:
-                vocabulary[key] += value
-            except KeyError:
-                vocabulary[key] = value
+        # create vocab, preprocess pages
+        print("Creating vocabulary, writing pages into test and train directories")
+        self.vocabulary = dict()
+        for i in range(len(pages_info)):
+            if pages_info[i][2]:
+                target_dir = train_dir
+            else:
+                target_dir = test_dir
+            page_vc = self.__preprocess_page(pages_info[i], target_dir, i)
 
-    print("Processing vocabulary")
-    vocabulary = process_vocabulary(vocabulary)
-    vc_file = open(vocab_file, "w+")
-    for word in vocabulary:
-        vc_file.write(word + " ")
+            for key, value in page_vc.items():
+                try:
+                    self.vocabulary[key] += value
+                except KeyError:
+                    self.vocabulary[key] = value
 
-    vc_file.close()
-    return
+        print("Processing vocabulary")
+        self.vocabulary = self.__process_vocabulary(self.vocabulary)
+        vc_file = open(vocab_file, "w+")
+        for word in self.vocabulary:
+            vc_file.write(word + " ")
 
+        vc_file.close()
 
-def process_vocabulary(vocabulary: dict) -> list:
-    """
-    Processes vocabulary
-    :param vocabulary: vocabulary
-    :return: list of words
-    """
-    min_count = 2
-    remove_numbers = True
-    remove_stopwords = True
+        # create tokenizer and fit it on vocabulary
+        text = ""
+        for word in self.vocabulary:
+            text += word + " "
+        self.tokenizer.fit_on_texts([text])
+        self.__create_embedding_matrix("fasttext/cc.cs.300.vec")
 
-    stopwords = []
-    if remove_stopwords:
-        sw_file = open("stopwords-cs.txt", "r")
-        stopwords = sw_file.readlines()
-        for i in range(len(stopwords)):
-            stopwords[i] = stopwords[i][0:len(stopwords[i]) - 1]
+        return
 
-    new_vocab = []
+    def __process_vocabulary(self, vocabulary: dict) -> list:
+        """
+        Processes vocabulary
+        :param vocabulary: vocabulary
+        :return: list of words
+        """
+        min_count = 2
+        remove_numbers = True
+        remove_stopwords = True
 
-    for key, value in vocabulary.items():
-        add = True
-        if value < min_count:
-            add = False
-        if remove_numbers and key.isdigit():
-            add = False
+        stopwords = []
         if remove_stopwords:
-            if key in stopwords:
+            sw_file = open("stopwords-cs.txt", "r")
+            stopwords = sw_file.readlines()
+            for i in range(len(stopwords)):
+                stopwords[i] = stopwords[i][0:len(stopwords[i]) - 1]
+
+        new_vocab = []
+
+        for key, value in vocabulary.items():
+            add = True
+            if value < min_count:
                 add = False
+            if remove_numbers and key.isdigit():
+                add = False
+            if remove_stopwords:
+                if key in stopwords:
+                    add = False
 
-        if add:
-            new_vocab.append(key)
+            if add:
+                new_vocab.append(key)
 
-    return new_vocab
+        return new_vocab
 
+    def __create_page_info(self, pages: list, clss: int, is_train: bool) -> list:
+        """
+        creates info tuples for each page in pages
+        :param pages: pages
+        :param clss: 0,1,2
+        :param is_train:
+        :return: tuple (page path, class, is_train)
+        """
+        infos = []
+        for page in pages:
+            infos.append((page, clss, is_train))
 
-def create_page_info(pages: list, clss: int, is_train: bool) -> list:
-    """
-    creates info tuples for each page in pages
-    :param pages: pages
-    :param clss: 0,1,2
-    :param is_train:
-    :return: tuple (page path, class, is_train)
-    """
-    infos = []
-    for page in pages:
-        infos.append((page, clss, is_train))
+        return infos
 
-    return infos
+    def __preprocess_page(self, page_info: tuple, target_dir: str, index: int) -> dict:
+        """
+        Performs preprocessing and saves the result into the target directory. Returns a dictionary with words and counts
+        :param page_info: tuple of (source path, class, train/test)
+        :param target_dir: target directory
+        :param index: index of the page
+        :return: dict vocabulary
+        """
+        with open(page_info[0], "r") as src_file:
+            page_lines = src_file.readlines()
 
+        # remove URL and DEPTH
+        page_text = ""
+        for line in page_lines[2:]:
+            page_text += line
 
-def preprocess_page(page_info: tuple, target_dir: str, index: int) -> dict:
-    """
-    Performs preprocessing and saves the result into the target directory. Returns a dictionary with words and counts
-    :param page_info: tuple of (source path, class, train/test)
-    :param target_dir: target directory
-    :param index: index of the page
-    :return: dict vocabulary
-    """
-    with open(page_info[0], "r") as src_file:
-        page_lines = src_file.readlines()
+        # remove all non-alpha numeric and replace them with space
+        page_text = re.sub(r"[\W_]+", ' ', page_text)
+        page_tgt_file = open(target_dir + "/" + str(index), "w+")
+        page_tgt_file.write(str(page_info[1]) + " " + page_text)
+        page_tgt_file.close()
 
-    # remove URL and DEPTH
-    page_text = ""
-    for line in page_lines[2:]:
-        page_text += line
+        # create vocabulary
+        split_text = page_text.split()
+        if len(split_text) > self.doc_max_len:
+            self.doc_max_len = len(split_text)
+        vc = dict()
+        for word in split_text:
+            try:
+                vc[word.lower()] += 1
+            except KeyError:
+                vc[word.lower()] = 1
 
-    # remove all non-alpha numeric and replace them with space
-    page_text = re.sub(r"[\W_]+", ' ', page_text)
-    page_tgt_file = open(target_dir + "/" + str(index), "w+")
-    page_tgt_file.write(str(page_info[1]) + ";" + page_text)
-    page_tgt_file.close()
+        return vc
 
-    # create vocabulary
-    split_text = page_text.split()
-    vc = dict()
-    for word in split_text:
-        try:
-            vc[word.lower()] += 1
-        except KeyError:
-            vc[word.lower()] = 1
+    def __collect_rel_pages_paths(self, relevant_dir: str) -> tuple:
+        """
+        Collects all relevant page paths
+        :param relevant_dir: dir
+        :return: tuple of (terms paths, cookies paths)
+        """
+        pages_dirs = os.listdir(relevant_dir)
+        cookies_paths = []
+        terms_paths = []
 
-    return vc
+        for pdir in pages_dirs:
+            cookies_files = os.listdir(relevant_dir + "/" + pdir + "/cookies")
+            terms_files = os.listdir(relevant_dir + "/" + pdir + "/terms")
 
+            if len(cookies_files) != 0:
+                [cookies_paths.append(relevant_dir + "/" + pdir + "/cookies/" + file) for file in cookies_files]
 
-def collect_rel_pages_paths(relevant_dir: str) -> tuple:
-    """
-    Collects all relevant page paths
-    :param relevant_dir: dir
-    :return: tuple of (terms paths, cookies paths)
-    """
-    pages_dirs = os.listdir(relevant_dir)
-    cookies_paths = []
-    terms_paths = []
+            if len(terms_files) != 0:
+                [terms_paths.append(relevant_dir + "/" + pdir + "/terms/" + file) for file in terms_files]
 
-    for pdir in pages_dirs:
-        cookies_files = os.listdir(relevant_dir + "/" + pdir + "/cookies")
-        terms_files = os.listdir(relevant_dir + "/" + pdir + "/terms")
+        return terms_paths, cookies_paths
 
-        if len(cookies_files) != 0:
-            [cookies_paths.append(relevant_dir + "/" + pdir + "/cookies/" + file) for file in cookies_files]
+    def __collect_irr_pages_paths(self, irrelevant_dir: str) -> list:
+        """
+        Collects irrelevant page paths
+        :param irrelevant_dir: dir
+        :return: list of irrelevant page paths
+        """
+        files = os.listdir(irrelevant_dir)
+        paths = []
+        [paths.append(irrelevant_dir + "/" + file) for file in files]
 
-        if len(terms_files) != 0:
-            [terms_paths.append(relevant_dir + "/" + pdir + "/terms/" + file) for file in terms_files]
+        return paths
 
-    return terms_paths, cookies_paths
+    def __split_pages(self, pages: list) -> tuple:
+        """
+        Splits pages list into training pages and testing pages
+        :param pages: list of pages
+        :return: tuple of training pages, testing pages
+        """
+        test_size = 0.25
+        test_count = int(len(pages) * test_size)
+        test_pages = []
 
+        # get test pages
+        for i in range(test_count):
+            r = random.randrange(len(pages))
+            test_pages.append(pages[r])
+            pages.remove(pages[r])
 
-def collect_irr_pages_paths(irrelevant_dir: str) -> list:
-    """
-    Collects irrelevant page paths
-    :param irrelevant_dir: dir
-    :return: list of irrelevant page paths
-    """
-    files = os.listdir(irrelevant_dir)
-    paths = []
-    [paths.append(irrelevant_dir + "/" + file) for file in files]
+        # train pages are the leftover pages
+        train_pages = pages
 
-    return paths
+        return train_pages, test_pages
 
+    def __create_embedding_matrix(self, fasttext_path: str):
+        """
+        Saves embedding vectors based on Tokenizer indexing
+        :param fasttext_path: Path to fasttext pretrained embeddings
+        :return: None
+        """
+        ft_file = open(fasttext_path, "r+")
+        word_index = self.tokenizer.word_index
+        self.embedding_matrix = np.zeros((len(word_index) + 1, 300))
 
-def split_pages(pages: list) -> tuple:
-    """
-    Splits pages list into training pages and testing pages
-    :param pages: list of pages
-    :return: tuple of training pages, testing pages
-    """
-    test_size = 0.1
-    test_count = int(len(pages) * test_size)
-    test_pages = []
+        print("Parsing fasttext embeddings")
+        ft_file.readline()  # read dimensions
+        while True:
+            line = ft_file.readline()
+            if line == "":
+                break
+            word = line.split()[0]
+            try:
+                if word_index[word] is not None:
+                    vector = []
+                    for e in line.split()[1:]:
+                        vector.append(float(e))
+                    self.embedding_matrix[word_index[word]] = vector
+            except KeyError:
+                continue
 
-    # get test pages
-    for i in range(test_count):
-        r = random.randrange(len(pages))
-        test_pages.append(pages[r])
-        pages.remove(pages[r])
-
-    # train pages are the leftover pages
-    train_pages = pages
-
-    return train_pages, test_pages
+        ft_file.close()

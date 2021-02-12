@@ -208,7 +208,7 @@ class Crawler:
                     link_href = urllib.parse.urljoin(current_url_full, link_href)
                     if link_href[-1] != "/":
                         link_href += "/"
-                    if ".cz" == current_url_stripped[-3:] and all(extension not in link_href[-4:] for extension in Const.blacklisted_extensions):
+                    if ".cz/" == link_href[-4:] and all(extension not in link_href[-4:] for extension in Const.blacklisted_extensions):
                         if all(to_visit != link_href for to_visit in self.links_to_visit):
                             if all(visited != link_href for visited in self.visited_links):
                                 relevant_links.append(link_href)
@@ -244,7 +244,7 @@ class Crawler:
                     link_href = urllib.parse.urljoin(current_url_full, link_href)
                     if link_href[-1] != "/":
                         link_href += "/"
-                    if ".cz" == current_url_stripped[-3:] and all(
+                    if ".cz/" == link_href[-4:] and all(
                             extension not in link_href[-5:-1] for extension in Const.blacklisted_extensions):
                         if all(to_visit != link_href for to_visit in self.links_to_visit):
                             if all(visited != link_href for visited in self.visited_links):
@@ -295,6 +295,8 @@ class Crawler:
                     link_href = "http:" + link_href
                 if link_href[-1] != '/':
                     link_href += '/'
+                if link_href[0:4] == "www.":
+                    link_href = "http://" + link_href[4:]
                 if link_href[-5:-1] == '.pdf':
                     continue
 
