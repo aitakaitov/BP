@@ -39,9 +39,9 @@ def create_dataset(relevant_pages_dir: str, irrelevant_pages_dir: str, train_dir
 
     # create info
     pinf = create_page_info(pgs[0], 2, True)
-    pinf2 = create_page_info(pgs[1], 2, False)
-
-    # add info to pages_info
+    pinf2 = create_page_info(pgs[1], 2, False)                                      # TODO use Tokenizer class - train the tokenizer on sanitized texts
+                                                                                    # TODO and create the embedding matrix based on the created indices
+    # add info to pages_info                                                        # TODO then save the Tokenizer and embedding matrix
     [pages_info.append(info) for info in pinf]
     [pages_info.append(info) for info in pinf2]
 
