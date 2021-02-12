@@ -1,41 +1,65 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras import layers
 import numpy as np
+from preprocessing import Preprocessing
+import os
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+import tensorflow.keras
 
-def create_model(emb_matrix_path, train_dir, test_dir, model_path):
-    embedding_dim = 300     # how large will the embedded vectors be
-    input_length = 200      # how many words will be supplied in a document
-    input_dim = 20000       # how long is OHE of a word
-    embedding_weights = []  # embedding matrix of size input_dim x embedding_dim
+def create_model(train_dir, test_dir, model_path, tokenizer_path, preprocessor: Preprocessing):
+    embedding_dim = preprocessor.embedding_matrix.shape[1]     # how large will the embedded vectors be
+    input_length = preprocessor.doc_max_len      # how many words will be supplied in a document
+    input_dim = len(preprocessor.tokenizer.word_index) + 1       # how long is OHE of a word
+    embedding_weights = preprocessor.embedding_matrix  # embedding matrix of size input_dim x embedding_dim
 
+    # define the model
     model = Sequential()
     model.add(layers.Embedding(
         input_dim=input_dim,
         output_dim=embedding_dim,
         input_length=input_length,
-        embeddings_initializer=embedding_weights,
+        weights=[embedding_weights],
         trainable=False
     ))
+    model.add(layers.Conv1D(filters=64, kernel_size=8, activation='relu'))
+    model.add(layers.MaxPooling1D(pool_size=2))
+    model.add(layers.Conv1D(filters=48, kernel_size=8, activation='relu'))
+    model.add(layers.MaxPooling1D(pool_size=2))
+    model.add(layers.Conv1D(filters=32, kernel_size=8, activation='relu'))
+    model.add(layers.MaxPooling1D(pool_size=2))
+    model.add(layers.Flatten())
+    model.add(layers.Dense(128, activation='relu'))
+    model.add(layers.Dense(1, activation='sigmoid'))
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.summary()
+
+    # prepare training and testing data
+    X_train, y_train = get_dataset(train_dir, preprocessor.tokenizer, preprocessor.doc_max_len)
+    X_test, y_test = get_dataset(test_dir, preprocessor.tokenizer, preprocessor.doc_max_len)
+
+    model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=8, batch_size=8)
+
     return
 
 
-def parse_embedding_matrix(emb_matrix_path) -> tuple:
-    with open(emb_matrix_path, "w") as f:
-        file_lines = f.readlines()
+def get_dataset(dir: str, tokenizer, max_len):
+    files = os.listdir(dir)
+    X = np.zeros((len(files), max_len))
+    y = np.zeros((len(files), 1))
+    i = 0
+    for file in files:
+        with open(dir + "/" + file) as f:
+            text = f.read()
+            if text[0] == '1':
+                y[i][0] = 0
+            if text[0] == '2':
+                y[i][0] = 1
 
-    vocab = []
-    embedding_matrix = []
+            X[i] = pad_sequences([tokenizer.texts_to_sequences([text[2:]])[0]], maxlen=max_len)
+            i += 1
 
-    for line in file_lines:
-        split_line = line.split()
-        vocab.append(split_line[0])
-        vector = []
-        for e in split_line[1:]:
-            vector.append(float(e))
+    return np.array(X), np.array(y)
 
-        embedding_matrix.append(vector)
-
-    return vocab, embedding_matrix
 
 def train_model():
 
