@@ -64,7 +64,9 @@ class Const:
                   "https://odkazy.seznam.cz/Veda-a-technika/"
                   "https://odkazy.seznam.cz/Lide-a-spolecnost/"
                   "https://odkazy.seznam.cz/Pocitace-a-internet/"
-                  "https://www.firmy.cz/"]
+                  "https://www.firmy.cz/",
+                  "http://www.plzen-firmy.cz/",
+                  "https://news.google.com/topstories?hl=cs&gl=CZ&ceid=CZ:cs"]
 
     '''Extensions we ignore '''
     blacklisted_extensions = [".jpg", ".png", ".jpeg", ".pdf"]

@@ -12,24 +12,76 @@ def create_model(train_dir, test_dir, model_path, tokenizer_path, preprocessor: 
     input_dim = len(preprocessor.tokenizer.word_index) + 1       # how long is OHE of a word
     embedding_weights = preprocessor.embedding_matrix  # embedding matrix of size input_dim x embedding_dim
 
-    # define the model
-    model = Sequential()
-    model.add(layers.Embedding(
+    input = layers.Input(shape=(None,), dtype='int64')
+
+    embedding_0 = layers.Embedding(
         input_dim=input_dim,
         output_dim=embedding_dim,
         input_length=input_length,
         weights=[embedding_weights],
         trainable=False
-    ))
-    model.add(layers.Conv1D(filters=64, kernel_size=8, activation='relu'))
-    model.add(layers.MaxPooling1D(pool_size=2))
-    model.add(layers.Conv1D(filters=48, kernel_size=8, activation='relu'))
-    model.add(layers.MaxPooling1D(pool_size=2))
-    model.add(layers.Conv1D(filters=32, kernel_size=8, activation='relu'))
-    model.add(layers.MaxPooling1D(pool_size=2))
-    model.add(layers.Flatten())
-    model.add(layers.Dense(128, activation='relu'))
-    model.add(layers.Dense(1, activation='sigmoid'))
+    )(input)
+
+    reshape_0 = layers.Reshape((
+        input_length,
+        embedding_dim
+    ))(embedding_0)
+
+    conv_0 = layers.Conv1D(
+        filters=32,
+        kernel_size=8,
+        activation='relu'
+    )(reshape_0)
+
+    conv_1 = layers.Conv1D(
+        filters=32,
+        kernel_size=6,
+        activation='relu'
+    )(reshape_0)
+
+    conv_2 = layers.Conv1D(
+        filters=32,
+        kernel_size=4,
+        activation='relu'
+    )(reshape_0)
+
+    maxpool_0 = layers.MaxPooling1D(
+        pool_size=4
+    )(conv_0)
+
+    maxpool_1 = layers.MaxPooling1D(
+        pool_size=4
+    )(conv_1)
+
+    maxpool_2 = layers.MaxPooling1D(
+        pool_size=4
+    )(conv_2)
+
+    concat = layers.Concatenate(axis=1)([maxpool_0, maxpool_1, maxpool_2])
+    flatten = layers.Flatten()(concat)
+    dense_0 = layers.Dense(units=32, activation='relu')(flatten)
+    output = layers.Dense(units=1, activation='relu')(dense_0)
+
+    model = tensorflow.keras.models.Model(input, output)
+
+    # define the model
+    #model = Sequential()
+    #model.add(layers.Embedding(
+    #    input_dim=input_dim,
+    #    output_dim=embedding_dim,
+    #    input_length=input_length,
+    #    weights=[embedding_weights],
+    #    trainable=False
+    #))
+    #model.add(layers.Conv1D(filters=64, kernel_size=8, activation='relu'))
+    #model.add(layers.MaxPooling1D(pool_size=2))
+    #model.add(layers.Conv1D(filters=48, kernel_size=8, activation='relu'))
+    #model.add(layers.MaxPooling1D(pool_size=2))
+    #model.add(layers.Conv1D(filters=32, kernel_size=8, activation='relu'))
+    #model.add(layers.MaxPooling1D(pool_size=2))
+    #model.add(layers.Flatten())
+    #model.add(layers.Dense(128, activation='relu'))
+    #model.add(layers.Dense(1, activation='sigmoid'))
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     model.summary()
 
