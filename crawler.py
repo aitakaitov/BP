@@ -19,7 +19,7 @@ import urllib.parse
 import os
 import re
 import traceback
-import random
+import numpy.random
 
 
 class Crawler:
@@ -120,6 +120,11 @@ class Crawler:
         :return:
         """
         self.driver.delete_all_cookies()
+
+        if "idnes.cz" in url:
+            return
+
+        print(str(len(self.links_to_visit)))
 
         # acquire html
         htmltext = LibraryMethods.download_page_html(self.driver, url)
@@ -229,6 +234,7 @@ class Crawler:
         self.log.log("[CRAWLER] Collecting links-to-visit.")
         relevant_links = []
         same_domain_links = []
+        no_cz_end_links = []
         current_url_stripped = LibraryMethods.strip_url(current_url_full)
         for link in links:
             link_href = link.get("href")
@@ -244,26 +250,32 @@ class Crawler:
                     link_href = urllib.parse.urljoin(current_url_full, link_href)
                     if link_href[-1] != "/":
                         link_href += "/"
-                    if ".cz/" == link_href[-4:] and all(
-                            extension not in link_href[-5:-1] for extension in Const.blacklisted_extensions):
-                        if all(to_visit != link_href for to_visit in self.links_to_visit):
-                            if all(visited != link_href for visited in self.visited_links):
-                                if current_url_stripped == LibraryMethods.strip_url(link_href):     # if the domain is the same one we are scraping
-                                    same_domain_links.append(link_href)
-                                else:
-                                    relevant_links.append(link_href)
+                    #if Const.only_cz:
+                    #    if ".cz" not in link_href[-4:]:
+                    #        continue
+                    #else:
+                    if ".cz" not in LibraryMethods.strip_url(link_href)[-4:]:
+                        continue
+
+                    if all(to_visit != link_href for to_visit in self.links_to_visit) and all(extension not in link_href[-5:-1] for extension in Const.blacklisted_extensions):
+                        if all(visited != link_href for visited in self.visited_links):
+                            if current_url_stripped == LibraryMethods.strip_url(link_href):     # if the domain is the same one we are scraping
+                                same_domain_links.append(link_href)
+                            elif ".cz" not in link_href[-4:]:                                   # if it's not different root domain
+                                no_cz_end_links.append(link_href)
+                            else:                                                               # if it's different root domain
+                                relevant_links.append(link_href)
             except (TypeError, IndexError):
                 # type error means we got an irregular structure from bs4 and we will ignore it
                 # index error means that href is empty and we will ignore it
                 continue
 
         same_domain_links = list(set(same_domain_links))        # select links to add at random
-        for i in range(Const.domain_links_coll):
-            if len(same_domain_links) == 0:
-                break
-            r = random.randrange(0, len(same_domain_links))
-            relevant_links.append(same_domain_links[r])
-            same_domain_links.remove(same_domain_links[r])
+        no_cz_end_links = list(set(no_cz_end_links))
+        numpy.random.shuffle(same_domain_links)
+        numpy.random.shuffle(no_cz_end_links)
+
+        relevant_links = relevant_links + same_domain_links[:5] + no_cz_end_links[:10]
 
         relevant_links = list(set(relevant_links))                      # then add the selected + ones pointing to other domains to to_visit
         [self.links_to_visit.append(link) for link in relevant_links]
@@ -301,27 +313,31 @@ class Crawler:
                     continue
 
                 link_href = urllib.parse.urljoin(current_url_full, link_href)
+
+                if ".cz" not in LibraryMethods.strip_url(link_href)[-4:]:
+                    continue
+
             except (TypeError, IndexError):
                 # in case href is empty or not there at all
                 continue
             try:
                 # test for cookies keywords in URL
                 if any(keyword in link_href.lower() for keyword in Const.cookies_keywords):
-                    if ('ochrana' in link_href.lower() and 'zdravi' in link_href.lower()):
+                    if 'ochrana' in link_href.lower() and 'zdravi' in link_href.lower():
                         continue
                     else:
                         cookies_links.append(link_href)
                     continue
                 # test for cookies keywords in link text
                 elif any(keyword in link.contents[0].lower() for keyword in Const.cookies_keywords):
-                    if ('ochrana' in link.contents[0].lower() and 'zdraví' in link.contents[0].lower()):
+                    if 'ochrana' in link.contents[0].lower() and 'zdraví' in link.contents[0].lower():
                         continue
                     else:
                         cookies_links.append(link_href)
                     continue
             except (IndexError, TypeError):
                 # in case link has no contents
-                continue
+                print()
             try:
                 # do the same for terms
                 if any(keyword in link_href.lower() for keyword in Const.terms_keywords):

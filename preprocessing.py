@@ -2,7 +2,9 @@ import os
 import random
 import re
 from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.text import tokenizer_from_json
 import numpy as np
+import json
 
 
 class Preprocessing:
@@ -37,7 +39,7 @@ class Preprocessing:
 
         # check if the directories exist
         os.makedirs(relevant_pages_dir, exist_ok=True)
-        # os.makedirs(irrelevant_pages_dir, exist_ok=True)
+        os.makedirs(irrelevant_pages_dir, exist_ok=True)
         os.makedirs(train_dir, exist_ok=True)
         os.makedirs(test_dir, exist_ok=True)
 
@@ -49,7 +51,7 @@ class Preprocessing:
         tcpaths = self.__collect_rel_pages_paths(relevant_pages_dir)
         terms_pages_paths = tcpaths[0]
         cookies_pages_paths = tcpaths[1]
-        # irrelevant_pages_paths = collect_irr_pages_paths(irrelevant_pages_dir)
+        irrelevant_pages_paths = self.__collect_irr_pages_paths(irrelevant_pages_dir)
 
         # split into train and test
         print("Splitting pages into train and test datasets")
@@ -69,11 +71,11 @@ class Preprocessing:
         [pages_info.append(info) for info in pinf]
         [pages_info.append(info) for info in pinf2]
 
-        # pgs = split_pages(irrelevant_pages_paths)
-        # pinf = create_page_info(pgs[0], 0, True)
-        # pinf2 = create_page_info(pgs[1], 0, False)
-        # [pages_info.append(info) for info in pinf]
-        # [pages_info.append(info) for info in pinf2]
+        pgs = self.__split_pages(irrelevant_pages_paths)
+        pinf = self.__create_page_info(pgs[0], 0, True)
+        pinf2 = self.__create_page_info(pgs[1], 0, False)
+        [pages_info.append(info) for info in pinf]
+        [pages_info.append(info) for info in pinf2]
 
         # shuffle the pages
         random.shuffle(pages_info)
@@ -108,7 +110,10 @@ class Preprocessing:
             text += word + " "
         self.tokenizer.fit_on_texts([text])
         self.__create_embedding_matrix("fasttext/cc.cs.300.vec")
+        with open("tokenizer.tk", "w") as f:
+            f.write(json.dumps(self.tokenizer.to_json()))
 
+        print(str(self.doc_max_len))
         return
 
     def __process_vocabulary(self, vocabulary: dict) -> list:
@@ -134,12 +139,11 @@ class Preprocessing:
             add = True
             if value < min_count:
                 add = False
-            if remove_numbers and key.isdigit():
+            elif remove_numbers and key.isdigit():
                 add = False
             if remove_stopwords:
                 if key in stopwords:
                     add = False
-
             if add:
                 new_vocab.append(key)
 
@@ -204,15 +208,21 @@ class Preprocessing:
         cookies_paths = []
         terms_paths = []
 
+        max = 100
+        cook = 0
+        ter = 0
         for pdir in pages_dirs:
             cookies_files = os.listdir(relevant_dir + "/" + pdir + "/cookies")
             terms_files = os.listdir(relevant_dir + "/" + pdir + "/terms")
 
-            if len(cookies_files) != 0:
+            if len(cookies_files) != 0 and cook < max:
                 [cookies_paths.append(relevant_dir + "/" + pdir + "/cookies/" + file) for file in cookies_files]
 
-            if len(terms_files) != 0:
+            if len(terms_files) != 0 and ter < max:
                 [terms_paths.append(relevant_dir + "/" + pdir + "/terms/" + file) for file in terms_files]
+
+            cook += len(cookies_files)
+            ter += len(terms_files)
 
         return terms_paths, cookies_paths
 
@@ -222,8 +232,13 @@ class Preprocessing:
         :param irrelevant_dir: dir
         :return: list of irrelevant page paths
         """
+        max = 100
         files = os.listdir(irrelevant_dir)
         paths = []
+
+        for i in range(max):
+            paths.append(irrelevant_dir + "/" + files[i])
+
         [paths.append(irrelevant_dir + "/" + file) for file in files]
 
         return paths
@@ -276,3 +291,11 @@ class Preprocessing:
                 continue
 
         ft_file.close()
+        np.save(file="embedding.mx", arr=self.embedding_matrix, allow_pickle=True)
+
+    def load(self, emb_matrix_path, tokenizer_path, doc_max_len):
+        self.embedding_matrix = np.load(emb_matrix_path)
+        with open(tokenizer_path, "r") as f:
+            self.tokenizer = tokenizer_from_json(json.load(f))
+        self.doc_max_len = doc_max_len
+

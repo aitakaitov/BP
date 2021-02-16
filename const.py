@@ -55,7 +55,8 @@ class Const:
     max_filename_length = 250
 
     '''Starting url'''
-    start_urls = ["http://seznam.cz",
+    start_urls = ["http://aeropujcka.cz",
+                  "http://seznam.cz",
                   "http://odkazy.seznam.cz/Cestovani/",
                   "https://odkazy.seznam.cz/Zpravodajstvi/Casopisy-e-ziny/",
                   "https://odkazy.seznam.cz/Kultura-a-umeni/Film/",
@@ -72,5 +73,7 @@ class Const:
     blacklisted_extensions = [".jpg", ".png", ".jpeg", ".pdf"]
 
     domain_links_coll = 40
+
+    only_cz = False
 
 

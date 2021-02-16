@@ -7,8 +7,11 @@ class Log:
 
     def log(self, message: str):
         file = open(self.log_path, "a")
-        file.write(message + "\n")
-        file.close()
+        try:
+            file.write(message + "\n")
+            file.close()
+        except IOError:
+            print("[LOGGER] Error occurred while writing into log file")
         if self.stdout:
             print(message)
 
