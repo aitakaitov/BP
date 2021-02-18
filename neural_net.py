@@ -87,10 +87,12 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
             weights=[embedding_weights],
             trainable=False
         ))
-        model.add(layers.Conv1D(filters=32, kernel_size=8, activation='relu'))
+        model.add(layers.Conv1D(filters=48, kernel_size=8, activation='relu'))
         model.add(layers.MaxPooling1D(pool_size=4))
+        model.add(layers.Conv1D(filters=32, kernel_size=6, activation='relu'))
+        model.add(layers.MaxPooling1D(pool_size=2))
         model.add(layers.Flatten())
-        model.add(layers.Dense(32, activation='relu'))
+        model.add(layers.Dense(48, activation='relu'))
         model.add(layers.Dense(3, activation='softmax'))
 
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -102,9 +104,9 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
 
     if tb_logdir is not None:
         tensorboard_callback = tensorflow.keras.callbacks.TensorBoard(log_dir=tb_logdir, histogram_freq=1)
-        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=10, callbacks=[tensorboard_callback])
+        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=16, callbacks=[tensorboard_callback])
     else:
-        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=10)
+        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=16)
 
     if model_path is not None:
         model.save(model_path, overwrite=False, include_optimizer=True)

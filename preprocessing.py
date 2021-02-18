@@ -37,6 +37,7 @@ class Preprocessing:
         self.doc_max_len = 0
         self.urls_cookies = []
         self.urls_terms = []
+        self.urls_irrelevant = []
 
     def create_dataset(self, relevant_pages_dir: str, irrelevant_pages_dir: str, train_dir: str, test_dir: str, fasttext_file: str):
         """
@@ -61,7 +62,7 @@ class Preprocessing:
         # contains (path, class, train/test)
         pages_info = []
 
-        use_zero_vectors = False
+        use_zero_vectors = True
 
         # collect all page paths
         print("Collecting all page paths")
@@ -138,7 +139,7 @@ class Preprocessing:
         :param vocabulary: vocabulary
         :return: list of words
         """
-        min_count = 2
+        min_count = 5
         remove_numbers = True
         remove_stopwords = True
         filter_emb = False
@@ -212,8 +213,14 @@ class Preprocessing:
         if url[-1] != "/":
             url += "/"
 
-        if page_info[1] == 1:               # check for duplicates in cookies and terms
-            if url in self.urls_cookies:    # irrelevant duplicates are resolved in path collection
+        # check for duplicates
+        if page_info[1] == 0:
+            if url in self.urls_irrelevant:
+                return None
+            else:
+                self.urls_irrelevant.append(url)
+        elif page_info[1] == 1:
+            if url in self.urls_cookies:
                 return None
             else:
                 self.urls_cookies.append(url)
@@ -258,7 +265,7 @@ class Preprocessing:
         cookies_paths = []
         terms_paths = []
 
-        max = 250
+        max = 750
         cook = 0
         ter = 0
         for pdir in pages_dirs:
@@ -268,18 +275,10 @@ class Preprocessing:
             terms_files.sort()
 
             if len(cookies_files) != 0 and cook < max:
-                for ckf in cookies_files:
-                    if ckf[-1] == '_':                                                              # removing _ from the file end
-                        cookies_files.append(relevant_dir + "/" + pdir + "/cookies/" + ckf[-1:])
-                    else:
-                        cookies_files.append(relevant_dir + "/" + pdir + "/cookies/" + ckf)
+                [cookies_paths.append(relevant_dir + "/" + pdir + "/cookies/" + file) for file in cookies_files]
 
             if len(terms_files) != 0 and ter < max:
-                for tf in terms_files:
-                    if tf[-1] == '_':
-                        cookies_files.append(relevant_dir + "/" + pdir + "/cookies/" + tf[-1:])
-                    else:
-                        cookies_files.append(relevant_dir + "/" + pdir + "/cookies/" + tf)
+                [terms_paths.append(relevant_dir + "/" + pdir + "/terms/" + file) for file in terms_files]
 
             cook += len(cookies_files)
             ter += len(terms_files)
@@ -292,19 +291,15 @@ class Preprocessing:
         :param irrelevant_dir: dir
         :return: list of irrelevant page paths
         """
-        max = 250
+        max = 750
         files = os.listdir(irrelevant_dir)
         files.sort()
         paths = []
 
-        for i in range(max):
-            if files[i][-1] == "_":
-                files[i] = files[i][-1:]
+        for i in range(min(max, len(files))):
             paths.append(irrelevant_dir + "/" + files[i])
 
-        files = set(files)    # remove duplicity
-
-        [paths.append(irrelevant_dir + "/" + file) for file in files]
+        #[paths.append(irrelevant_dir + "/" + file) for file in files]
 
         return paths
 
