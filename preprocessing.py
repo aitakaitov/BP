@@ -4,6 +4,8 @@ import re
 from tensorflow.keras.preprocessing.text import Tokenizer
 import numpy as np
 import pickle
+from library_methods import LibraryMethods
+from typing import Union
 
 
 class PreprocessingConfig:
@@ -33,10 +35,13 @@ class Preprocessing:
         self.Tokenizer = None
         self.embedding_matrix = None
         self.doc_max_len = 0
+        self.urls_cookies = []
+        self.urls_terms = []
 
-    def create_dataset(self, relevant_pages_dir: str, irrelevant_pages_dir: str, train_dir: str, test_dir: str):
+    def create_dataset(self, relevant_pages_dir: str, irrelevant_pages_dir: str, train_dir: str, test_dir: str, fasttext_file: str):
         """
         Preprocesses the pages and creates a dataset, then saves vocabulary in a file
+        :param fasttext_file: File with fasttext embeddings
         :param relevant_pages_dir: Directory with relevant pages. Inside, a folder for each page is expected. In that folder,
          terms and cookies folders with pages are expected. Folder with no pages in it is ignored
         :param irrelevant_pages_dir: Directory with irrelevant pages. Inside it, files with page contents are expected.
@@ -44,7 +49,6 @@ class Preprocessing:
         1 is cookies and 2 is terms
         :param test_dir: Dir to write the testing dataset into, contains a file for each page - the format is class text, one page per line. 0 is irrelevant,
         1 is cookies and 2 is terms
-        :param vocab_file: File to which the vocabulary will be saved, words separated by space
         :return: None
         """
 
@@ -56,6 +60,8 @@ class Preprocessing:
 
         # contains (path, class, train/test)
         pages_info = []
+
+        use_zero_vectors = False
 
         # collect all page paths
         print("Collecting all page paths")
@@ -89,7 +95,7 @@ class Preprocessing:
         [pages_info.append(info) for info in pinf2]
 
         # shuffle the pages
-        random.shuffle(pages_info)
+        # random.shuffle(pages_info)
 
         # create vocab, preprocess pages
         print("Creating vocabulary, writing pages into test and train directories")
@@ -101,25 +107,32 @@ class Preprocessing:
                 target_dir = test_dir
             page_vc = self.__preprocess_page(pages_info[i], target_dir, i)
 
+            # if the page was a duplicate
+            if page_vc is None:
+                continue
+
             for key, value in page_vc.items():
                 try:
                     self.vocabulary[key] += value
                 except KeyError:
                     self.vocabulary[key] = value
 
-        print("Processing vocabulary")
-        self.vocabulary = self.__process_vocabulary(self.vocabulary)
+        # if we use zero vectors for word we dont have embedding for
+        if use_zero_vectors:
+            self.vocabulary = self.__process_vocabulary(self.vocabulary)
+        else:   # otherwise, filter the words we dont have embeddings for
+            self.vocabulary = self.__process_vocabulary(self.vocabulary, fasttext_file)
 
-        # create tokenizer and fit it on vocabulary
         text = ""
         for word in self.vocabulary:
             text += word + " "
         self.tokenizer.fit_on_texts([text])
-        self.__create_embedding_matrix("fasttext/cc.cs.300.vec")
+
+        self.__create_embedding_matrix(fasttext_file)
 
         return
 
-    def __process_vocabulary(self, vocabulary: dict) -> list:
+    def __process_vocabulary(self, vocabulary: dict, fasttext_file=None) -> list:
         """
         Processes vocabulary
         :param vocabulary: vocabulary
@@ -128,13 +141,28 @@ class Preprocessing:
         min_count = 2
         remove_numbers = True
         remove_stopwords = True
+        filter_emb = False
+        if fasttext_file is not None:
+            filter_emb = True
 
         stopwords = []
         if remove_stopwords:
-            sw_file = open("stopwords-cs.txt", "r")
+            sw_file = open("stopwords-cs.txt", "r", encoding='utf-8')
             stopwords = sw_file.readlines()
             for i in range(len(stopwords)):
                 stopwords[i] = stopwords[i][0:len(stopwords[i]) - 1]
+
+        ft_words = []
+        if filter_emb:
+            ft_file = open(fasttext_file, "r", encoding='utf-8')
+            ft_file.readline()
+            while True:
+                line = ft_file.readline()
+                if line == "":
+                    break
+                ft_words.append(line.split()[0])
+
+            ft_words = set(ft_words)
 
         new_vocab = []
 
@@ -146,6 +174,9 @@ class Preprocessing:
                 add = False
             if remove_stopwords:
                 if key in stopwords:
+                    add = False
+            if filter_emb:
+                if key not in ft_words:
                     add = False
             if add:
                 new_vocab.append(key)
@@ -166,16 +197,31 @@ class Preprocessing:
 
         return infos
 
-    def __preprocess_page(self, page_info: tuple, target_dir: str, index: int) -> dict:
+    def __preprocess_page(self, page_info: tuple, target_dir: str, index: int) -> Union[dict, None]:
         """
         Performs preprocessing and saves the result into the target directory. Returns a dictionary with words and counts
         :param page_info: tuple of (source path, class, train/test)
         :param target_dir: target directory
         :param index: index of the page
-        :return: dict vocabulary
+        :return: dict vocabulary or None if the page is a duplicate
         """
-        with open(page_info[0], "r") as src_file:
+        with open(page_info[0], "r", encoding='utf-8') as src_file:
             page_lines = src_file.readlines()
+
+        url = page_lines[0][5:]             # extract the URL and add a / if necessary
+        if url[-1] != "/":
+            url += "/"
+
+        if page_info[1] == 1:               # check for duplicates in cookies and terms
+            if url in self.urls_cookies:    # irrelevant duplicates are resolved in path collection
+                return None
+            else:
+                self.urls_cookies.append(url)
+        elif page_info[1] == 2:
+            if url in self.urls_terms:
+                return None
+            else:
+                self.urls_terms.append(url)
 
         # remove URL and DEPTH
         page_text = ""
@@ -184,7 +230,7 @@ class Preprocessing:
 
         # remove all non-alpha numeric and replace them with space
         page_text = re.sub(r"[\W_]+", ' ', page_text)
-        page_tgt_file = open(target_dir + "/" + str(index), "w+")
+        page_tgt_file = open(target_dir + "/" + str(index), "w+", encoding='utf-8')
         page_tgt_file.write(str(page_info[1]) + " " + page_text)
         page_tgt_file.close()
 
@@ -208,21 +254,32 @@ class Preprocessing:
         :return: tuple of (terms paths, cookies paths)
         """
         pages_dirs = os.listdir(relevant_dir)
+        pages_dirs.sort()
         cookies_paths = []
         terms_paths = []
 
-        max = 50
+        max = 250
         cook = 0
         ter = 0
         for pdir in pages_dirs:
             cookies_files = os.listdir(relevant_dir + "/" + pdir + "/cookies")
+            cookies_files.sort()
             terms_files = os.listdir(relevant_dir + "/" + pdir + "/terms")
+            terms_files.sort()
 
             if len(cookies_files) != 0 and cook < max:
-                [cookies_paths.append(relevant_dir + "/" + pdir + "/cookies/" + file) for file in cookies_files]
+                for ckf in cookies_files:
+                    if ckf[-1] == '_':                                                              # removing _ from the file end
+                        cookies_files.append(relevant_dir + "/" + pdir + "/cookies/" + ckf[-1:])
+                    else:
+                        cookies_files.append(relevant_dir + "/" + pdir + "/cookies/" + ckf)
 
             if len(terms_files) != 0 and ter < max:
-                [terms_paths.append(relevant_dir + "/" + pdir + "/terms/" + file) for file in terms_files]
+                for tf in terms_files:
+                    if tf[-1] == '_':
+                        cookies_files.append(relevant_dir + "/" + pdir + "/cookies/" + tf[-1:])
+                    else:
+                        cookies_files.append(relevant_dir + "/" + pdir + "/cookies/" + tf)
 
             cook += len(cookies_files)
             ter += len(terms_files)
@@ -235,12 +292,17 @@ class Preprocessing:
         :param irrelevant_dir: dir
         :return: list of irrelevant page paths
         """
-        max = 50
+        max = 250
         files = os.listdir(irrelevant_dir)
+        files.sort()
         paths = []
 
         for i in range(max):
+            if files[i][-1] == "_":
+                files[i] = files[i][-1:]
             paths.append(irrelevant_dir + "/" + files[i])
+
+        files = set(files)    # remove duplicity
 
         [paths.append(irrelevant_dir + "/" + file) for file in files]
 
@@ -273,7 +335,7 @@ class Preprocessing:
         :param fasttext_path: Path to fasttext pretrained embeddings
         :return: None
         """
-        ft_file = open(fasttext_path, "r+")
+        ft_file = open(fasttext_path, "r+", encoding='utf-8')
         word_index = self.tokenizer.word_index
         self.embedding_matrix = np.zeros((len(word_index) + 1, 300))
 

@@ -4,7 +4,7 @@ import numpy as np
 from preprocessing import PreprocessingConfig
 import os
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-import tensorflow.keras
+import tensorflow
 
 
 def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfig, model_path=None, tb_logdir=None):
@@ -17,6 +17,7 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
     :param tb_logdir: Path to save the Tensorboard logs. If None, logs are not saved and displayed
     :return: None
     """
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
     embedding_dim = preprocessor.emb_matrix.shape[1]     # how large will the embedded vectors be
     input_length = preprocessor.doc_max_len      # how many words will be supplied in a document
@@ -75,7 +76,6 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
         flatten = layers.Flatten()(concat)
         dense_0 = layers.Dense(units=32, activation='relu')(flatten)
         output = layers.Dense(units=3, activation='relu')(dense_0)
-
         model = tensorflow.keras.models.Model(input, output)
     else:
 
@@ -85,7 +85,7 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
             output_dim=embedding_dim,
             input_length=input_length,
             weights=[embedding_weights],
-            trainable=True
+            trainable=False
         ))
         model.add(layers.Conv1D(filters=32, kernel_size=8, activation='relu'))
         model.add(layers.MaxPooling1D(pool_size=4))
@@ -132,7 +132,7 @@ def get_dataset(dir: str, tokenizer, max_len) -> tuple:
     y = np.zeros((len(files), 3))
     i = 0
     for file in files:
-        with open(dir + "/" + file) as f:
+        with open(dir + "/" + file, "r", encoding='utf-8') as f:
             text = f.read()
             y[i][int(text[0])] = 1
             X[i] = pad_sequences([tokenizer.texts_to_sequences([text[2:]])[0]], maxlen=max_len)
