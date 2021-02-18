@@ -2,13 +2,25 @@ import os
 import random
 import re
 from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.text import tokenizer_from_json
 import numpy as np
-import json
+import pickle
+
+
+class PreprocessingConfig:
+    """
+    Contains stuff necessary for the model to work
+    """
+    def __init__(self, emb_matrix, tokenizer, doc_max_len):
+        self.emb_matrix = emb_matrix
+        self.tokenizer = tokenizer
+        self.doc_max_len = doc_max_len
 
 
 class Preprocessing:
-
+    """
+    Performs data preprocessing, defining a vocabulary, Tokenizer instance, and creating an embedding
+    matrix
+    """
     def __init__(self):
         self.tokenizer = Tokenizer(
             num_words=None,
@@ -22,8 +34,7 @@ class Preprocessing:
         self.embedding_matrix = None
         self.doc_max_len = 0
 
-    def create_dataset(self, relevant_pages_dir: str, irrelevant_pages_dir: str, train_dir: str, test_dir: str,
-                       vocab_file: str):
+    def create_dataset(self, relevant_pages_dir: str, irrelevant_pages_dir: str, train_dir: str, test_dir: str):
         """
         Preprocesses the pages and creates a dataset, then saves vocabulary in a file
         :param relevant_pages_dir: Directory with relevant pages. Inside, a folder for each page is expected. In that folder,
@@ -98,11 +109,6 @@ class Preprocessing:
 
         print("Processing vocabulary")
         self.vocabulary = self.__process_vocabulary(self.vocabulary)
-        vc_file = open(vocab_file, "w+")
-        for word in self.vocabulary:
-            vc_file.write(word + " ")
-
-        vc_file.close()
 
         # create tokenizer and fit it on vocabulary
         text = ""
@@ -110,10 +116,7 @@ class Preprocessing:
             text += word + " "
         self.tokenizer.fit_on_texts([text])
         self.__create_embedding_matrix("fasttext/cc.cs.300.vec")
-        with open("tokenizer.tk", "w") as f:
-            f.write(json.dumps(self.tokenizer.to_json()))
 
-        print(str(self.doc_max_len))
         return
 
     def __process_vocabulary(self, vocabulary: dict) -> list:
@@ -208,7 +211,7 @@ class Preprocessing:
         cookies_paths = []
         terms_paths = []
 
-        max = 100
+        max = 50
         cook = 0
         ter = 0
         for pdir in pages_dirs:
@@ -232,7 +235,7 @@ class Preprocessing:
         :param irrelevant_dir: dir
         :return: list of irrelevant page paths
         """
-        max = 100
+        max = 50
         files = os.listdir(irrelevant_dir)
         paths = []
 
@@ -291,11 +294,22 @@ class Preprocessing:
                 continue
 
         ft_file.close()
-        np.save(file="embedding.mx", arr=self.embedding_matrix, allow_pickle=True)
 
-    def load(self, emb_matrix_path, tokenizer_path, doc_max_len):
-        self.embedding_matrix = np.load(emb_matrix_path)
-        with open(tokenizer_path, "r") as f:
-            self.tokenizer = tokenizer_from_json(json.load(f))
-        self.doc_max_len = doc_max_len
+    @staticmethod
+    def load(config_path) -> PreprocessingConfig:
+        """
+        Loads the relevant objects into PreprocessingConfig
+        :param config_path: File to load the config from
+        :return:
+        """
+        return pickle.load(open(config_path, "rb"))
+
+    def save(self, config_path):
+        """
+        Dumps the relevant objects into a pickle
+        :param config_path: File to save the config to
+        :return:
+        """
+        config = PreprocessingConfig(self.embedding_matrix, self.tokenizer, self.doc_max_len)
+        pickle.dump(config, open(config_path, "wb"))
 

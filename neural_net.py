@@ -1,20 +1,31 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras import layers
 import numpy as np
-from preprocessing import Preprocessing
+from preprocessing import PreprocessingConfig
 import os
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import tensorflow.keras
 
-def create_model(train_dir, test_dir, model_path, tokenizer_path, preprocessor: Preprocessing):
-    embedding_dim = preprocessor.embedding_matrix.shape[1]     # how large will the embedded vectors be
+
+def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfig, model_path=None, tb_logdir=None):
+    """
+    Creates, trains and validates a model
+    :param train_dir: directory with files containing training pages
+    :param test_dir: directory with files containing testing pages
+    :param preprocessor: PreprocessorConfig - contains embedding matrix, Tokenizer and maximum document length
+    :param model_path: Path to save the trained model. If None, model is not saved
+    :param tb_logdir: Path to save the Tensorboard logs. If None, logs are not saved and displayed
+    :return: None
+    """
+
+    embedding_dim = preprocessor.emb_matrix.shape[1]     # how large will the embedded vectors be
     input_length = preprocessor.doc_max_len      # how many words will be supplied in a document
     input_dim = len(preprocessor.tokenizer.word_index) + 1       # how long is OHE of a word
-    embedding_weights = preprocessor.embedding_matrix  # embedding matrix of size input_dim x embedding_dim
+    embedding_weights = preprocessor.emb_matrix  # embedding matrix of size input_dim x embedding_dim
 
-    sequiential = True
+    sequential = True
 
-    if not sequiential:
+    if not sequential:
         input = layers.Input(shape=(None,), dtype='int64')
 
         embedding_0 = layers.Embedding(
@@ -79,7 +90,7 @@ def create_model(train_dir, test_dir, model_path, tokenizer_path, preprocessor: 
         model.add(layers.Conv1D(filters=32, kernel_size=8, activation='relu'))
         model.add(layers.MaxPooling1D(pool_size=4))
         model.add(layers.Flatten())
-        model.add(layers.Dense(128, activation='relu'))
+        model.add(layers.Dense(32, activation='relu'))
         model.add(layers.Dense(3, activation='softmax'))
 
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -89,12 +100,33 @@ def create_model(train_dir, test_dir, model_path, tokenizer_path, preprocessor: 
     X_train, y_train = get_dataset(train_dir, preprocessor.tokenizer, preprocessor.doc_max_len)
     X_test, y_test = get_dataset(test_dir, preprocessor.tokenizer, preprocessor.doc_max_len)
 
-    model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=10)
+    if tb_logdir is not None:
+        tensorboard_callback = tensorflow.keras.callbacks.TensorBoard(log_dir=tb_logdir, histogram_freq=1)
+        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=10, callbacks=[tensorboard_callback])
+    else:
+        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=10)
+
+    if model_path is not None:
+        model.save(model_path, overwrite=False, include_optimizer=True)
+
+    if tb_logdir is not None:
+        os.system("tensorboard --logdir={}".format(tb_logdir))
 
     return
 
 
-def get_dataset(dir: str, tokenizer, max_len):
+def load_model_and_test(model_path):
+    model = tensorflow.keras.models.load_model(model_path)
+
+
+def get_dataset(dir: str, tokenizer, max_len) -> tuple:
+    """
+    Loads pages from a directory and returns their vectors and labels
+    :param dir: directory
+    :param tokenizer: Tokenizer
+    :param max_len: maximum document length
+    :return: Tuple of (X, y)
+    """
     files = os.listdir(dir)
     X = np.zeros((len(files), max_len))
     y = np.zeros((len(files), 3))
@@ -109,11 +141,3 @@ def get_dataset(dir: str, tokenizer, max_len):
     return np.array(X), np.array(y)
 
 
-def train_model():
-
-    return
-
-
-def test_model():
-
-    return
