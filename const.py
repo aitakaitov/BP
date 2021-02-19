@@ -3,7 +3,7 @@ class Const:
     Contains configuration
     """
     ''' Path to chromedriver executable '''
-    chromedriver_path = "/home/vojtech/Desktop/BP-Current/chromedriver"
+    chromedriver_path = "chromedriver.exe"
 
     ''' Keywords that terms and conditions links would contain '''
     terms_keywords = ["podminky", "podmínky", "podmínkami", "protection", "smluvni", "smluvní", "uzivani", "užívání", "terms", "conditions",
@@ -25,13 +25,15 @@ class Const:
     pages_path = "pages"
 
     '''Persistent to-visit queue name'''
-    queue_filename = "inqueue.txt"
+    queue_filename = "links_inqueue.txt"
 
     '''Persistent visited list name'''
-    visited_filename = "visited.txt"
+    visited_filename = "visited_links.txt"
 
     '''Persistent scraped list name'''
-    scraped_filename = "scraped.txt"
+    scraped_domains_filename = "scraped_domains.txt"
+
+    scraped_rel_links_filename = "scraped_links.txt"
 
     '''Path to file, where domains with no links will be stored'''
     no_links_filename = "nolinks.txt"

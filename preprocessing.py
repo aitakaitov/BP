@@ -62,7 +62,7 @@ class Preprocessing:
         # contains (path, class, train/test)
         pages_info = []
 
-        use_zero_vectors = True
+        use_zero_vectors = False
 
         # collect all page paths
         print("Collecting all page paths")
@@ -139,7 +139,8 @@ class Preprocessing:
         :param vocabulary: vocabulary
         :return: list of words
         """
-        min_count = 5
+        min_count = 15
+        max_words = 70000
         remove_numbers = True
         remove_stopwords = True
         filter_emb = False
@@ -265,7 +266,7 @@ class Preprocessing:
         cookies_paths = []
         terms_paths = []
 
-        max = 750
+        max = 150000
         cook = 0
         ter = 0
         for pdir in pages_dirs:
@@ -291,7 +292,7 @@ class Preprocessing:
         :param irrelevant_dir: dir
         :return: list of irrelevant page paths
         """
-        max = 750
+        max = 150000
         files = os.listdir(irrelevant_dir)
         files.sort()
         paths = []

@@ -39,9 +39,9 @@ class Crawler:
         ''' Page load timeout'''
         self.driver.set_page_load_timeout(Const.webdriver_timeout)
         ''' Scraped links'''
-        self.scraped_links = PersistentList(Const.scraped_filename)
-        if len(self.scraped_links) == 0:
-            self.scraped_links.append("--------------------------------------")     # placeholders for all behaviour on empty lists
+        self.scraped_domains = PersistentList(Const.scraped_domains_filename)
+        if len(self.scraped_domains) == 0:
+            self.scraped_domains.append("--------------------------------------")     # placeholders for all behaviour on empty lists
         ''' List of links to visit '''
         self.links_to_visit = PersistentList(Const.queue_filename)
         if len(self.links_to_visit) == 0:
@@ -50,6 +50,8 @@ class Crawler:
         self.visited_links = PersistentList(Const.visited_filename)
         if len(self.visited_links) == 0:
             self.visited_links.append("--------------------------------------")
+
+        self.scraped_ct_links = PersistentList(Const.scraped_rel_links_filename)
 
         try:
             os.mkdir("./" + Const.pages_path)
@@ -92,8 +94,8 @@ class Crawler:
             # remove the placeholders
             if self.links_to_visit[0] == "--------------------------------------":
                 self.links_to_visit.remove(self.links_to_visit[0])
-            if self.scraped_links[0] == "--------------------------------------":
-                self.scraped_links.remove(self.scraped_links[0])
+            if self.scraped_domains[0] == "--------------------------------------":
+                self.scraped_domains.remove(self.scraped_domains[0])
             if len(self.visited_links) > 1 and self.visited_links[0] == "--------------------------------------":
                 self.visited_links.remove(self.visited_links[0])
 
@@ -146,7 +148,7 @@ class Crawler:
         # add links to links_to_visit
         self.collect_links_to_visit_alt(links, self.driver.current_url)
 
-        if any(visited == LibraryMethods.strip_url(url) for visited in self.scraped_links):
+        if any(visited == LibraryMethods.strip_url(url) for visited in self.scraped_domains):
             self.log.log("[CRAWLER] Domain already scraped, collected {} links-to-visit.".format(len(self.links_to_visit) - links_before))
             return
 
@@ -191,7 +193,7 @@ class Crawler:
             except WebDriverException:
                 self.log.log("[CRAWLER] Error loading page {}, skipping.".format(link))
 
-        self.scraped_links.append(LibraryMethods.strip_url(url))
+        self.scraped_domains.append(LibraryMethods.strip_url(url))
 
     def collect_links_to_visit(self, links: list, current_url_full):
         """
@@ -275,7 +277,7 @@ class Crawler:
         numpy.random.shuffle(same_domain_links)
         numpy.random.shuffle(no_cz_end_links)
 
-        relevant_links = relevant_links + same_domain_links[:5] + no_cz_end_links[:10]
+        relevant_links = relevant_links + same_domain_links[:4] + no_cz_end_links[:8]
 
         relevant_links = list(set(relevant_links))                      # then add the selected + ones pointing to other domains to to_visit
         [self.links_to_visit.append(link) for link in relevant_links]
@@ -317,6 +319,9 @@ class Crawler:
                 if ".cz" not in LibraryMethods.strip_url(link_href)[-4:]:
                     continue
 
+                if link_href in self.scraped_ct_links:
+                    continue
+
             except (TypeError, IndexError):
                 # in case href is empty or not there at all
                 continue
@@ -326,6 +331,7 @@ class Crawler:
                     if 'ochrana' in link_href.lower() and 'zdravi' in link_href.lower():
                         continue
                     else:
+                        self.scraped_ct_links.append(link_href)
                         cookies_links.append(link_href)
                     continue
                 # test for cookies keywords in link text
@@ -333,6 +339,7 @@ class Crawler:
                     if 'ochrana' in link.contents[0].lower() and 'zdraví' in link.contents[0].lower():
                         continue
                     else:
+                        self.scraped_ct_links.append(link_href)
                         cookies_links.append(link_href)
                     continue
             except (IndexError, TypeError):
@@ -344,11 +351,13 @@ class Crawler:
                     if ('podminky' in link_href.lower() and ('soutez' in link_href.lower() or 'obchodni' in link_href.lower())):
                         continue
                     else:
+                        self.scraped_ct_links.append(link_href)
                         terms_links.append(link_href)
                 elif any(keyword in link.contents[0].lower() for keyword in Const.terms_keywords):
                     if ('podmínky' in link_href.lower() and ('soutěž' in link_href.lower() or 'obchodní' in link_href.lower())):
                         continue
                     else:
+                        self.scraped_ct_links.append(link_href)
                         terms_links.append(link_href)
             except (IndexError, TypeError):
                 continue

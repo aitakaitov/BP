@@ -24,7 +24,7 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
     input_dim = len(preprocessor.tokenizer.word_index) + 1       # how long is OHE of a word
     embedding_weights = preprocessor.emb_matrix  # embedding matrix of size input_dim x embedding_dim
 
-    sequential = True
+    sequential = False
 
     if not sequential:
         input = layers.Input(shape=(None,), dtype='int64')
@@ -60,22 +60,29 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
             activation='relu'
         )(reshape_0)
 
+        dropout_0 = layers.Dropout(0.5)(conv_0)
+
+        dropout_1 = layers.Dropout(0.5)(conv_1)
+
+        dropout_2 = layers.Dropout(0.5)(conv_2)
+
         maxpool_0 = layers.MaxPooling1D(
-            pool_size=4
-        )(conv_0)
+            pool_size=3
+        )(dropout_0)
 
         maxpool_1 = layers.MaxPooling1D(
-            pool_size=4
-        )(conv_1)
+            pool_size=3
+        )(dropout_1)
 
         maxpool_2 = layers.MaxPooling1D(
-            pool_size=4
-        )(conv_2)
+            pool_size=3
+        )(dropout_2)
 
-        concat = layers.Concatenate(axis=1)([maxpool_0, maxpool_1, maxpool_2])
-        flatten = layers.Flatten()(concat)
-        dense_0 = layers.Dense(units=32, activation='relu')(flatten)
-        output = layers.Dense(units=3, activation='relu')(dense_0)
+        concat_0 = layers.Concatenate(axis=1)([maxpool_0, maxpool_1, maxpool_2])
+
+        flatten = layers.Flatten()(concat_0)
+        dense_0 = layers.Dense(units=10, activation='relu')(flatten)
+        output = layers.Dense(units=3, activation='softmax')(dense_0)
         model = tensorflow.keras.models.Model(input, output)
     else:
 
@@ -87,12 +94,12 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
             weights=[embedding_weights],
             trainable=False
         ))
-        model.add(layers.Conv1D(filters=48, kernel_size=8, activation='relu'))
+        model.add(layers.Conv1D(filters=32, kernel_size=8, activation='relu'))
         model.add(layers.MaxPooling1D(pool_size=4))
         model.add(layers.Conv1D(filters=32, kernel_size=6, activation='relu'))
-        model.add(layers.MaxPooling1D(pool_size=2))
+        model.add(layers.MaxPooling1D(pool_size=4))
         model.add(layers.Flatten())
-        model.add(layers.Dense(48, activation='relu'))
+        model.add(layers.Dense(32, activation='relu'))
         model.add(layers.Dense(3, activation='softmax'))
 
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -104,9 +111,9 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
 
     if tb_logdir is not None:
         tensorboard_callback = tensorflow.keras.callbacks.TensorBoard(log_dir=tb_logdir, histogram_freq=1)
-        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=16, callbacks=[tensorboard_callback])
+        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=4, callbacks=[tensorboard_callback])
     else:
-        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=16)
+        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=4)
 
     if model_path is not None:
         model.save(model_path, overwrite=False, include_optimizer=True)
