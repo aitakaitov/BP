@@ -34,7 +34,7 @@ class Preprocessing:
         self.vocabulary = None
         self.Tokenizer = None
         self.embedding_matrix = None
-        self.doc_max_len = 0
+        self.doc_max_len = 8000
         self.urls_cookies = []
         self.urls_terms = []
         self.urls_irrelevant = []
@@ -127,7 +127,7 @@ class Preprocessing:
         text = ""
         for word in self.vocabulary:
             text += word + " "
-        self.tokenizer.fit_on_texts([text])
+        self.tokenizer.fit_on_texts([text], )
 
         self.__create_embedding_matrix(fasttext_file)
 
@@ -140,7 +140,6 @@ class Preprocessing:
         :return: list of words
         """
         min_count = 15
-        max_words = 70000
         remove_numbers = True
         remove_stopwords = True
         filter_emb = False
@@ -210,9 +209,12 @@ class Preprocessing:
         with open(page_info[0], "r", encoding='utf-8') as src_file:
             page_lines = src_file.readlines()
 
-        url = page_lines[0][5:]             # extract the URL and add a / if necessary
-        if url[-1] != "/":
-            url += "/"
+        try:
+            url = page_lines[0][5:]             # extract the URL and add a / if necessary
+            if url[-1] != "/":
+                url += "/"
+        except IndexError:
+            return None;
 
         # check for duplicates
         if page_info[1] == 0:
@@ -244,8 +246,8 @@ class Preprocessing:
 
         # create vocabulary
         split_text = page_text.split()
-        if len(split_text) > self.doc_max_len:
-            self.doc_max_len = len(split_text)
+        #if len(split_text) > self.doc_max_len:
+        #    self.doc_max_len = len(split_text)
         vc = dict()
         for word in split_text:
             try:
@@ -266,23 +268,17 @@ class Preprocessing:
         cookies_paths = []
         terms_paths = []
 
-        max = 150000
-        cook = 0
-        ter = 0
         for pdir in pages_dirs:
             cookies_files = os.listdir(relevant_dir + "/" + pdir + "/cookies")
             cookies_files.sort()
             terms_files = os.listdir(relevant_dir + "/" + pdir + "/terms")
             terms_files.sort()
 
-            if len(cookies_files) != 0 and cook < max:
+            if len(cookies_files) != 0:
                 [cookies_paths.append(relevant_dir + "/" + pdir + "/cookies/" + file) for file in cookies_files]
 
-            if len(terms_files) != 0 and ter < max:
+            if len(terms_files) != 0:
                 [terms_paths.append(relevant_dir + "/" + pdir + "/terms/" + file) for file in terms_files]
-
-            cook += len(cookies_files)
-            ter += len(terms_files)
 
         return terms_paths, cookies_paths
 
@@ -292,12 +288,11 @@ class Preprocessing:
         :param irrelevant_dir: dir
         :return: list of irrelevant page paths
         """
-        max = 150000
         files = os.listdir(irrelevant_dir)
         files.sort()
         paths = []
 
-        for i in range(min(max, len(files))):
+        for i in range(len(files)):
             paths.append(irrelevant_dir + "/" + files[i])
 
         #[paths.append(irrelevant_dir + "/" + file) for file in files]

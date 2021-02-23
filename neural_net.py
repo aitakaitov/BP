@@ -24,7 +24,7 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
     input_dim = len(preprocessor.tokenizer.word_index) + 1       # how long is OHE of a word
     embedding_weights = preprocessor.emb_matrix  # embedding matrix of size input_dim x embedding_dim
 
-    sequential = False
+    sequential = True
 
     if not sequential:
         input = layers.Input(shape=(None,), dtype='int64')
@@ -95,9 +95,9 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
             trainable=False
         ))
         model.add(layers.Conv1D(filters=32, kernel_size=8, activation='relu'))
-        model.add(layers.MaxPooling1D(pool_size=4))
+        model.add(layers.MaxPooling1D(pool_size=8))
         model.add(layers.Conv1D(filters=32, kernel_size=6, activation='relu'))
-        model.add(layers.MaxPooling1D(pool_size=4))
+        model.add(layers.MaxPooling1D(pool_size=16))
         model.add(layers.Flatten())
         model.add(layers.Dense(32, activation='relu'))
         model.add(layers.Dense(3, activation='softmax'))
@@ -113,7 +113,7 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
         tensorboard_callback = tensorflow.keras.callbacks.TensorBoard(log_dir=tb_logdir, histogram_freq=1)
         model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=4, callbacks=[tensorboard_callback])
     else:
-        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=4)
+        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=2)
 
     if model_path is not None:
         model.save(model_path, overwrite=False, include_optimizer=True)
@@ -122,10 +122,6 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
         os.system("tensorboard --logdir={}".format(tb_logdir))
 
     return
-
-
-def load_model_and_test(model_path):
-    model = tensorflow.keras.models.load_model(model_path)
 
 
 def get_dataset(dir: str, tokenizer, max_len) -> tuple:
@@ -144,7 +140,7 @@ def get_dataset(dir: str, tokenizer, max_len) -> tuple:
         with open(dir + "/" + file, "r", encoding='utf-8') as f:
             text = f.read()
             y[i][int(text[0])] = 1
-            X[i] = pad_sequences([tokenizer.texts_to_sequences([text[2:]])[0]], maxlen=max_len)
+            X[i] = pad_sequences([tokenizer.texts_to_sequences([text[2:]])[0]], maxlen=max_len, truncating="post")
             i += 1
 
     return np.array(X), np.array(y)
