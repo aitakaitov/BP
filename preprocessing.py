@@ -34,7 +34,7 @@ class Preprocessing:
         self.vocabulary = None
         self.Tokenizer = None
         self.embedding_matrix = None
-        self.doc_max_len = 8000
+        self.doc_max_len = 10000
         self.urls_cookies = []
         self.urls_terms = []
         self.urls_irrelevant = []
@@ -214,7 +214,7 @@ class Preprocessing:
             if url[-1] != "/":
                 url += "/"
         except IndexError:
-            return None;
+            return None
 
         # check for duplicates
         if page_info[1] == 0:

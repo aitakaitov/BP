@@ -111,7 +111,8 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
 
     if tb_logdir is not None:
         tensorboard_callback = tensorflow.keras.callbacks.TensorBoard(log_dir=tb_logdir, histogram_freq=1)
-        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=4, callbacks=[tensorboard_callback])
+        save_callback = tensorflow.keras.callbacks.ModelCheckpoint(filepath="saved-checkpoints")
+        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=3, batch_size=32, callbacks=[tensorboard_callback])
     else:
         model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=2)
 
