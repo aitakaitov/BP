@@ -75,8 +75,8 @@ class Preprocessing:
         pgs = self.__split_pages(terms_pages_paths)
 
         # create info
-        pinf = self.__create_page_info(pgs[0], 2, True)
-        pinf2 = self.__create_page_info(pgs[1], 2, False)
+        pinf = self.__create_page_info(pgs[0], 2, True)     # create info for train terms
+        pinf2 = self.__create_page_info(pgs[1], 2, False)   # create info for test terms
         # add info to pages_info
         [pages_info.append(info) for info in pinf]
         [pages_info.append(info) for info in pinf2]
@@ -93,12 +93,6 @@ class Preprocessing:
         pinf2 = self.__create_page_info(pgs[1], 0, False)
         [pages_info.append(info) for info in pinf]
         [pages_info.append(info) for info in pinf2]
-
-        # shuffle the pages
-        random.shuffle(pages_info)
-        random.shuffle(pages_info)
-        random.shuffle(pages_info)
-        random.shuffle(pages_info)
 
         # create vocab, preprocess pages
         print("Creating vocabulary, writing pages into test and train directories")
@@ -150,8 +144,8 @@ class Preprocessing:
 
         stopwords = []
         if remove_stopwords:
-            sw_file = open("stopwords-cs.txt", "r", encoding='utf-8')       # use stopwords without keywords
-            #sw_file = open("stopwords-cs-keyw", "r", encoding='utf-8')     # use stopwords with keywords
+            #sw_file = open("stopwords-cs.txt", "r", encoding='utf-8')       # use stopwords without keywords
+            sw_file = open("stopwords-cs-keyw", "r", encoding='utf-8')     # use stopwords with keywords
             stopwords = sw_file.readlines()
             for i in range(len(stopwords)):
                 stopwords[i] = stopwords[i][0:len(stopwords[i]) - 1]
