@@ -24,6 +24,7 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
     input_dim = len(preprocessor.tokenizer.word_index) + 1       # how long is OHE of a word
     embedding_weights = preprocessor.emb_matrix  # embedding matrix of size input_dim x embedding_dim
 
+    # switch between sequential and parallel models
     sequential = True
 
     if not sequential:
@@ -44,44 +45,35 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
 
         conv_0 = layers.Conv1D(
             filters=32,
-            kernel_size=8,
-            activation='relu'
+            kernel_size=6
         )(reshape_0)
 
         conv_1 = layers.Conv1D(
             filters=32,
-            kernel_size=6,
-            activation='relu'
+            kernel_size=4
         )(reshape_0)
 
         conv_2 = layers.Conv1D(
             filters=32,
-            kernel_size=4,
-            activation='relu'
+            kernel_size=2
         )(reshape_0)
 
-        dropout_0 = layers.Dropout(0.5)(conv_0)
+        norm_0 = layers.BatchNormalization()(conv_0)
+        norm_1 = layers.BatchNormalization()(conv_1)
+        norm_2 = layers.BatchNormalization()(conv_2)
 
-        dropout_1 = layers.Dropout(0.5)(conv_1)
+        act_0 = layers.Activation(tensorflow.keras.activations.relu)(norm_0)
+        act_1 = layers.Activation(tensorflow.keras.activations.relu)(norm_1)
+        act_2 = layers.Activation(tensorflow.keras.activations.relu)(norm_2)
 
-        dropout_2 = layers.Dropout(0.5)(conv_2)
+        glomax_pool_0 = layers.GlobalMaxPool1D()(act_0)
+        glomax_pool_1 = layers.GlobalMaxPool1D()(act_1)
+        glomax_pool_2 = layers.GlobalMaxPool1D()(act_2)
 
-        maxpool_0 = layers.MaxPooling1D(
-            pool_size=3
-        )(dropout_0)
-
-        maxpool_1 = layers.MaxPooling1D(
-            pool_size=3
-        )(dropout_1)
-
-        maxpool_2 = layers.MaxPooling1D(
-            pool_size=3
-        )(dropout_2)
-
-        concat_0 = layers.Concatenate(axis=1)([maxpool_0, maxpool_1, maxpool_2])
-
-        flatten = layers.Flatten()(concat_0)
-        dense_0 = layers.Dense(units=10, activation='relu')(flatten)
+        concat_0 = layers.Concatenate(axis=1)([glomax_pool_0, glomax_pool_1, glomax_pool_2])
+        dropout_0 = layers.Dropout(0.3)(concat_0)
+        flatten = layers.Flatten()(dropout_0)
+        dense_0 = layers.Dense(units=24, activation='relu')(flatten)
         output = layers.Dense(units=3, activation='softmax')(dense_0)
         model = tensorflow.keras.models.Model(input, output)
     else:
@@ -94,11 +86,20 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
             weights=[embedding_weights],
             trainable=False
         ))
-        model.add(layers.Conv1D(filters=32, kernel_size=8, activation='relu'))
-        model.add(layers.MaxPooling1D(pool_size=8))
-        model.add(layers.Conv1D(filters=32, kernel_size=6, activation='relu'))
-        model.add(layers.MaxPooling1D(pool_size=16))
+        model.add(layers.Conv1D(filters=32, kernel_size=3))
+        model.add(layers.BatchNormalization())
+        model.add(layers.Activation(tensorflow.keras.activations.relu))
+        model.add(layers.MaxPooling1D(pool_size=2))
+        model.add(layers.Conv1D(filters=32, kernel_size=4))
+        model.add(layers.BatchNormalization())
+        model.add(layers.Activation(tensorflow.keras.activations.relu))
+        model.add(layers.MaxPooling1D(pool_size=5))
+        model.add(layers.Conv1D(filters=32, kernel_size=8))
+        model.add(layers.BatchNormalization())
+        model.add(layers.Activation(tensorflow.keras.activations.relu))
+        model.add(layers.MaxPooling1D(pool_size=12))
         model.add(layers.Flatten())
+        model.add(layers.Dropout(0.25))
         model.add(layers.Dense(32, activation='relu'))
         model.add(layers.Dense(3, activation='softmax'))
 
@@ -109,18 +110,16 @@ def create_model(train_dir: str, test_dir: str, preprocessor: PreprocessingConfi
     X_train, y_train = get_dataset(train_dir, preprocessor.tokenizer, preprocessor.doc_max_len)
     X_test, y_test = get_dataset(test_dir, preprocessor.tokenizer, preprocessor.doc_max_len)
 
+    # train with logging callback
     if tb_logdir is not None:
         tensorboard_callback = tensorflow.keras.callbacks.TensorBoard(log_dir=tb_logdir, histogram_freq=1)
-        save_callback = tensorflow.keras.callbacks.ModelCheckpoint(filepath="saved-checkpoints")
-        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=3, batch_size=32, callbacks=[tensorboard_callback])
+        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=8, batch_size=32, callbacks=[tensorboard_callback])
     else:
         model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=6, batch_size=2)
 
+    # save the model
     if model_path is not None:
         model.save(model_path, overwrite=False, include_optimizer=True)
-
-    if tb_logdir is not None:
-        os.system("tensorboard --logdir={}".format(tb_logdir))
 
     return
 

@@ -4,7 +4,6 @@ import re
 from tensorflow.keras.preprocessing.text import Tokenizer
 import numpy as np
 import pickle
-from library_methods import LibraryMethods
 from typing import Union
 
 
@@ -96,7 +95,10 @@ class Preprocessing:
         [pages_info.append(info) for info in pinf2]
 
         # shuffle the pages
-        # random.shuffle(pages_info)
+        random.shuffle(pages_info)
+        random.shuffle(pages_info)
+        random.shuffle(pages_info)
+        random.shuffle(pages_info)
 
         # create vocab, preprocess pages
         print("Creating vocabulary, writing pages into test and train directories")
@@ -148,7 +150,8 @@ class Preprocessing:
 
         stopwords = []
         if remove_stopwords:
-            sw_file = open("stopwords-cs.txt", "r", encoding='utf-8')
+            sw_file = open("stopwords-cs.txt", "r", encoding='utf-8')       # use stopwords without keywords
+            #sw_file = open("stopwords-cs-keyw", "r", encoding='utf-8')     # use stopwords with keywords
             stopwords = sw_file.readlines()
             for i in range(len(stopwords)):
                 stopwords[i] = stopwords[i][0:len(stopwords[i]) - 1]
@@ -246,8 +249,6 @@ class Preprocessing:
 
         # create vocabulary
         split_text = page_text.split()
-        #if len(split_text) > self.doc_max_len:
-        #    self.doc_max_len = len(split_text)
         vc = dict()
         for word in split_text:
             try:
@@ -295,8 +296,6 @@ class Preprocessing:
         for i in range(len(files)):
             paths.append(irrelevant_dir + "/" + files[i])
 
-        #[paths.append(irrelevant_dir + "/" + file) for file in files]
-
         return paths
 
     def __split_pages(self, pages: list) -> tuple:
@@ -305,18 +304,14 @@ class Preprocessing:
         :param pages: list of pages
         :return: tuple of training pages, testing pages
         """
-        test_size = 0.25
+        test_size = 0.3
         test_count = int(len(pages) * test_size)
-        test_pages = []
 
-        # get test pages
-        for i in range(test_count):
-            r = random.randrange(len(pages))
-            test_pages.append(pages[r])
-            pages.remove(pages[r])
+        random.shuffle(pages)
+        random.shuffle(pages)
 
-        # train pages are the leftover pages
-        train_pages = pages
+        test_pages = pages[:test_count]
+        train_pages = pages[test_count:]
 
         return train_pages, test_pages
 
@@ -355,7 +350,8 @@ class Preprocessing:
         :param config_path: File to load the config from
         :return:
         """
-        return pickle.load(open(config_path, "rb"))
+        with open(config_path, "rb") as f:
+            return pickle.load(f)
 
     def save(self, config_path):
         """
