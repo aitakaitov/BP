@@ -46,10 +46,15 @@ for i in range(len(files)):
 res_file.close()
 
 input_file = open("C:\\Users\\Vojtěch Bartička\\Desktop\\BP\\BP\\results-manual", "r", encoding='utf-8')
-reference_file = open("/validation-reference", "r", encoding='utf-8')
+reference_file = open("C:\\Users\\Vojtěch Bartička\\Desktop\\BP\\BP\\validation-reference", "r", encoding='utf-8')
 
 input_lines = input_file.readlines()
 reference_lines = reference_file.readlines()
+
+input_file.close()
+reference_file.close()
+
+diff_file = open("C:\\Users\\Vojtěch Bartička\\Desktop\\BP\\BP\\validation-diff", "w+", encoding='utf-8')
 
 ref_index = dict()
 ref_index["TERMS"] = 0
@@ -60,6 +65,11 @@ for i in range(len(reference_lines)):
     input_line = input_lines[i].split()
     reference_line = reference_lines[i].split()
     conf_matrix[ref_index[input_line[0]]][ref_index[reference_line[0]]] += 1
+
+    if input_line[0] != reference_line[0]:
+        diff_file.write("Predicted: {}\tReference: {}\t URL: {}\n".format(input_line[0], reference_line[0], input_line[1]))
+
+diff_file.close()
 
 for i in range(3):
     try:
