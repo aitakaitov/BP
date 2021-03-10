@@ -258,7 +258,7 @@ class Preprocessing:
         :param relevant_dir: dir
         :return: tuple of (terms paths, cookies paths)
         """
-        pages_dirs = os.listdir(relevant_dir)
+        pages_dirs = os.listdir(os.path.realpath(relevant_dir))
         pages_dirs.sort()
         cookies_paths = []
         terms_paths = []
