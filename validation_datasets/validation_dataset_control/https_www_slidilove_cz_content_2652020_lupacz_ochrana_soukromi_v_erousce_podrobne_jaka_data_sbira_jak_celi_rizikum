@@ -1,0 +1,230 @@
+URL: https://www.slidilove.cz/content/2652020-lupacz-ochrana-soukromi-v-erousce-podrobne-jaka-data-sbira-jak-celi-rizikum
+DEPTH: 1
+
+
+26.5.2020- Lupa.cz -Ochrana soukromí v eRoušce podrobně. Jaká data sbírá a jak čelí rizikům? | Big Brother Awards CR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+  
+
+Tisková zpráva a otevřený dopis: IuRe na základě rozhodnutí evropského soudu volá po úpravě aplikace eRouška
+  
+
+  
+
+
+
+
+
+
+Tento web už je jen archiv. Sledujte digitalnisvobody.cz 
+
+Domů
+26.5.2020- Lupa.cz -Ochrana soukromí v eRoušce podrobně. Jaká data sbírá a jak čelí rizikům?
+
+26. 5. 2020 | 09:23 Už od začátku dubna 2020 si můžete do svého chytrého telefonu stáhnout aplikaci eRouška, jejíž používání má zpomalit šíření nákazy COVID-19 a při tom chránit vaše soukromí. Otázky ochrany soukromí patří mezi hlavní zájmy naší organizace, a proto jsme se rozhodli podrobit eRoušku přísnější technické analýze. Využili jsme informace získané z oficiálních webových stránek projektu, ze zdrojových kódů aplikace a také přímo od lidí ze společnosti Keboola, kteří se na vývoji aplikace podíleli.
+Zdroj:  https://www.lupa.cz/clanky/ochrana-soukromi-v-erousce-podrobne-jaka-data-sbira-a-jak-celi-rizikum/
+
+
+
+
+ 
+
+
+
+
+V první řadě bychom rádi zmínili, že naším cílem není odrazovat potenciální uživatele od užívání eRoušky. Oceňujeme, že otázky ochrany soukromí byly při vývoji aplikace zohledňovány výrazně více, než je u mobilních aplikací běžné. Chápeme, že mnohá zvolená řešení byla těžce hledaným kompromisem mezi celou řadou požadavků: od technických limitů přes uživatelskou přívětivost, kompatibilitu s praxí hygieny až po ochranu soukromí uživatelů.
+Přesto považujeme za důležité, aby měla veřejnost k dispozici informace o těchto kompromisech a o problémech z nich plynoucích. Jedině tak se budou moci uživatelé rozhodnout skutečně svobodně, zda budou eRoušku používat. Tvůrcům tímto snad také dodáme pár nápadů, kterým směrem se při dalším vývoji aplikace vydat.
+
+Provozní předpoklady
+Jako u každé mobilní aplikace musíte i u eRoušky počítat s tím, že si vezme nějaké místo v úložišti vašeho telefonu (řádově desítky MB) a při provozu nepatrně sníží životnost baterie. Specifikem eRoušky je to, že nebude fungovat správně, pokud ji váš telefon bude na pozadí vypínat kvůli optimalizaci výkonu. V takovém případě musíte přidat výjimku do nastavení telefonu.
+Dobrá zpráva je, že eRouška generuje pouze minimální datový provoz.
+Aplikaci si můžete nainstalovat na libovolný telefon s operačním systémem iOS od verze 11 (iPhone 5S a novější) nebo Android od verze 5 s podporou Bluetooth LE. Pokud ale používáte operační systém bez Google Play Services (k čemuž se někteří uživatelé uchylují ve snaze lépe chránit svoje soukromí), nebude vám na něm eRouška fungovat.
+K provozu eRoušky je potřeba zapnutý Bluetooth, což může na starších telefonech otevírat bezpečnostní díry, jako například kritickou bezpečnostní chybu CVE-2020–0022 v operačním systému Android, k níž vyšla oprava teprve v únoru 2020. Pokud svůj telefon pravidelně neaktualizujete nebo už pro něj aktualizace nevycházejí, může zapnutý Bluetooth narušit jeho bezpečnost.
+Sběr a ukládání dat
+Podle podmínek zpracování osobních údajů sbírá eRouška následující informace:
+
+telefonní číslo uživatele,
+informace o setkáních (které lze v aplikaci zobrazit i smazat) a
+informaci o modelu telefonu a verzi operačního systému.
+
+Z textu dále nepřímo vyplývá, že se sbírají navíc ještě „náhodná identifikační čísla“. Tato čísla jsou ve zdrojovém kódu označována jako „TUID“ a ukládají se jak do telefonu, tak na server.
+Vzhledem k tomu, že se pro ukládání serverových dat používají cloudové služby společnosti Google (konkrétně Firebase), budou tato data fyzicky uložena mimo Českou republiku. Mohou se dostat do USA a do těch zemí EU, kde má Google svoje servery. Ke zvážení pro tvůrce určitě je, jestli je využití služeb společnosti Google a lokalizace dat v USA nejšťastnějším řešením a nebylo by vhodnější – místo zpracování dat v rámci tzv. Privacy Shield – zvolit řešení, které garantuje zpracování dat v rámci EU, a tudíž plně v dosahu pravidel GDPR.
+
+
+Z informací o setkáních a telefonních číslech lze teoreticky zkonstruovat graf interakcí, tedy jakousi sociální síť všech nakažených lidí a jejich společných známých (a to včetně těch, které se hygienická stanice rozhodne nekontaktovat, protože jejich setkání nebylo epidemiologicky významné). Aby k tomuto zneužívání nedocházelo, je v podmínkách uvedeno prohlášení, že informace o setkání budou smazána „do 12 hodin od jejich odeslání z vašeho telefonu“.
+Sledování telefonu
+Jak je na oficiálních stránkách zdůrazňováno a podloženo nezávislými audity, eRouška nesleduje vaši polohu.
+Nicméně telefon s aktivní eRouškou již z principu vysílá do svého okolí Bluetooth signál a kóduje do něj již zmíněné TUID. Za specifických okolností lze tento signál zneužít ke sledování vašeho telefonu. Tři způsoby takového sledování se nyní pokusíme popsat.
+Všechny tyto typy sledování lze zneužít nezávisle na tom, jestli je uživatel zdravý, nebo už byl označen za COVID-19 pozitivního.
+Všechny popsané situace fungují pouze tehdy, pokud váš telefon s eRouškou přijde do blízkého kontaktu se zařízením nebo zařízeními subjektu, který vás chce sledovat. Může to být člověk s telefonem, ale například taky obchodní dům nebo dopravní terminál, který by se rozhodl s pomocí sítě přijímačů Bluetooth sledovat pohyb osob.
+1. Sledování počtu osob v okolí
+Nezávisle na TUID lze již ze samotného Bluetooth signálu odhadnout, kolik zařízení, a tedy i kolik osob se v okolí nachází. Na veřejném prostranství není takové sledování problematické, ale v prostředí domova by takto mohl například zvídavý soused zjistit, zda je u vás někdo doma.
+2. Detekce pohybu a opakovaného kontaktu
+Pokud si někdo v minulosti spojil vaše TUID s vaší identitou (například ze záznamů bezpečnostní kamery a ze své eRoušky), může vás v budoucnu rozpoznat jen na základě TUID a sledovat, kudy se váš telefon pohybuje.
+Proti tomuto typu sledování existuje v eRoušce ochranný mechanismus, který funguje tak, že vysílané TUID pravidelně mění. Tato ochrana bohužel není zcela dokonalá, protože všechna TUID, která vaše eRouška může použít, jsou předem vygenerována. Po nějakém čase tedy může váš telefon stejné TUID použít znovu.
+Ve výchozím nastavení se generuje 50 TUID a vždy jednou za hodinu se z nich vylosuje jedno, které se začne vysílat (konkrétní nastavení si aplikace načítá z Firebase Remote Config a uživatel aktuální hodnoty nevidí). Pokud by váš telefon byl sledován po dobu více než 8 hodin, je šance, že se stejné TUID objeví dvakrát, větší než 50 %.
+3. Přímá identifikace uživatele
+Databáze eRoušky, uložená v Google Firebase, umožňuje propojit jakékoliv TUID registrovaného uživatele s jeho telefonním číslem. Tato čísla se používají pro hygienickou stanici a neměla by se používat k žádnému jinému účelu.
+Pokud by ovšem data z databáze dostal do rukou neoprávněný subjekt, mohl by je zneužít k tomu, aby v reálném čase zjišťoval telefonní čísla všech uživatelů eRoušky ve svém okolí.
+Alternativní přístupy
+Ne všechny z výše uvedených nevýhod jsou nevyhnutelné. Projekt DP^3T ukazuje, že sledování kontaktů (contact tracing) pomocí Bluetooth lze řešit i jiným způsobem, ovšem za jinou cenu:
+
+Aplikace by nemusela sbírat telefonní čísla uživatelů už při registraci; namísto toho by mohla uživatele, kteří přišli do styku s nakaženou osobou, upozornit pomocí push notifikace nebo po otevření aplikace. Odpadlo by tím riziko vyzrazení telefonních čísel. Autoři eRoušky argumentují tím, že pro hygienickou stanici je jednodušší zavolat na telefonní číslo a že u push notifikací mohou nastat problémy s doručením.
+Generování náhodných identifikátorů by mohlo probíhat opakovaně a staré identifikátory by mohly být po čase mazány. Snížilo by se tak riziko opakování stejných identifikátorů a zmenšilo by se časové okno pro sledování uživatelů v případě úniku dat z databáze. Aplikace by pak ale musela trochu častěji používat datové přenosy, aby si mohla stahovat nové identifikátory.
+Aplikace by si mohla náhodné identifikátory generovat sama. Tento přístup se označuje jako decentralizovaný, neboť žádný centrální server nezná identifikátory všech uživatelů. Tento model nabízí silnější ochranu soukromí. Zato vyžaduje, aby si aplikace pravidelně stahovala seznam nakažených zařízení a porovnávala ho s lokálně uloženým seznamem kontaktů, což je náročnější na baterii a data.
+
+Je možné, že zmíněné alternativy budou používat zahraniční aplikace pro sledování kontaktů. V takovém případě jsou autoři eRoušky slovy Petra Šimečka „připraveni změnit model fungování tak, aby byl kompatibilní se zbytkem EU“.
+Důsledky vašeho rozhodnutí
+Pokud stále nevíte, zda eRoušku používat, zvažte, jaký význam pro vás mají rizika popsaná v tomto článku. Je možné, že už jste zvyklí podobná (a možná i větší) rizika podstupovat, když například používáte Bluetooth na propojení svého telefonu s fitness náramkem nebo když používáte služby Google pro sledování své polohy. Používáním eRoušky navíc neohrožujete soukromí nikoho dalšího. Naopak tím můžete ostatním pomoci.
+Používání eRoušky je stále dobrovolné a věříme, že je to tak správně. Rozhodnutí je na vás.
+
+ 
+
+ 
+
+
+
+
+Soutěž o největšího slídila
+Naše témata:
+:: TTIP
+:: Novorozenecký screening
+:: Data retention
+:: DNA
+:: Kamery
+:: Creative Commons
+:: Nebezpečné databáze
+Zapojte se
+Školení
+Pro média
+O nás
+Kontakt
+Ukončené kampaněSlídilské karty
+ACTA
+PNR
+Dobrá praxe
+
+
+
+
+
+Chcete dostávat zpravodaj? 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+Ke stažení    
+  
+ 
+
+
+
+
+ 
+
+ 
+ 
+
+
+
+
+Kdo jsme 
+Tento web provozuje  iure, neziskovka zabývající se ochranou občanských svobod. 
+
+
+
+
+
+
+ 
+
+
+
+
+
+Hledat na tomto webu: 
+
+
+
+
+
+
+
+
+
+Podpořte nás        
+Více o možnostech podpory
+
+
+Naše další weby 
+
+
+
+
+IuRe na sociálních sítích  Ceny Velkého bratra na Facebooku
+
+ Sledujte nás na Twitteru
+
+
+IuRe je členem  
+
+ 
+ 
+
+
+
+
+Iuridicum Remedium, o. s.; tel: +420 776 703 170; e-mail: iure(zavináč)iure.org; web:www.iure.org ; č.ú. 2700127239/2010
+
+
+
+Pokud není u článků uvedeno jinak, podléhá zpravodajství programu Lidská práva a technologie licenci  
+Creative Commons Uveďte autora-Zachovejte licenci 3.0 Česko 
+
+
+login  
+
+
+
+
+
+
+
+
+
+      

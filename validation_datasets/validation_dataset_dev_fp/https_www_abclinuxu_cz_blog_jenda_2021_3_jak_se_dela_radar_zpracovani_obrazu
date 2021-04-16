@@ -1,0 +1,1675 @@
+URL: https://www.abclinuxu.cz/blog/jenda/2021/3/jak-se-dela-radar-zpracovani-obrazu
+DEPTH: 1
+
+
+
+Jak se dělá radar: zpracování obrazu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ AbcLinuxu.cz
+ ITBiz.cz
+ HDmag.cz
+ AbcPráce.cz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AbcLinuxu hledá autory!
+
+
+
+
+ 
+Inzerujte na AbcPráce.cz od 950 Kč
+ 
+
+
+
+
+
+
+
+
+Rozšířené hledání
+
+
+
+
+
+
+
+
+
+Poradna
+
+Linuxová poradna
+Databázová poradna
+Programovací poradna
+Hardwarová poradna
+Unixová poradna
+
+FAQ
+Hardware
+
+Ovladače
+Procesory
+Přídavné karty
+Připojení na síť
+Příslušenství
+Sestavy
+Ukládání dat
+Vstupní zařízení
+Výstupní zařízení
+Základní desky
+
+Software
+
+Alternativy k aplikacím
+Bezpečnost
+Grafika
+Hobby
+Hry
+Internet
+Kancelář
+Multimédia
+Nástroje
+Pracovní prostředí
+Programování
+Server
+Soubory
+Systém
+Vzdělávání
+Věda
+
+Články
+
+Bezpečnost
+Hardware
+Hry a zábava
+Jaderné noviny
+Multimédia
+Návody
+Novinky
+Programování
+Recenze
+Rozhovory
+Různé
+Sítě
+Systém
+Tipy a triky
+Tiskové zprávy
+Seriály
+
+Učebnice
+
+Úvod
+Obsah
+Historie Linuxu
+Základy Linuxu
+Přehled příkazů
+
+Blogy
+
+Výběr (linuxové)
+Stručný souhrn
+Seznam blogů
+
+
+Skupiny
+
+Portál
+TeX
+Ubuntu - Linux pro lidi
+Arch Linux
+Datové schránky
+
+
+Desktopy
+Hry
+Slovník
+Kdo je
+Bazar
+Portál
+
+Žebříčky a statistiky
+Jak se stát autorem
+Redakce
+Propagace
+Inzerce
+RSS feedy a PDA
+Bugzilla - chyby a náměty
+Vzkazy správcům (25)
+Zdrojové kódy
+Přidej sidebar
+Přidej mezi oblíbené
+Nastav jako domácí stránku
+
+Práce
+Mapa
+
+
+
+
+
+
+
+Přihlášení |
+                Registrace
+
+
+
+
+Styl
+
+
+Standardní světlý
+
+
+Oficiální tmavý
+
+
+
+
+
+
+×
+
+
+
+
+
+napište »
+Zprávičky
+
+
+
+
+
+
+
+Elements of AI, online kurz o umělé inteligenci také v češtině
+
+dnes 09:00 | Pozvánky
+Elements of AI, online kurz o umělé inteligenci, lze absolvovat také v češtině. Oficiální spuštění české verze proběhne 25. března 2021 od 16:30 na YouTube.
+Ladislav Hagara
+    | Komentářů: 0
+
+
+
+XWayland 21.1.0
+
+dnes 08:00 | Nová verze
+XWayland je X Server běžící jako klient pro použití s protokolem Wayland. Nové vydání 21.1.0 je první oddělené od zbytku X.Org Server, protože potenciální X.Org Server 1.21 dosud nemá žádný plán vydání.
+Fluttershy, yay!
+    | Komentářů: 0
+
+
+
+Eclipse IDE 2021-03 aneb Eclipse 4.19
+
+dnes 07:00 | Nová verze
+Bylo vydáno Eclipse IDE 2021-03 aneb Eclipse 4.19. Představení novinek tohoto vývojového prostředí také na YouTube.
+Ladislav Hagara
+    | Komentářů: 3
+
+
+
+Vivaldi 3.7
+
+včera 17:33 | Nová verze
+Byla vydána nová stabilní verze 3.7 (3.7.2218.45) webového prohlížeče Vivaldi (Wikipedie). Přehled novinek v příspěvku na blogu. Nejnovější Vivaldi je postaven na Chromiu 89.0.4389.91.
+Ladislav Hagara
+    | Komentářů: 2
+
+
+
+
+Kyber trable: vzdělávací hra nejen pro děti
+
+včera 15:11 | Humor
+Kyber trable: vzdělávací hra nejen pro děti byla představena na blogu sdružení CZ.NIC. Jedná se o hru Dobble. Můžete si ji stáhnout v PDF, vytisknout (ideálně na papír s vyšší gramáží), rozstříhat a rovnou začít hrát. V přiloženém slovníčku najdete vysvětlení všech 57 použitých symbolů.
+Ladislav Hagara
+    | Komentářů: 7
+
+
+Audacity 3.0.0
+
+včera 14:44 | Nová verze
+Byla vydána nová stabilní verze 3.0.0 svobodného multiplatformního softwaru pro editování a nahrávání zvukových souborů Audacity (Wikipedie). Jedná se o major verzi se změněným formátem ukládání dat (.aup -> .aup3). Více v přehledu nových vlastností a v aktualizované dokumentaci.
+Ladislav Hagara
+    | Komentářů: 0
+
+
+3dielny blog o výrobe DPS s CNC a slobodným softvérom
+
+včera 13:55 | Zajímavý článek
+Blog na LinuxOS.sk o výrobe DPS
+pomocou CNC a slobodného softvéru, je rozdelený na tri časti.
+V prvom diely je ukázaný návrh DPS, v druhom diely generovanie výstupov pre CNC a v treťom diely samotné frézovanie DPS.
+Bedňa
+    | Komentářů: 6
+
+
+System76 Pangolin s APU AMD Ryzen
+
+včera 08:00 | Nasazení Linuxu
+System76, značka počítačů dodávaných s vlastní linuxovou distribucí Pop!_OS (derivát Ubuntu), nově nabízí notebook Pangolin s APU AMD Ryzen 5 4500U nebo Ryzen 7 4700U.
+Fluttershy, yay!
+    | Komentářů: 1
+
+
+
+Designérka Fedory představila nové logo
+
+16.3. 20:00 | Komunita
+Designérka Fedory Máirín Duffy představila nové logo. O plánu a důvodech Fedory změnit logo informovala již v lednu 2019. Postupně představila několik návrhů.
+Ladislav Hagara
+    | Komentářů: 18
+
+
+Java 16 / JDK 16
+
+16.3. 16:44 | Nová verze
+Byla vydána Java 16 / JDK 16. Nových vlastností (JEP - JDK Enhancement Proposal) je 17. Nová Java / JDK vychází každých 6 měsíců.
+Ladislav Hagara
+    | Komentářů: 17
+
+
+
+Centrum |
+                    Napsat |
+                    Starší
+
+
+
+
+navrhněte »
+Anketa
+
+
+
+Vzděláváte se formou hromadných online kurzů (MOOC)?
+
+ano, soustavně (68%)
+
+
+
+
+
+ano, příležitostně (8%)
+
+
+
+
+
+vyzkoušel(a) jsem je a nevyhovovaly mi (1%)
+
+
+
+
+
+ne, z nedostatku času (6%)
+
+
+
+
+
+ne, z jiných důvodů (18%)
+
+
+
+
+
+
+                        Celkem 308 hlasů
+                      
+
+
+
+
+ Komentářů: 1, poslední 7.3. 11:50
+ 
+
+
+Rozcestník
+
+
+AbcLinuxu
+
+
+Distribuční novinky 7-8/2021
+
+
+Týden na ITBiz: Kyberútoky na servery Microsoft Exchange v ČR budou pokračovat
+
+
+HDmag.cz
+
+
+Testovací novinka
+
+
+Do střední a východní Evropy přijde Válka světů příští měsíc exkluzivně na Epic 
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+Jendа         - Jenda
+
+
+
+Aktuální zápisy
+
+
+Jak se dělá radar: zpracování obrazu
+Jak na WhatsApp bez smartphone
+Veřejné antigenní testování
+Jak se dělá radar: vysílač
+Python, C a CFFI
+
+
+
+?Přístup k archivovaným zápisům za jednotlivé měsíce.
+Archív
+
+
+
+březen 2021 (1)
+únor 2021 (4)
+leden 2021 (2)
+prosinec 2020 (3)
+listopad 2020 (2)
+říjen 2020 (1)
+
+
+
+
+
+
+
+
+?Poslední screenshot mého desktopu.
+            Současný desktop
+        
+
+
+
+
+
+
+?Přístup na osobní hlavní stranu a na hlavní stranu všech blogů.
+        Navigace
+    
+
+
+Jenda, hlavní strana
+Jenda, stručný souhrn
+RSS kanál
+Všechny blogy
+Všechny blogy, stručný souhrn
+
+
+Nej blogů na AbcLinuxu
+
+Nejčtenější za poslední měsíc
+
+svíticí lustry z lídlu
+Přehledně: nová koronavirová opatření
+ZFS : Stavba a zkušenosti se ZFS storage (2)
+
+Nejkomentovanější za poslední měsíc
+
+Přehledně: nová koronavirová opatření
+Kam jste to dopracovali…
+Veřejné antigenní testování
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+AbcLinuxu:/
+                        Blogy
+                         / 
+                        Jenda
+                         / 
+                        Meteopress
+                         / 
+                        Jak se dělá radar: zpracování obrazu
+
+
+
+
+Štítky:
+                    
+anténa, 
+                                bez, 
+                                case, 
+                                Clutter, 
+                                data, 
+                                dron, 
+                                energie, 
+                                funkce, 
+                                grafika, 
+                                chyby, 
+                                jeho, 
+                                kalibrace, 
+                                mapy, 
+                                Mate, 
+                                měření, 
+                                multimédia, 
+                                NAS, 
+                                následující, 
+                                nastavení, 
+                                nez, 
+                                objekt, 
+                                OSA, 
+                                pod, 
+                                pole, 
+                                problém, 
+                                přehled, 
+                                radar, 
+                                RIP, 
+                                signál, 
+                                Super, 
+                                system, 
+                                televize, 
+                                textové editory, 
+                                tom, 
+                                velikost, 
+                                video, 
+                                Vim, 
+                                výkon, 
+                                vysílač, 
+                                vývoj, 
+                                zelená, 
+                                3D
+
+Upravit
+Jak se dělá radar: zpracování obrazu
+
+    2.3. 17:52
+    | Přečteno: 2168×
+            | Meteopress
+        | 
+        | poslední úprava: 2.3. 17:52
+
+Dnes se podíváme na to, jak z naměřených dat udělat produkt, který lze zobrazit uživateli.
+Předchozí díly seriálu:
+
+Jak se dělá radar: anténa
+Jak se dělá radar: vysílač
+
+A-scope
+Jak jsme si řekli v předchozích dílech, (aktivní) radar vyšle signál a následně poslouchá, co se vrátilo. V nejjednodušším případě (magnetronový nemodulovaný vysílač) jde o krátký pulz a přijímač je amplitudový demodulátor/detektor obálky. Najdeme tedy na konektoru u přijímače kontakt, na kterém je výstup tohoto detektoru, zapíchneme do něj sondu osciloskopu a vyšleme impulz, tj. vybijeme kondenzátorovou banku do magnetronu.
+
+Získali jsme to, čemu se říká A-scope (1, 2). Vidíme tam řádkovou synchronizaci, protože je to celé nekonečně analogové, následně nějaké blízké odrazy, pak chvíli nic a pak nějaký další odraz. Ten byl přijatý po 115 μs, což znamená, že signál za tu dobu uletěl 115 μs * 300000 km/s = 35 km, a protože letí tam a zpátky, tak se jedná o cíl, který je 17 km daleko. (mimochodem technicky tohle vzniklo pomocí osciloskopu Rigol DS1054Z a RigolWFM)
+A-scope je nejjednodušší zobrazení, a zobrazení prvních radarů ze 30. let, protože se dá realizovat s primitivní technologií: stačí vám obrazovka, a uděláte sweep přes stínítko v okamžiku vyslání impulzu. Nevýhodou samozřejmě je, že se to dost špatně používá pokud vás zajímá složitější informace než „v takové vzdálenosti něco je“, a vyžaduje to zkušeného operátora.
+STC (Sensitivity time control)
+Na výše uvedeném A-scope jsme zobrazili amplitudu přijatého signálu. Problém je, že tato amplituda dost zásadně závisí na vzdálenosti cíle:
+
+Pro „malý cíl“ (malým cílem se myslí takový cíl, který je menší než je velikost paprsku z naší antény. V prvním díle jsme si řekli, že běžné radarové antény mají šířku svazku kolem 1 až 2°, tj. například ve vzdálenosti 50 km je šířka svazku cca. kilometr. Za malý cíl tedy budeme považovat věci podstatně menší než kilometr. Typickým malým cílem je letadlo) platí radarová rovnice, která říká, že intenzita přijatého signálu je úměrná 1/vzdálenost4. Proč to tak je? Námi vyslaný signál se šíří jako výsek kulové vlnoplochy, tj. jeho prostorová intenzita klesá s druhou mocninou vzdálenosti. Následně narazí na cíl a odrazí se od něj (přesněji řečeno se rozptýlí). Tento vrácený signál se opět šíří jako kulová vlnoplocha, takže opět dojde k poklesu intenzity s druhou mocninou vzdálenosti.
+Už jsem tu kdysi něco psal a Chapadla z toho pak udělala tričko. Teď mají partnerství s Bugemosem. Mohli by nějak zfúzovat tohle s výše uvedeným.
+Pro „velký cíl“, který je větší než náš svazek, což může být například mrak (typicky velký několik kilometrů), klesá intenzita s druhou mocninou, neboť se do něj trefíme celým naším svazkem, a nedojde tak k žádné ztrátě energie (až na útlum v atmosféře, který nyní zanedbáme, byť u X-band radarů je poměrně značný) na cestě „tam“. Ke ztrátám dochází až u odraženého signálu, a to je ta druhá mocnina.
+Pro liniové cíle, například silnice, klesá intenzita odrazu se třetí mocninou vzdálenosti, ale to většinou nikdo neřeší.
+Protože se často vyplatí zpracovávat signál logaritmicky (v decibelech), pro intuici (ve skutečnosti jsem to tam přesně takhle nahardcodoval když jsem to programoval) si řekneme, že „klesá s druhou mocninou vzdálenosti“ = „ve dvojnásobné vzdálenosti se zeslabí 4x“ = „ve dvojnásobné vzdálenosti se zeslabí o 6 dB“.
+
+Tuhle korekci nejspíš nechcete dělat u debugovacího zobrazení, když koukáte na surové úrovně signálu, ale jakmile chcete data jakkoli interpretovat, tak je potřeba to s touto znalostí přepočítat. Jinak se vám stane, že se k vám něco blíží, jedná se stále o ten stejný objekt, ale tím, jak se přibližuje, tak se stále zesiluje a zesiluje, pak profrčí kolem vás, a pak se zase zeslabuje. Je to velmi matoucí a alespoň já tuto korekci nedokážu aplikovat pouze myšlenkově.
+Jmenuje se to Sensitivity time control (STC) (1, 2) a lze to dělat dvěma způsoby: samozřejmě softwarově (při kreslení na obrazovku signál správně vynásobíte podle vzdálenosti) a hardwarově (to byla nutnost do nástupu počítačů, ale i dnes se to hodí, viz dále). Hardwarová implementace funguje tak, že do obvodu zapojíte řiditelný atenuátor (což se realizuje jako odporový dělič z několika odporů různých hodnot, které můžete přepínat). V okamžiku vyslání impulzu nastavíte maximální útlum, a útlum následně snižujete tak, aby vždy po dvojnásobném čase poklesl o těch 6 dB. Proto se tomu říká sensitivity time control, protože jde o změnu citlivosti přijímače v závislosti na čase od vyslání pulzu.
+Na následujícím obrázku je tento efekt „6 dB na dvojnásobnou vzdálenost“ krásně vidět (zdroj).
+
+Dynamika zpracovávaných signálů
+Meteorologové používají jednotky dBZ. Hodnoty, které bychom chtěli umět s radarem měřit, jsou od cca. 10 dBZ (slabé poprchávání) po 60 dBZ (krupobití), tj. dynamický rozsah 50 dB. Dále ze vzdálenosti nám vyplývá rozdíl řekněme mezi 10 km a 160 km „čtyři dvojnásobky“, tj. 24 dB. Dynamický rozsah dat je tak minimálně 84 dB, samozřejmě je potřeba nechat nějakou rezervu nahoře i dole, a najednou požadujeme systém s dynamickým rozsahem přes 100 dB, což nejde moc udělat. Proto jsem výše psal, že se hodí hardwarové STC, čímž to přispění k dynamice měnící se vzdáleností můžeme ořezat.
+B-scope
+B-scope (1, 2) je vlastně polární plot, kde na jedné ose je úhel (tím, jak se anténa otáčí kolem svislé osy), na druhé ose je vzdálenost, a barva kóduje intenzitu (na níže uvedeném obrázku je to již se STC korekcí).
+
+B-scope vznikne tak, že vezmete po sobě jdoucí A-scopes (resp. obrazové řádky toho video signálu výše) a nakreslíte je pod sebe (uložíte do pole). V anténním rotátoru je typicky rotační enkodér, který vám říká, k jakému azimutu zrovna tento sweep (česky se tomu asi říká odběh) patří. Protože se anténa neotáčí dokonale rovnoměrně, tak pokud chcete, aby souřadnice sloupců ve výsledném B-scope odpovídaly lineárně azimutu, musíte to nějak interpolovat.
+S B-scope už se dá rozumně pracovat a my ho používáme jako hlavní formát pro ukládání naměřených dat. Pro jeho analogovou implementaci byla potřeba „televize“ s dlouhodosvitovým luminoforem, ale analogové řízení je také celkem jednoduché (jedna osa dělá sweep s každým pulzem, druhá osa dělá sweep s potenciometrem, který je připojený na anténu).
+PPI (Plan position indicator)
+Nejsložitější a pro koncového uživatele typicky nejvhodnější je zobrazení jménem PPI (1, 2). Je to v podstatě kartézské zobrazení polárního B-scope. Je to nakreslení obrazu na mapu tak, jak člověk přirozeně vidí mapu, a také to, jak vypadají radary ve filmech. Na počítači je to celkem jednoduché (polární/kartézská transformace souřadnic), pro analogové zobrazení to vyžadovalo nějakou složitější elektroniku.
+Filtrace dat z radaru
+Následující PPI plot byl pořízen radarem umístěným kousek jižně od Prahy.
+
+Vidíme na něm spoustu zajímavých věcí:
+
+V severní části obrázku Krkonoše, Jizerské hory a trochu České středohoří/Krušné hory (ty drobky kolem Ústí nad Labem)
+Říp (horní kolečko)
+Kopce Českého ráje (severně od Jičína) a Ralské tabule (Doksy/Bezděz)
+Vysílače Liblice u Českého Brodu (spodní kolečko)
+Letadlo nad Brandýsem směřující na Ruzyni (horní šipka)
+Hrb Cukrák/Řevničák (dolní šipka)
+Brdy (od Dobříše k Příbrami)
+Tróju/Bohnice
+Spoustu clutteru z Prahy který nedokážu moc interpretovat
+Impulzní rušení a šum který přelezl nastavený noise floor (ty jednopixelové modré tečky na jihozápadě a kolem Hradce Králové)
+Několik srážkových útvarů (ty velké bloby především ve východní polovině obrázku)
+
+Ještě lépe to celé vynikne, pokud se podíváme na vývoj tohoto obrazu v čase. Animovaný GIF:
+
+Vidíme, že identifikované pozemní cíle zůstávají na místě, jenom se trochu mihotají podle toho jak se je zrovna podařilo detekovat, letadlo nad Brandýsem letí, a všechny srážkové útvary se posouvají na severovýchod.
+Protože nás zajímají srážky a ostatní věci jsou rušivé, je potřeba je nějak odfiltrovat. To bohužel nelze statickým odečtením, protože to, které kopce vidíme, se neustále mění: vlivem měnících se parametrů atmosféry se signál nešíří po přímce, ale láme se (stejně jako když ponoříte do vody brčko a vypadá divně), a tak někdy nějaké kopce vidíme a někdy ne, protože jsou za rádiovým horizontem. Dále se mění i samotná intenzita těch pozemních cílů: například podle vegetačního období (listy odráží jinak než holé stromy) nebo zmoknutí/orosení/mlhy.
+Nechtěným obrazům, které radar vidí, se říká clutter, a v našem případě je většina clutteru pozemní cíle, tedy ground clutter.
+Napsal jsem několik heuristik, se kterými to docela chodí, i když občas se to rozbije.
+
+Při instalaci radaru zakreslím do mapy všechny pozemní cíle, které radar může vidět. To je potřeba udělat jednou a pak třeba za týden znovu, právě kvůli měnícím se parametrům atmosféry a odrazivosti cílů. Typicky vezmu data když neprší, protáhnu je nějakým kvantilovým filtrem abych odstranil náhodný šum, a pak to prostě poedituju v GIMPu. Vznikne mi maska, a vím, že nikde jinde clutter vidět nemohu - na tom místě se dat nedotknu, takže i když by se heuristika úplně zbláznila, tak stále bude většina pokrytého území v pohodě.
+Při provozu radaru si počítám několikahodinové průměry toho, co radar viděl (a ještě je váhuji, že když prší, tak to počítám s menší váhou, abych neodstranil vytrvalý déšť), a od naměřených dat je odčítám.
+Tím vzniknou v obrazu díry, které zalepím bilineární interpolací.
+
+Pro různé ty kopce je to úplně super, odstraní je to a nikdo si toho nevšimne, ale pro kolečko okolo radaru už to tak dobré není a občas tam buď zůstane díra (kterou se nepodaří zalepit interpolací z okolních dat), nebo tam interpolace nakreslí nějaký hnusný artefakt (protože uvnitř kolečka je málo dat ze kterých by šlo interpolovat).
+Kompozit
+Radarů v síti je více, a jejich data se pak umístí do jedné mapy a je z toho kompozit.
+Elevace
+Naše první radary (s parabolickou anténou - u tyčové to nedává smysl, protože má vertikálně velmi vysoký svazek) měly anténní rotátor pouze s jednou osou - azimutální (rotace kolem svislé osy). Elevace antény (tj. jak moc do nebe nebo naopak do země to má mířit) se nastavovala pevně při montáži pomocí šroubu. Nastavení probíhalo tak, že se to zkusmo udělalo, podívali jsme se na ground clutter který vidíme, a pak se to buď dalo trochu níž nebo trochu výš. Cílem je samozřejmě koukat pod co nejnižším úhlem (aby paprsek byl co nejvíc při zemi a neuletěl za chvíli nad mraky), ale současně nezarazit energii o první kopec. Tohle má dva problémy:
+
+Tím okometrickým nastavením podle toho kolik kopců vidím to nejde udělat moc přesně, a obzvláště to nejde udělat pokud s tím člověk nemá zkušenosti. Ukazuje se, že je potřeba počkat si na déšť, a nastavovat to až při dešti. Pokud je radar daleko, zrovna neprší, a člověk chce jet domů, tak má smůlu. Leda tam pak poslat při dešti nějakou poučenou obsluhu na místě.
+Horizont, kopce a ground clutter nejspíš nebudou okolo radaru homogenní. Extrémní případ je pokud máte radar na mořském pobřeží: elevace směrem nad moře je jasná, chcete mířit úplně těsně nad hladinu. Elevace směrem do vnitrozemí ale musí být vyšší, abyste mířili nad jaké věci zrovna ve vnitrozemí jsou. Nejde to tak nastavit ideálně a bude to vždycky nějaký kompromis.
+
+Přidání druhé osy na anténní rotátor, díky čemuž lze elevace měnit softwarově (a to i v průběhu skenování, klidně několikrát za minutu), tyto problémy vyřešilo a navíc umožnilo přidat funkcionalitu, kterou si popíšeme dále.
+Zobrazení elevačních/3D dat uživateli
+Uděláme několik skenů s různou elevací (my aktuálně používáme 1°, 2° a 3°, ale většina radarů používá o dost větší rozsah a zvažujeme, zda to také budeme dělat tak). Tím vlastně nabereme data z téměř celého prostoru, ne jen z kruhu/kuželu těsně nad zemí. Tomu se říká volumetrická, elevační nebo 3D data.
+
+Teď máme několik možností, jak je zobrazit.
+
+maxZ/Zmax. Pro každý bod na povrchu země nakreslíme maximum ze sloupce, co je nad ním. Tohle byl dlouhou dobu default v prohlížítku českých státních radarů. Ukazuje to tak vlastně „worst-case“ jak moc by mohlo pršet. Má to ovšem velký problém: pokud prší z mraku, který je mnoho kilometrů vysoko, tak:
+
+může foukat vítr a déšť se snese klidně o desítky km vedle
+může být v létě takové horko a sucho, že se kapky vypaří než spadnou na zem
+
+Pokud meteorologické radary sledujete, pravděpodobně jste již zažili situaci, že nad vámi už byla zobrazena třeba zelená barva, ale přesto nepršelo. To je přesně tento případ.
+CAPPI (Constant altitude plan position indicator) (1, 2). Z volumetrických dat si vybereme ta, která jsou nejblíž k linii 1.5 km nad mořem (používá se také 2 km nebo v hornatých zemích 4 km).
+
+Tato výška byla zvolena jako kompromis:
+
+Je to dostatečně nízko na to, aby dění v této výšce dobře odpovídalo dění na zemi (již není mnoho prostoru na to, aby se déšť před dopadem odpařil, nebo byl větrem odfouknut)
+Je to dostatečně vysoko na to, aby tam nebylo rušení ground clutterem.
+
+Pokud vás zajímá déšť v nejbližší době z pohledu uživatele (mám jít ven, mám se schovat, zmoknu…), doporučil bych používat CAPPI spíše než maxZ.
+
+Nějaký hybrid CAPPI a maxZ. Například můžete nakreslit maxZ poloprůhledně a přes to CAPPI neprůhledně. To dává poučenému uživateli dobrý přehled o situaci.
+Vertikální řezy. Zejména v létě při bouřkách může být zajímavé, jak vysoko bouřka sahá, protože to odpovídá její síle a meteorolog z toho dokáže něco vykoukat. Piloti též díky tomu asi ví, jestli mohou letět nad bouřkou. Vertikální řez se buď dá udělat jako přímo řez tím 3D prostorem (toto bývá u poskytovatelů radarových dat velmi draze placená funkce), nebo se dá spočítat jakoby maxZ přes sloupečky a přes řádky a nakreslit to na kraj obrázku. Pokud není více bouřek blbě vedle sebe, tak je výška dobře vidět.
+
+
+
+(zdroj) 
+
+Další užitečná funkce elevace je, že s vyšší elevací je méně vidět ground clutter (protože míříme nad ty kopce). Díky tomu můžeme místa, kde při odstraňování ground clutteru vznikly díry, doplnit daty z vyšší elevace.
+Kalibrace radaru
+Po postavení radaru je obtížné přesně zjistit, jak silný signál na výstupu odpovídá jak silnému odrazu od cíle: je tam příliš mnoho stupňů, jejichž vliv na signál nelze změřit úplně přesně: výkon vysílače, zisk antény, zisk a úroveň šumu jednotlivých stupňů přijímače… My bychom ale chtěli umět barevné fleky nakreslené na mapě přepočítat na nějakou fyzikální veličinu - radarový průřez (lze použít k identifikaci typu letadla), dBZ, nebo ideálně přímo na napršené milimetry. Proto je potřeba radar zkalibrovat. Tím také zjistíme, jaký nejslabší cíl dokážeme s radarem detekovat - tj. jak je kvalitní a jestli jsme při stavbě neudělali nějakou chybu, která by citlivost radaru podstatně snížila.
+
+U leteckých radarů se dělá cvičný oblet. My jsme zkoušeli něco podobného pomocí existujících letadel: z veřejně dostupného seznamu letů a stránek jako Flightradar24 zjistíme, kde se nachází letadlo a jakého je typu (protože různě velká letadla budou samozřejmě vidět různě silně). Následně ho naším radarem zaměříme a podíváme se, kde ho vidíme a jak silně. Velmi dobře nám to nakalibruje „kde“ ho vidíme, tj. pokud máme geometrické chyby, tak se tímto odhalí a opravíme je. Bohužel z hlediska měření intenzity to zatím příliš použitelné výsledky nedává.
+Koutový odražeč je „odrazka“, tj. tři navzájem kolmé roviny, které odrazí paprsek přesně do toho směru, ze kterého přišel. Když známe velikost odražeče, můžeme spočítat, jak intenzivní odraz bude. Bohužel to není tak jednoduché, že bych si šel stoupnout někam na pole s odražečem a podíval se, jak silně je vidět -- kromě odražeče uvidím i odraz ze širokého okolí (pozemní cíle), a porovnávat intenzitu bez odražeče a s odražečem není příliš přesné. Toto se musí dělat tak, že se odražeč pověsí na balón či drona, respektive na lano mezi dva drony (aby samotný dron a jeho doppler od točících se vrtulí (!) nebyl hned vedle), a změří se to proti čisté obloze. Celé je to logisticky obtížně proveditelné.
+Kalibrace proti srážkoměrům. Trochu mrzuté je, že srážkoměry měří typicky po napršení 0.2mm (a ideálně chcete průměrovat více měření po sobě), což při slabším dešti může znamenat jeden datapoint třeba za 20 minut.
+Simulovaný cvičný cíl. To je nejpokročilejší a nejpřesnější způsob. Jedná se o zařízení, které signál z radaru nahraje, chvíli počká, a odvysílá ho zpátky s přesně definovaným zeslabením/zesílením. Díky tomu, že je signál zpožděný, si takto vzniklý cíl můžeme na displeji radaru posouvat (například zpoždění o 100 μs znamená posunutí o 15 km), a tím si ho dáme do místa, kde nejsou žádné jiné odrazy a dobře ho tak vidíme. Zesílení/zeslabení simulovaného signálu lze též nastavovat, a díky tomu je možné ověřit chování radaru v celém rozsahu zpracovávaných intenzit.
+
+V dalších dílech se podíváme na samotné deploynutí radaru, na předpovídání počasí obecně, a pak na některá pokročilejší témata ze stavby našeho vlastního radarového vysílače.
+
+    
+    
+Hodnocení:
+          100 %
+
+
+
+
+
+        
+           špatné
+           •
+           dobré
+        
+        
+
+
+
+Tiskni
+
+                Sdílej:
+                
+
+
+
+
+
+
+
+Komentáře
+
+Nástroje:
+Začni sledovat
+(2)
+?Zašle upozornění na váš email při vložení nového komentáře.
+,
+         Tisk
+
+
+
+                Vložit další komentář
+            
+
+
+
+
+
+
+        2.3. 19:20
+
+Bystroushaak             | skóre: 36
+             | blog: Bystroushaakův blog
+             | Praha
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                Super článek.
+            
+blog.rfox.eu / Newsletter 2021-01-08; Defragmentation in progress
+
+
+
+
+
+
+        2.3. 20:54
+
+               Miriam (ta pravá)
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                Je to paráda, trochu mi to připomíná časy, kdy jsi tu psal aktivněji i ty. Nechystáš se něco napsat? Rád bych si přečetla třeba něco z oblasti umělých neuronových sítí
+            
+
+
+
+
+
+
+        3.3. 14:44
+
+Bystroushaak             | skóre: 36
+             | blog: Bystroushaakův blog
+             | Praha
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                O neuronových sítích určitě nic psát nebudu, mé znalosti v tomhle oboru jsou docela chabé. Ale možná tu bude něco o 3D tisku, smalltalku, graalvm, porovnání rpythonu a javy, a nějaké obecné filosoficko-programovací záležitosti. 
+            
+blog.rfox.eu / Newsletter 2021-01-08; Defragmentation in progress
+
+
+
+
+
+
+        3.3. 17:23
+
+               Miriam (ta pravá)
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                super, budu se těšit, čím víc čtu zajímavé věci, tím méně tady trollím hovnama.
+            
+
+
+
+
+
+
+
+
+        5.3. 12:41
+
+Andrej             | skóre: 9
+            
+            
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                graalvm plz
+            
+Any sufficiently advanced magic is indistinguishable from technology. --Larry Niven
+
+
+
+
+
+
+        5.3. 17:12
+
+Bystroushaak             | skóre: 36
+             | blog: Bystroushaakův blog
+             | Praha
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                Momentálně dělám o volném čase přepis mého toy programovacího jazyka do javy právě s tou ideou, že by tam měla být podpora graalvm, tak tu o tom pak určitě něco bude. Ale záleží to jak moc se mi na tom bude chtít dělat, zatím je to jako privátní projekt a teprve až tam bude funkční interpreter / stdlib, tak to zveřejním. Současný stav je takový, jsem pár kroků před funkční symbolickou evaluací.
+            
+blog.rfox.eu / Newsletter 2021-01-08; Defragmentation in progress
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        2.3. 23:30
+
+               kvr
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                +1, díky!
+            
+
+
+
+
+
+
+
+
+
+
+        2.3. 21:37
+
+Gréta             | skóre: 30
+             | blog: Grétin blogísek
+             | Stockholm
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+nóóó a proč je jako u tý stc megabouřky tamta žlutá kružnice strčená už vtom voranžovým pásmu?? :O :O
+hele věčí rozlišení
+
+kde sou 👮 卍 👮 卍 hele ✊ co jim strčit hele ✊ jak snima jako mluvit hele ✊
+
+
+
+
+
+
+        2.3. 22:02
+
+Jendа             | skóre: 76
+             | blog: Jenda
+             | JO70FB
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                To nevím, no.
+            
+Důchodový medián? Polovina českých seniorů na něj nedosáhne
+
+
+
+
+
+
+        2.3. 22:11
+
+Gréta             | skóre: 30
+             | blog: Grétin blogísek
+             | Stockholm
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+v liberci jeto jakoby uplně červený na tý kružnici :O :O třeba to ňák souvisí :O :O nevim
+
+kde sou 👮 卍 👮 卍 hele ✊ co jim strčit hele ✊ jak snima jako mluvit hele ✊
+
+
+
+
+
+
+
+
+
+
+
+
+        3.3. 00:14
+
+Jendа             | skóre: 76
+             | blog: Jenda
+             | JO70FB
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                Mimochodem ty radarové kruhy oficiálně vznikají tak, že složíte CAPPI a ty úrovně na sebe úplně nenavazují.
+            
+Důchodový medián? Polovina českých seniorů na něj nedosáhne
+
+
+
+
+
+
+
+
+        3.3. 01:25
+
+               Tentacular monster
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                Ten zminovany trilobyte je o neco starsi, nez ten odkazovany Jenduv clanek. Nevim kdy presne bylo vytistene tricko, ale inspirace byla nalezena kamaradkou tusim v Barrandienu nekdy na konci minuleho tisicileti a videl jsem ji nekdy okolo let 2001-2003. Zajimave je, ze na kameni muze byt i positivni otisk i negativni.
+
+Jinak super clanek, diky.
+            
+
+
+
+
+
+
+        3.3. 22:03
+
+Gréta             | skóre: 30
+             | blog: Grétin blogísek
+             | Stockholm
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+v českým dabingu simpsonovejch to taky jakoby bylo vtý epizodě stim andělem vykopaným :O :O :O :O někde nazačátku to bylo si myslim :O :O
+
+kde sou 👮 卍 👮 卍 hele ✊ co jim strčit hele ✊ jak snima jako mluvit hele ✊
+
+
+
+
+
+
+        4.3. 01:54
+
+               Tentacular monster
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                To me minulo. 
+
+Ale rekneme si na rovinu, ze ta myslenka neni super originalni .
+            
+
+
+
+
+
+
+        9.3. 23:49
+
+Gréta             | skóre: 30
+             | blog: Grétin blogísek
+             | Stockholm
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+jj stačí troška dislalie/tumultusu a hnedka se maj jako lidi vokolo čemu smát :D :D :D :D ;D ;D
+btw jeto tam ten trilobajt v těch simpsonovejch zmíněnej ale neni tam ňák víc pitvanej už :O ;D díl Líza skeptik (S09E08) kousek před 3tí minutou :D ;D
+
+kde sou 👮 卍 👮 卍 hele ✊ co jim strčit hele ✊ jak snima jako mluvit hele ✊
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        4.3. 20:10
+
+               ehmmm
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                Dekuji za clanek. Balzam na nervy.
+
+Co se tyka problemu, ze okolo Prahy to je cele zkreslene, tak predpokladam, ze vam nejak funguje, ze se holt okoli Prahy doplni podle nejakeho radaru dal od Prahy.
+
+            
+
+
+
+
+
+
+
+
+        5.3. 02:05
+
+JiK             | skóre: 9
+             | blog: Jirkoviny
+             | Virginia
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                Skvely clanek, tahle hezky se naposledy cetlo o tom urychlovaci elektronu v kopci pod prahou...
+
+mam dotaz, trochu naivni, zamyslel se nekdo (urcite ano), co vsecko jde zjistit z tvaru peaku na tom A-frame, tedy z casovych dat signalu a odrazu pro jeden konkretni azimut? Z intenzity velikost cile, z prodlevy vzdalenost, ale co ten tvar? je preci rozdil jestli je to vlna nebo schod, jak moc je to rozcapene, jestli je to gausovske, jestli to je aspon symetricky peak, etc, etc,  
+            
+Jirka Cech
+
+
+
+
+
+
+        5.3. 03:03
+
+Jendа             | skóre: 76
+             | blog: Jenda
+             | JO70FB
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                Pro bodový cíl by to měl být nejužší peak jaký ti to dokáže udělat (délka pulzu, resp. šířka peaku autokorelační funkce když děláš pulse compression). Pro cíl který je „poloprůhledný a dlouhý“ (mrak) to bude široké odpovídající délce mraku.
+            
+Důchodový medián? Polovina českých seniorů na něj nedosáhne
+
+
+
+
+
+
+        9.3. 09:25
+
+trekker.dk             | skóre: 71
+            
+            
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                Ad patička:
+
+eurozpravy.cz: Důchodový medián? Polovina českých seniorů na něj nedosáhne
+
+Koukám, že úroveň toho, jak neuvěřitelnej póvl jsou novináři, je ještě horší, než jsem si myslel.
+
+            
+Quando omni flunkus moritati
+
+
+
+
+
+
+        9.3. 13:54
+
+JiK             | skóre: 9
+             | blog: Jirkoviny
+             | Virginia
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                to musi byt nejaky april, takhle blbej nikdo neni...
+            
+Jirka Cech
+
+
+
+
+
+
+        9.3. 14:25
+
+Josef Kufner             | skóre: 70
+            
+            
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                U novinářů je to celkem běžné 
+
+Hello world !
+Segmentation fault (core dumped)
+
+
+
+
+
+
+
+
+        9.3. 14:33
+
+trekker.dk             | skóre: 71
+            
+            
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                Od vás, který nedokážete rozeznat sousloví "není možné" a "nezaznamenali jsme", to sedí.
+
+            
+Quando omni flunkus moritati
+
+
+
+
+
+
+
+
+
+
+        9.3. 23:36
+
+Gréta             | skóre: 30
+             | blog: Grétin blogísek
+             | Stockholm
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+když dáš všem uplně stejný ho..............tovosti tak medián bude stejnej a dosáhnou naněj jakoby úúúúúplně všichni :O :D :D ;D
+
+kde sou 👮 卍 👮 卍 hele ✊ co jim strčit hele ✊ jak snima jako mluvit hele ✊
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        9.3. 14:26
+
+Bystroushaak             | skóre: 36
+             | blog: Bystroushaakův blog
+             | Praha
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                Jen tak pro zajímavost, neměl bys nějaký ten A-scope z mraků, který jsi později použil třeba v té mapě?
+            
+blog.rfox.eu / Newsletter 2021-01-08; Defragmentation in progress
+
+
+
+
+
+
+        9.3. 14:36
+
+Jendа             | skóre: 76
+             | blog: Jenda
+             | JO70FB
+
+        
+
+Rozbalit
+Rozbalit vše
+
+
+        Re: Jak se dělá radar: zpracování obrazu
+
+
+            
+Odpovědět
+                    | Sbalit
+                    | Výše
+                    | Link
+                    | Blokovat
+                | Admin
+
+
+
+
+                Vezmi ten B-scope a vysekni si jeden sloupec :).
+
+(obecně tam je problém v tom, že ty produkční radary mají dementní interní zpracování signálu, které nejde obejít (FPGA s bitstreamem od výrobce ke kterému nejsou zdrojáky), a to, co z toho leze, není úplně jako A-scope, takže „hezké“ A-scope mám jenom když jsem k tomu jednou měl připojený osciloskop, a to zrovna nepršelo. Teď snad budou A-scopes a další data když cca. za týden spustíme „můj vlastní radar“.)
+            
+Důchodový medián? Polovina českých seniorů na něj nedosáhne
+
+
+
+
+
+
+
+            Založit nové vlákno •
+            Nahoru
+
+ 
+Píšeme jinde
+
+ISSN 1214-1267  
+			www.czech-server.cz
+
+
+Redakce |
+            Inzerce |
+            Podmínky použití |
+            Osobní údaje
+
+		© 1999-2015 Nitemedia s. r. o. Všechna práva vyhrazena.
+	
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

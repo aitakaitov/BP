@@ -1,0 +1,454 @@
+URL: http://blog.eabm.cz/
+DEPTH: 1
+
+
+
+
+
+blog společnosti eABM – blog společnosti eABM
+
+
+
+
+
+­
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+Toggle navigation
+
+
+
+
+
+ blog společnosti eABM
+ 
+
+Software
+Bezpečnost
+Windows 10
+Vývoj
+Hardware
+Linux
+Zaměstnanci sobě
+Ostatní
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+Vylepšete bezpečnost Vašeho Windows vypnutím protokolu SMBv1
+
+ 15.6.2017  Václav Dobiáš Napište komentář
+
+
+
+Před pár týdny postihl útok nového ransomware WannaCry statisíce počítačů po celé zemi. Jak se při následné analýze ukázalo, tento ransomware využíval první verzi protokolu SMB (Server Message Block) z roku 1992, přičemž nyní se standardně používá již třetí verze (SMBv3) a k používání první verze již prakticky není důvod.
+ (Pokračování textu…)
+
+
+
+
+
+
+
+ 
+
+
+Nastavení automatické odpovědi během dovolené
+
+ 12.6.2017  Václav Dobiáš Napište komentář
+
+
+
+Začíná čas dovolených a s tím potřeba nastavení automatické odpovědi emailu. V dnešním příspěvku si ukážeme, jak si sami můžete nastavit tuto, ale i další automatické odpovědi a jak je dle potřeby zapínat.
+ (Pokračování textu…)
+
+
+
+
+
+
+
+ 
+
+
+Máte své finance v bezpečí?
+
+ 28.5.2017  Martin Holeček Napište komentář
+
+
+
+Bez Internetového bankovnictví a online plateb se dnes obejde jen málokdo. Ovšem kromě rychlosti, jednoduchosti a pohodlí s sebou tyto služby přináší i riziko velkých finančních ztrát následkem zcizení přihlašovacích údajů. Míra zabezpečení se samozřejmě odvíjí také od poskytovatele bankovních služeb, nicméně uživatelé produktu ESET Smart Security (od verze 9) se nyní mohou při svých platbách cítit mnohem bezpečněji, a to díky nové ochranné vrstvě, kterou ESET přidává do internetového prohlížeče. 
+ (Pokračování textu…)
+
+
+
+
+
+
+
+ 
+
+
+Ušetřete za volání pomocí VoIP
+
+ 24.4.2017  Daniel Vozňák Napište komentář
+
+
+
+V dnešní době existuji chytré aplikace, se kterými lze za zvýhodněné ceny volat do mobilní sítě. Stačí vám k tomu váš chytrý telefon, SIP klient (aplikace v telefonu) a registrované číslo u VoIP operátora. Ceny se pohybují již od 0,48Kč/min. (Pokračování textu…)
+
+
+
+
+
+
+
+ 
+
+
+Smartphony – budoucnost počítačů nebo jen dočasný boom?
+
+ 17.4.2017  Martin Holeček Napište komentář
+
+
+
+Žijeme v době, kdy obrovská většina z nás vlastní chytrý telefon, někteří dokonce dva nebo více. Zatímco někdo využívá chytrý telefon stále hlavně k telefonování a posílání SMS, neustále přibývá těch, kteří využívají smartphone místo počítače.
+ (Pokračování textu…)
+
+
+
+
+
+
+
+ 
+
+
+Kdy a jak se vyhodnocuje SPAM a jak jej můžete ovlivnit
+
+ 3.4.2017  Václav Dobiáš Napište komentář
+
+
+
+Neustálý boj se spamy je denním chlebem všech správců poštovních serverů. Také my denně analyzujeme desítky až stovky emailů a neustále vylepšujeme naše antispamové řešení.
+ (Pokračování textu…)
+
+
+
+
+
+
+
+ 
+
+
+Jak by NEMĚL vypadat server
+
+ 21.3.2017  Václav Dobiáš Napište komentář
+
+
+
+Dnes se k nám dostal počítač, klientem označený jako server, na kterém běží důležitá aplikace a bez které se klient neobejde. O co byla jednoduší diagnostika, o to složitější byla oprava. Přesto klient do 24 hodin plně fungoval.
+ (Pokračování textu…)
+
+
+
+
+
+
+
+ 
+
+
+Programátoři na kofeinu
+
+ 12.3.201712.3.2017  Václav Dobiáš Napište komentář
+
+
+
+Občas se stane, že klienti potřebují provést nějaký programátorský úkol doslova ihned. Takový případ jsme řešili tento týden, kdy jsme první podklady dostali ve dvanáct hodin s tím, že další den je třeba projekt odevzdat. Šibeniční termín? Ani netušíte jak, ale zvládli jsme to i s rezervou. (Pokračování textu…)
+
+
+
+
+
+
+
+ 
+
+
+Počítačová profylaxe aneb i Váš počítač vyžaduje péči
+
+ 20.2.2017  Martin Holeček Napište komentář
+
+
+
+Představte si, že Vám doma na všem leží prach, nikdo nevytírá podlahu, kuchyňská linka je umaštěná a špinavá, koš přetéká odpadky, skříně jsou přeplněné dávno zapomenutými a nepotřebnými věcmi a povalují se jen tak „bez ladu a skladu“. Nic se Vám nedaří najít, všechno Vám trvá, všude je nepořádek a z celého domova se stává semeniště bakterií. Právě si asi říkáte, proč Vás nutíme, představovat si tak příšerné věci. Kdo by nechal zajít stav domácnosti tak daleko? Ale co Váš stolní počítač nebo třeba notebook? Máte ponětí, jak vypadá zevnitř, v jakém stavu je Váš hardware a software? (Pokračování textu…)
+
+
+
+
+
+
+
+ 
+
+
+Jak probíhá vývoj webů v eABM
+
+ 14.2.2017  Václav Dobiáš Napište komentář
+
+
+
+Nedílnou součástí našich služeb je tvorba a vývoj internetových stránek a aplikací. V dnešním článku Vám poodhalíme pár tajemství našeho internetového střediska.
+ (Pokračování textu…)
+
+
+
+
+
+Navigace pro příspěvky
+1
+2
+…
+8
+Older posts 
+
+
+
+
+
+
+Sledujte nás na sociálních sítích
+
+
+Sledujte nás na Facebooku
+Sledujte nás na Twitteru
+Sledujte nás na Google+
+
+
+
+
+Search for:
+
+
+
+
+
+Naše služby 
+Servis IT techniky
+Tvorba WWW na míru
+Tiskové systémy 
+Outsourcing 
+Záruční i pozáruční servis
+Vstupenkové systémy
+
+
+Naše projekty: www.e-mailem.cz
+www.e-dohled.cz
+www.e-seosem.cz
+www.e-groupware.cz
+
+  eABM s.r.o. - Váš profesionální IT partner
+Štítkyacer
+android
+bezpečnost
+email
+emaily
+eset
+facebook
+gmail
+google
+internet
+konference
+linux
+marketing
+microsoft
+mikrotik
+modem
+network
+outlook
+počítač
+přepětí
+přepěťová ochrana
+router
+samsung
+smartphone
+sociální sítě
+soutěž
+spam
+spamy
+switch
+thunderbird
+tipy
+twitter
+ubuntu
+virus
+viry
+voip
+windows
+windows 10
+windows10
+windows xp
+www
+xubuntu
+youtube
+zyxel
+zálohování
+Nejnovější komentářeVáclav Dobiáš: Jak funguje a k čemu slouží DHCPErika: Jak funguje a k čemu slouží DHCPVáclav Dobiáš: Užitečné klávesové zkratky pro Windows 10vava: Užitečné klávesové zkratky pro Windows 10Václav Dobiáš: Jak správně psát ceny 
+
+
+
+
+
+
+
+
+
+Nejoblíbenější příspěvky
+
+
+
+
+
+
+
+ 
+
+
+Jak správně psát ceny
+23 Čvc , 2015
+
+
+
+
+
+
+
+ 
+
+
+Jak funguje a k čemu slouží DHCP
+26 Led , 2017
+
+
+
+
+
+
+
+ 
+
+
+Nejčastější chyby při doručování emailů
+08 Dub , 2016
+
+
+ 
+ 
+
+ Novinky z eabm.czAntibakteriální notebook Acer Swift 5 1.2.2021 Poznejte první skládací počítač na světě! 14.1.2021 lakum.cz - s rysem v čele 12.1.2021 Otevírací doba mezi svátky 22.12.2020 PF2021 22.12.2020 Microsoft Family Safety - ochraňte svou rodinu v digitálním světě 13.12.2020  
+
+Zasílání novinek  
+
+
+
+
+
+
+
+
+
+Sledujte nás na
+
+
+Sledujte nás na Facebooku
+Sledujte nás na Twitteru
+Sledujte nás na Google+
+
+ 
+ 
+
+
+
+
+Sledujte nás na Facebooku
+Sledujte nás na Twitteru
+Sledujte nás na Google+
+ 
+
+
+						sparkling						Šablonu Colorlib pohání WordPress 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

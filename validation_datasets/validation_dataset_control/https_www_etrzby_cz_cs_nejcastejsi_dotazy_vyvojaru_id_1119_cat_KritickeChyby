@@ -1,0 +1,1796 @@
+URL: https://www.etrzby.cz/cs/nejcastejsi-dotazy-vyvojaru?id=1119&cat=KritickeChyby
+DEPTH: 1
+
+
+
+ 
+
+Nejčastější dotazy vývojářů | etržby
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pro média
+Kontakty
+Webová aplikace EET
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        CS
+                        
+
+
+EN
+
+
+
+
+
+
+
+
+
+
+Toggle navigation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+O projektu
+
+
+Toggle Dropdown
+
+
+
+
+
+Základní informace
+
+Legislativa
+Metodika
+Proč evidence tržeb?
+Jak to funguje?
+Kdo, co a odkdy?
+
+
+
+Média
+
+Tiskové zprávy
+Nepřesnosti v médiích
+Newsletter
+Fotogalerie
+Videogalerie
+Logo – etržby
+RSS
+
+
+
+Novinky
+
+
+Mýty a fakta
+
+
+Dokumenty
+
+
+Materiály z akcí
+
+
+Akce
+
+
+Informace o provozu
+
+
+Kontakty
+
+
+
+
+
+Evidence tržeb
+Základní informace o projektu 
+
+
+
+
+Podnikatel/Firma
+
+
+Toggle Dropdown
+
+
+
+
+
+Jak se připravit
+
+Kdo a jaké tržby eviduje
+Tržby, které se neevidují
+Základní kroky k evidenci tržeb a způsoby evidence
+Možnosti testování
+Co když něco selže
+Výměna certifikátů
+
+
+
+Kontrola plnění povinností a správní trestání
+
+
+Běžný a zjednodušený režim
+
+Webová aplikace EET a certifikáty
+
+
+Zvláštní režim
+
+
+Specifické případy
+
+Elektronická účtenka
+Faktura a evidence tržeb
+Územní samosprávné celky, obchodní společnosti zřízené ÚSC
+Porucha pokladního zařízení
+Neziskové subjekty
+Přebytky ze zahrádek
+Kauce a zálohy
+Evidování tržeb podle práva jiného státu 
+Nepřímé zastoupení a komisní prodej
+E-peněženky a čipové karty
+Stravování
+Ubytování
+Platby v lékárnách
+Tržby přijaté prostřednictvím dopravců
+
+Archiv
+
+
+
+Nejčastější dotazy podnikatelů
+
+
+Stále si nevíte rady?
+
+
+
+
+
+Evidence tržeb
+Informace pro podnikatele
+
+
+
+
+Zákazník
+
+
+Toggle Dropdown
+
+
+
+
+
+Základní informace pro zákazníky
+
+
+Účtenková loterie pro zákazníky
+
+
+Nejčastější dotazy zákazníků
+
+
+Stále si nevíte rady
+
+
+Komunikace s veřejností
+
+
+
+
+
+Evidence tržeb
+Informace pro zákazníky
+
+
+
+
+IT/Vývojář
+
+
+Toggle Dropdown
+
+
+
+
+
+Základní informace pro vývojáře
+
+
+Technická specifikace
+
+
+Archiv technické specifikace
+
+
+Oznámení pro vývojáře
+
+
+Certifikační autorita EET
+
+
+Nejčastější dotazy vývojářů
+
+
+Stále si nevíte rady
+
+
+ 
+
+Evidence tržeb
+Informace pro vývojáře
+
+
+
+Webová aplikace EET
+Pro media
+Kontakty
+
+
+
+
+
+
+
+
+
+Nejčastější dotazy vývojářů
+
+
+        Otázky a odpovědi k evidenci tržeb.
+    
+
+
+
+
+
+
+
+
+
+
+Vymazat hledání
+
+
+
+
+
+
+
+
+
+
+                    Technická specifikace evidence tržeb
+                    
+
+
+
+
+
+
+
+Kdy a kde zjistí dodavatelé pokladních systémů technické řešení a kde získají vývojářské certifikáty pro testování?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Finální technické řešení včetně datového rozhraní bylo zveřejněno na portále správce daně dne 11. května 2016, a to v sekci pro IT/Vývojáři formou technického manuálu. Dne 13. června 2016 bylo spuštěno testovací prostředí pro vývoj SW třetích stran.
+
+
+
+
+
+Co jsou to kódy FIK, BKP a PKP a k čemu slouží?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fiskální identifikační kód (FIK) je unikátní kód generovaný a zasílaný systémem Finanční správy, kterým potvrzuje přijetí datové zprávy o evidované tržbě.
+Bezpečnostní kód poplatníka (BKP) je kód generovaný automaticky pokladním zařízením podnikatele, který prokazuje jednoznačnou vazbu mezi účtenkou a podnikatelem, který ji vydal.
+Podpisový kód poplatníka (PKP) je pomocným ochranným prvkem, který umožňuje kontrolu integrity a prokazuje odpovědnost podnikatele za vystavení účtenky. Je generován automaticky pokladním zařízením podnikatele, na účtenku je však povinně uváděn pouze v případech, kdy na účtenku nelze uvést z objektivních důvodů FIK (např. při výpadku spojení nebo při evidenci tržeb ve zjednodušeném režimu).
+
+Způsob tvorby BKP a PKP stanovilo Ministerstvo financí vyhláškou č. 269/2016 Sb.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    Certifikát pro evidenci tržeb
+                    
+
+
+
+
+
+
+
+K čemu slouží certifikát?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Certifikát slouží k jednoznačné identifikaci při zasílání údajů o evidované tržbě datovými zprávami. Správce daně umožní podnikateli získat prostřednictvím portálu jeden nebo více certifikátů k evidenci tržeb.
+
+
+
+
+
+Je potřeba pro každé pokladní zařízení zvláštní certifikát?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Volba počtu a způsobu využití certifikátů je ponechána zcela na uvážení podnikatele evidujícího tržby. Je možné využít jeden certifikát na zasílání údajů o evidovaných tržbách v rámci celé činnosti podnikatele, případně používat různé certifikáty dle jednotlivých provozoven nebo koncových zařízení.
+
+
+
+
+
+Jak probíhá vydání a instalace certifikátu?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Správce daně je povinen umožnit podnikateli získat certifikát prostřednictvím technického zařízení, kterým se rozumí portál správce daně. Přihlášený podnikatel si může přímo na portále správce daně vygenerovat certifikát pro evidenci tržeb. Postup instalace certifikátů se bude odvíjet od zvoleného typu využitého zařízení (pokladna, počítač, tablet, chytrý telefon…) a příslušného operačního systému.
+
+
+
+
+
+Budou se muset certifikovat programy k odesílání dat o tržbách?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ne. Finanční správa ČR ani Ministerstvo financí ČR nebude certifikovat softwary, které zajistí zasílání dat z pokladen. Jednalo by se o zbytečnou byrokracii vůči uživatelům pokladních systémů. Je to podobné jako u účetních programů. Také nejsou certifikovány a výrobce ručí za jejich funkcionalitu, která musí být v souladu se zákony.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    Proces evidování tržeb
+                    
+
+
+
+
+
+
+
+Jak evidence tržeb funguje?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Evidence tržeb může probíhat ve třech režimech – běžném, zjednodušeném a zvláštním režimu.
+Běžný režim
+
+
+
+
+Poplatník zašle datovou zprávu o transakci ve formátu XML do systému Finanční správy.
+Ze systému Finanční správy je zasláno potvrzení o přijetí s fiskálním identifikačním kódem.
+Poplatník vystaví účtenku (včetně fiskálního identifikačního kódu), kterou předá zákazníkovi.
+Zákazník obdrží účtenku.
+Zákazník si může ověřit svoji účtenku prostřednictvím aplikace Ověření účtenky, podnikatel si ověří tržby evidované pod jeho jménem ve webové aplikaci Elektronická evidence tržeb.
+
+ 
+Zjednodušený režim
+
+
+Podnikatel prostřednictvím pokladního zařízení (pokladna, PC, tablet, mobil s tiskárnou,…) vystaví účtenku bez fiskálního identifikačního kódu a uloží datovou zprávu o tržbě do paměti.
+Do pěti dnů zajistí poplatník odeslání datových zpráv o přijatých tržbách do systému Finanční správy (např. tak, že přemístí pokladní zařízení do místa, kde je dostupný internet).
+Ze systému Finanční správy je zasláno potvrzení o přijetí s fiskálním identifikačním kódem.
+Zákazník si může ověřit svoji účtenku prostřednictvím aplikace Ověření účtenky, podnikatel si ověří tržby evidované pod jeho jménem ve webové aplikaci Elektronická evidence tržeb.
+
+ 
+Zvláštní režim
+
+
+Poplatník přijme tržbu od zákazníka a dle pokynů v bloku účtenek vyplní účtenku s nejnižším pořadovým číslem.
+Poplatník vyplněnou účtenku předá zákazníkovi nejpozději při uskutečnění evidované tržby.
+Poplatník archivuje stejnopis účtenky.
+Poplatník za každé kalendářní čtvrtletí odevzdá na finančním úřadě oznámení o přijatých tržbách.
+
+            Účtenku z povahy věci není možné ověřit prostřednictvím aplikace Ověření účtenky na Daňovém portálu FS ani ji nelze přihlásit do účtenkové loterie.
+
+ 
+
+
+
+
+
+Jaké údaje jsou zasílané Finanční správě?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Údaji o evidované tržbě zasílaných datovou zprávou jsou vždy:
+
+daňové identifikační číslo poplatníka (DIČ),
+označení provozovny, ve které je tržba uskutečněna,
+označení pokladního zařízení, na kterém je tržba evidována,
+pořadové číslo účtenky,
+datum a čas přijetí tržby nebo vystavení účtenky, pokud je vystavena dříve,
+celková částka tržby v české měně,
+bezpečnostní kód poplatníka (BKP),
+podpisový kód poplatníka (PKP),
+údaj, zda je tržba evidována v běžném nebo zjednodušeném režimu.
+
+Údaji o evidované tržbě zasílaných datovou zprávou jsou při naplnění konkrétních okolností také:
+
+celková částka plateb určených k následnému čerpání v české měně,
+celková částka plateb, které jsou následným čerpáním nebo zúčtováním platby v české měně,
+daňové identifikační číslo (DIČ) poplatníka, který pověřil evidováním této tržby poplatníka, který tržbu eviduje,
+základ daně z přidané hodnoty a daň podle sazeb daně z přidané hodnoty v české měně,
+celková částka v režimu daně z přidané hodnoty pro cestovní službu v české měně,
+celková částka v režimu daně z přidané hodnoty pro prodej použitého zboží v české měně.
+
+
+
+
+
+
+Jaké údaje jsou uváděny na účtence?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Podnikatel evidující tržby v běžném či zjednodušeném režimu je na účtence povinen uvádět:
+
+fiskální identifikační kód (FIK),
+daňové identifikační číslo (DIČ) poplatníka, pokud není jeho kmenová část tvořena obecným identifikátorem, kterým je rodné číslo,
+daňové identifikační číslo (DIČ) poplatníka, který pověřil evidováním této tržby poplatníka, který tržbu eviduje, pokud není kmenová část tohoto DIČ tvořena obecným identifikátorem, kterým je rodné číslo,
+označení provozovny, ve které je tržba uskutečněna,
+označení pokladního zařízení, na kterém je tržba evidována,
+pořadové číslo účtenky,
+datum a čas přijetí tržby nebo vystavení účtenky, pokud je vystavena dříve,
+celkovou částku tržby v české měně,
+bezpečnostní kód poplatníka (BKP),
+údaj, zda je tržba evidována v běžném nebo zjednodušeném režimu.
+
+Nemá-li poplatník povinnost uvádět na účtence fiskální identifikační kód - FIK, je povinen na účtence uvádět svůj podpisový kód PKP. Jedná se zejména o případy výpadku spojení nebo evidence tržeb ve zjednodušeném režimu.
+Poplatníci evidující tržby ve zvláštním režimu musí zákazníkovi vystavit účtenku z bloku účtenek se zákonem stanovenými náležitostmi, kterými jsou:
+
+daňové identifikační číslo (pokud není jeho kmenová část tvořena rodným číslem),
+označení provozovny, ve které je tržba uskutečněna (pouze v případě, kdy poplatník eviduje tržby ve více provozovnách),
+datum a čas přijetí tržby nebo vystavení účtenky, pokud je vystavena dříve,
+celková částka tržby v české měně.
+
+
+
+
+
+
+Co je to mezní doba odezvy a jak ji nastavit?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Doba odezvy je časový úsek mezi pokusem o odeslání údajů o evidované tržbě z pokladního zařízení podnikatele a přijetím potvrzovacího kódu (FIK) ze systému Finanční správy na pokladním zařízení podnikatele. Mezní dobu odezvy, po jejímž uplynutí lze zákazníkovi vystavit účtenku bez fiskálního identifikačního kódu (FIK), nastavuje sám podnikatel, a to s ohledem na kvalitu připojení internetu a druh vykonávané činnosti. Vždy však musí být delší než 2 sekundy. Pokud při evidování tržby dojde k překročení mezní doby odezvy, podnikatel zašle správci daně údaje o evidované tržbě datovou zprávou nejpozději do 48 hodin od uskutečnění evidované tržby.
+
+
+
+
+
+Jak postupovat v případě zpětného zrušení evidované tržby? Například se zpětně přijde na to, že byla naúčtována káva navíc, nebo host vrátí jídlo, které již bylo zaevidováno.
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Provádí-li se storno nebo oprava tržby, o níž byly údaje již zaslány do systému Finanční správy, postupuje podnikatel obdobně jako při evidenci tržby s tím rozdílem, že tuto tržbu zaeviduje jako zápornou (mínusovou položku). Postup se vztahuje na případy vrácení zboží bez uvedení důvodu, při vyřízení reklamace, u omylem zaevidované tržby nebo na případy, kdy byly údaje o evidované tržbě zaslány správci daně před přijetím tržby a zákazník nakonec zboží nezaplatil (nejčastěji půjde o zasílání zboží internetovými obchody na dobírku a následné nepřevzetí zboží). Provedené storno není z technického hlediska vázáno na původně zaslanou datovou zprávu (resp. vydanou účtenku).
+        
+
+
+
+
+
+Liší se datová zpráva při opakovaném zaslání stejné tržby?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Může se stát, že je třeba tržbu zaslat opakovaně (například proto, že jste neobdrželi FIK). Při opakovaném odeslání tržby je třeba v datové zprávě:
+
+
+            změnit v oblasti <Hlavicka>
+            
+
+
+
+UUID zprávy,
+datum a čas odeslání zprávy a
+příznak prvního zaslání a
+
+opakovat přesně stejné údaje v oblasti <Data> a <KontrolniKody>.
+
+Vlivem odlišných údajů v oblasti <Hlavicka> je třeba celou zprávu znovu podepsat.
+
+
+
+
+
+Jaká tržba bude považována za duplicitní?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Pokud je přijata datová zpráva se stejnými hodnotami základních datových položek jako některá již dříve přijatá zpráva, bude nová zpráva považována za zaslání údajů o téže evidované tržbě. Taková  tržba bude označena jako duplicitní a nebude zahrnuta do součtů tržeb na portálu. Základní datové položky jsou: DIČ poplatníka, Označení provozovny, Označení pokladního zařízení, Pořadové číslo účtenky, Datum a čas přijetí tržby a Celková částka tržby. Pokud je přijata datová zpráva, ve které se liší i jen jediná hodnota u základních datových položek vůči dříve přijatým zprávám, bude tato nová zpráva považována za zaslání údajů o další (tedy jiné) evidované tržbě.
+                                                
+
+
+
+
+Jak uvádět označení provozovny?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        V datové zprávě i na vydané účtence musí být uvedeno označení (číslo) provozovny. Toto číslo přidělí provozovně systém Finanční správy, když poplatník přihlášený do webové aplikace Elektronická evidence tržeb na Daňovém portálu  zadává údaje o svých provozovnách. Poplatník si jej nemůže určit sám, ani využít existující identifikační číslo provozovny (IČP) přidělené Živnostenským úřadem.
+        Provozovny jsou číslovány prostým pořadovým číslem (1, 2, 3…), ale za toto číslo se přidává ještě jedna technická číslice (obvykle se přidává jednička, ale může být i jiná). Čísla provozoven pak tvoří nesouvislou řadu (např. 11, 21, 31, 41, 52), ale jejich pořadí je zachováno podle toho, jak byly provozovny zadávány do systému.
+                                                
+
+
+
+
+Co když bude ve zprávě špatné číslo provozovny?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pokud nebude označení provozovny odpovídat formálním požadavkům (maximálně šestimístná číslice), bude zpráva odmítnuta a zaslána odpověď s kritickou chybou (3 - XML zprava nevyhovela kontrole XML schematu).
+Pokud bude přijata datová zpráva o tržbě s číslem provozovny, které je formálně správné, ale neodpovídá žádné provozovně uvedeného poplatníka:
+
+systém zašle odpovědní (potvrzovací) zprávu s FIK,
+údaje budou uloženy se zaslaným číslem provozovny, která bude mít název „Neexistující provozovna“,
+údaje budou dostupné v detailních údajích o tržbách,
+zpráva bude interně označena chybou „Neexistující provozovna“.
+
+Chybně uváděné číslo provozovny může iniciovat kontrolu plnění povinností  zákona o evidenci tržeb.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    Kritické chyby v datové zprávě
+                    
+
+
+
+
+
+
+
+Co to jsou kritické chyby?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Každou přijatou datovou zprávu zkontroluje společné technické zařízení správce daně (dále systém EET) pomocí sady kritických kontrol. Pokud datová zpráva obsahuje kritické chyby, systém EET odpoví chybovou zprávou s kódem chyby a stručným popisem chyby, ale nezašle FIK. Zprávu s kritickou chybou systém EET neukládá, tržba tímto není zaevidována. Popis a výčet kritických chyb je uveden v dokumentu Formát a struktura údajů o evidované tržbě v kapitole Kritické kontroly (kritické chyby) a v kapitole Seznam chybových kódů a chybových zpráv. Kritická chyba v datové zprávě (s výjimkou chyb s kódem -1, 0 a potenciálně i 8) znamená, že pokladní zařízení nepracuje zcela korektně. Na otestovaném a správně nastaveném pokladním SW a HW by chyby s kódy 2 až 7 neměly nastat.
+
+
+
+
+
+Jak obecně postupovat při výskytu kritické chyby?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pokud kritická chyba nastane, je nutné zjistit příčinu a zajistit co nejrychleji její odstranění. Při výskytu kritické chyby je možné vystavovat zákazníkům po nezbytně nutnou dobu účtenky bez FIK, pouze s BKP a PKP. Bezodkladně po pominutí příčiny, způsobující výskyt kritické chyby, je třeba tržby dodatečně zaevidovat, a to každou přijatou tržbu zvlášť. Konkrétní postup záleží na typu chyby – viz dále.
+
+
+
+
+
+Chyba s kódem -1: Docasna technicka chyba zpracovani – odeslete prosim datovou zpravu pozdeji
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jedná se o stav, kdy z technických důvodů na straně systému EET dočasně není možné datovou zprávu zpracovat. V tomto případě má pokladní zařízení pokračovat v pokusech o opakované zaslání stejně, jako když nepřijde odpověď do nastavené mezní doby odezvy. Odesílání je třeba opakovat, až do přijetí odpovědi.
+
+
+
+
+
+Kód 0: Datovou zpravu evidovane trzby v overovacim modu se podarilo zpracovat
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jedná se o potvrzení o úspěšném zaslání datové zprávy v ověřovacím módu. Doručenou datovou zprávu v takovém případě systém EET neukládá. Pokud poplatník zaslal datovou zprávu záměrně v ověřovacím módu, je vše v pořádku. Pokud datovou zprávu nezaslal v ověřovacím módu záměrně, je vhodné zkontrolovat a případně opravit hodnotu zadanou do položky „overeni“ v datové zprávě a poté ji zaslat znovu.
+
+        Pozn.: Když má položka „overeni“ hodnotu „true“ nebo „1“ znamená to ověřovací mód. Hodnoty „false“ nebo „0“ znamenají ostrý mód. Pokud položka „overeni“ ve zprávě není vůbec uvedena, považuje se datová zpráva za zaslanou v ostrém módu.
+
+
+
+
+
+Chyba s kódem 2: Kodovani XML neni platne
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Kritická chyba s kódem 2 nastává, pokud datová zpráva XML nemá správnou strukturu a není možné ji správně načíst, např. není v kódování UTF-8. Pokud má datová zpráva nesprávnou strukturu, systém EET ji odmítne a odpoví chybovou zprávou s kódem chyby 2. Je třeba zajistit úpravu kódování nebo struktury datové zprávy a pak zprávu zaslat znovu.
+
+
+
+
+
+Chyba s kódem 3: XML zprava nevyhovela kontrole XML schematu
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Kritická chyba s kódem 3 nastává, pokud není dodrženo XML schéma podle dokumentu Formát a struktura údajů o evidované tržbě v kapitole Datová zpráva evidované tržby. V elementu <Trzba> musí být uvedeny všechny povinné položky a naplněné hodnotami, musí být dodrženy formáty hodnot ve všech uvedených položkách a dodržena předepsaná struktura datové zprávy. Pokud není dodrženo XML schéma, systém EET ji odmítne a odpoví chybovou zprávou s kódem chyby 3.
+Častou chybou je například hodnota DIČ uvedená bez písmen „CZ“ na počátku, nebo nedodržený přesný formát data a času. Je třeba zajistit úpravu datové zprávy a pak ji zaslat znovu.
+
+
+
+
+
+Chyba s kódem 4: Neplatny podpis SOAP zpravy
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Kritická chyba s kódem 4 nastává, pokud datová zpráva s údaji o evidované tržbě není korektně podepsána platným certifikátem, vydaným určeným vydavatelem (certifikační autoritou CA EET). Systém EET při příjmu zprávy provádí:
+
+
+            kontrolu vydavatele certifikátu,
+            
+
+            kontrolu platnosti certifikátu včetně kontroly, zda certifikát nebyl revokován (nevyskytuje se v CRL certifikační autority, které jsou aktuálně technickému zařízení dostupné),
+            
+
+            kontrolu správnosti podpisu.
+            
+
+V případě, že podpis datové zprávy nesplní některé z kontrolních kritérií, systém EET ji odmítne a odpoví chybovou zprávou s kódem chyby 4. Je třeba zjistit příčinu (například exspirovaný certifikát, nebo je v produkčním prostředí použit certifikát vydaný pro Playground), odstranit ji a pak datovou zprávu zaslat znovu.
+
+
+
+
+
+Chyba s kódem 5: Neplatny kontrolni bezpecnostni kod poplatnika (BKP)
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BKP je generován definovaným postupem z PKP na straně pokladního zařízení. Kritická chyba s kódem 5 nastává, pokud kontrola zjistí nesoulad mezi BKP a PKP. Pak systém EET datovou zprávu odmítne a odpoví chybovou zprávou s kódem chyby 5. Je třeba prověřit způsob generování BKP, upravit, a poté datovou zprávu zaslat znovu.
+        Pozn.: Způsob generování a popis PKP i BKP je uveden v dokumentu Formát a struktura údajů o evidované tržbě v kapitole Kontrolní kódy PKP a BKP a dále ve vyhlášce č. 269/2016 Sb., o způsobu tvorby podpisového kódu poplatníka a bezpečnostního kódu poplatníka.
+
+
+
+
+
+Chyba s kódem 6: DIC poplatnika ma chybnou strukturu
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pokud DIČ poplatníka nemá správnou strukturu, systém EET datovou zprávu odmítne a odpoví chybovou zprávou s kódem chyby 6. Je třeba překontrolovat zadané DIČ poplatníka, opravit a poté zaslat datovou zprávu znovu.
+
+
+
+
+
+Chyba s kódem 7: Datova zprava je prilis velka
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Maximální velikost datové zprávy (včetně SOAP obálky) je stanovena na 12 kB. Pokud datová zpráva přesáhne tuto velikost, systém EET ji odmítne a odpoví chybovou zprávou s kódem chyby 7. Datová zpráva přesahující stanovenou velikost však může být vyhodnocena i jako útok a v takovém případě nemusí být odeslána žádná odpověď. Je třeba překontrolovat velikost zasílané datové zprávy, upravit ji a poté zaslat znovu.
+
+
+
+
+
+Chyba s kódem 8: Datova zprava nebyla zpracovana kvuli technicke chybe nebo chybe dat
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Kritická chyba s kódem 8 nastává, pokud se vyskytne jiná kritická chyba, která může být v datové zprávě nebo na straně systému EET. Datovou zprávu je vhodné zkusit zaslat opakovaně. Pokud nebude opakovaně přijata, je vhodné překontrolovat datovou zprávu a případně kontaktovat technickou podporu správce daně. Pokud se obrátíte na technickou podporu správce daně, využijte prosím kontaktní formulář na stránkách www.etrzby.cz, vyberte oblast „Technický dotaz“, připojte zaslanou datovou zprávu a odpověď s chybou 8 a vyčkejte na vyjádření.
+
+
+
+
+
+Může být ve zprávě i více kritických chyb?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Taková situace může nastat, ale kontroly na straně systému EET se ukončují již při nalezení první kritické chyby. Systém EET pak okamžitě odesílá odpověď s první nalezenou kritickou chybou. V jedné chybové zprávě (odpovědi) tedy nebude uvedeno více chyb, i kdyby je doručená datová zpráva o tržbě obsahovala.
+
+
+
+
+
+Jak postupovat v případě, že nepřijde žádná odpověď?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Může se stát, že do uplynutí mezní doby odezvy nepřijde žádná odpověď, tj. ani chybová zpráva. Taková situace může nastat v případě, že datová zpráva nebyla doručena do systému EET, nebo nebyla doručena odpověď zpět pokladnímu zařízení. Také je možné, že datová zpráva byla vyhodnocena jako součást bezpečnostního útoku a v takovém případě systém EET odpověď nezasílá. Je třeba zkontrolovat datovou zprávu a její velikost. Pokud se datová zpráva jeví korektní, je vhodné ji zaslat znovu. Při opakovaném neúspěchu doporučujeme kontaktovat správce daně pomocí kontaktního formuláře na stránkách www.etrzby.cz, vybrat oblast „Technický dotaz“, popsat co nejpřesněji situaci, připojit datovou zprávu a vyčkat na vyjádření.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    Podpora Playgroundu
+                    
+
+
+
+
+
+
+
+Jaký je rozsah podpory vývojářů, kterou poskytuje Finanční správa?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Finanční správa poskytuje podporu vývojářům pokladních systémů v souvislosti s přípravou na spuštění evidence tržeb formou:	
+
+Publikací technických specifikací, informací pro vývojáře a odpovědí na časté otázky na www.etrzby.cz, sekce IT/Vývojář.
+Poskytnutím testovacího prostředí pro příjem datových zpráv o evidovaných tržbách (Playground).
+Odpovídáním na individuální dotazy zaslané prostřednictvím kontaktního formuláře na www.etrzby.cz.
+
+Rozsah odpovídání na individuální dotazy:
+        Finanční správa odpovídá na dotazy metodického i technického charakteru, které se přímo vztahují ke zveřejněným specifikacím a funkcionalitě Playgroundu, resp. systému evidence tržeb.
+Součástí podpory není poradenství k software pokladních systémů, podpůrným knihovnám a vývojovým nástrojům, ani výklad nebo postup při aplikaci obecně platných technických standardů.
+Odpovědi na individuální dotazy jsou vyřizovány elektronicky, prostřednictvím e-mailu, v pracovních dnech.
+
+
+
+
+
+Jakou verzi WSDL používá publikovaný popis datového rozhraní?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Zveřejněný popis rozhraní používá WSDL 1.1.
+                                                
+
+
+
+
+Jaké verze protokolu SSL/TLS v HTTPS protokolu podporuje Playground?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Playground podporuje protokol TLS 1.1 a vyšší. Doporučená je verze TLS1.2. Použití TLS 1.1 nebo 1.2 je mj. v souladu s bezpečnostními požadavky PCI Data Security Standard (DSS) verze 3.1, které zakazuje použití TLS 1.0 po 30. 6.2016. Standardem DSS se musí řídit všichni obchodníci, kteří umožňují platbu kreditními kartami.
+                                                
+
+
+
+
+Když zkouším komunikovat s Playground prostředím, tak pokaždé dostanu chybu „ERROR:javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure“ nebo podobnou.
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Může jít o problém použití správné verze SSL/TLS v HTTPS protokolu. Playground podporuje protokol TLS 1.1 a vyšší.
+                                                
+
+
+
+
+Proč prostředí Playground nepodporuje operační systém Microsoft Windows Vista, resp. XP?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Systém EET vyžaduje pro komunikaci z bezpečnostních důvodů alespoň TLS 1.1, který není v operačním systému Windows Vista a starších operačních systémech přímo podporován.
+                                                
+
+
+
+
+Co mám dělat, když mi Playground vrátí kód chyby č. 3 „XML zprava nevyhovela kontrole XML schematu“? Nemohu přejít přes kontrolu XML schématu (chyb. kód 3). Nemohl by Playground vracet detailnější chyby, abych jako vývojář věděl, co je špatně?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Zveřejněný dokument EETXMLSchema.xsd definuje pouze datovou část odesílané transakce nebo odpovědi, tedy elementy Trzba a Chyba. Chcete-li zjistit, které části elementu Trzba vaší zasílané zprávy nevyhověly kontrole XML schématu, použijte prosím některý z xml validátorů (např. xml validator na stránkách freeformatter nebo utilities-online a další). Do validátoru vložte pouze část zprávy, která popisuje element Trzba, tedy text <Trzba ……….Trzba>. Z výkonnostních a bezpečnostních důvodů není počítáno s detailnějším rozpadem chyb 2 a 3.
+                                                
+
+
+
+
+XML Schema EET je příliš striktní a některé hodnoty jako datum a čas či finanční částky jí vadí. Je možné XSD "uvolnit", aby si EET poradila s podobnými zprávami?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Důvodem striktních požadavků formátu data a času, stejně jako finančních částek, je zajištění možnosti ověřit PKP a BKP ze zaslaných dat. Při uvolění formátu těchto položek, by docházelo k jiným výsledkům při odvození PKP/BKP.
+                                                
+
+
+
+
+Nepodařilo se mi vytvořit podpis celé zprávy SignatureValue a SignatureDigest. Můžete poskytnout příklad v Javě nebo PHP? 
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Omlouváme se, ale váš dotaz přesahuje rozsah podpory poskytované ze strany Finanční správy. Součástí podpory není poradenství k software pokladních systémů, podpůrným knihovnám a vývojovým nástrojům, ani výklad nebo postup při aplikaci obecně platných technických standardů. O zveřejnění příkladů implementace rozhraní na straně pokladního zařízení v různých programovacích jazycích v současné době Finanční správa neuvažuje.
+                                                
+
+
+
+
+Co mám dělat, když mi Playground vrátí kód chyby č. 8 „Datova zprava nebyla zpracovana kvuli technicke chybe nebo chybe dat“?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Může se jednat o chybu ve vámi zaslané datové zprávě nebo o chybu v aplikaci Playground. Připojte prosím zaslanou datovou zprávu a odpověď s chybou 8 ke kontaktnímu  formuláři na stránkách www.etrzby.cz  a vyčkejte na vyjádření.
+                                                
+
+
+
+
+Jak se má vytvářet UUID zprávy? Prosím o informaci jaké údaje má položka UUID obsahovat. Identifikuje UUID plátce daně nebo identifikuje platbu? Pro následné odesílání EET se generuje nové UUID zprávy, nebo se má použít původní UUID z prvního odeslání? 
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Jde o jedinečný identifikátor v hlavičce datové zprávy evidované tržby. Jednoznačně identifikuje datovou zprávu (nikoli tržbu ani poplatníka). Při opakovaném zaslání datové zprávy musí být vytvořeno nové UUID zprávy. UUID není generováno na základě údajů z datové zprávy. Doporučenou metodou generování UUID je verze 4 UUID podle RFC 4122. Potvrzovací nebo chybová datová zpráva uvádí UUID příslušné datové zprávy evidované tržby, v případě odeslání více datových zpráv o stejné tržbě umožňuje UUID pokladnímu zařízení párovat odpovědi s odeslanými datovými zprávami.
+                                                
+
+
+
+
+Jaká je podoba PKP na účtence? Odeslaný PKP má délku 344 znaků. Na účtence takto dlouhý kód zabírá příliš místa.
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Podpisový kód poplatníka (PKP) je elektronickým podpisem z vybraných údajů datové zprávy evidované tržby a je generovaný pokladním zařízením poplatníka. Umožňuje kontrolu integrity účtenky a prokazuje vazbu mezi poplatníkem a účtenkou. Zároveň jednoznačně identifikuje příslušnou tržbu poplatníka a je vždy v datové zprávě obsažen. Na účtence je PKP (ve shodné formě jako v datové zprávě, tedy 344 znaků) uváděn pouze v případech, kdy na účtenku nelze uvést z objektivních důvodů FIK (např. při výpadku spojení nebo při evidenci tržeb ve zjednodušeném režimu).
+                                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    Ostatní
+                    
+
+
+
+
+
+
+
+Kdo mi garantuje, že dodavatelem nabízené pokladní zařízení bude fungovat správně? Co když si pořídím zařízení, které bude evidovat špatně? Nese za to odpovědnost dodavatel pokladního zařízení?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Odpovědnost vůči Finanční správě je vždy na straně podnikatele, jelikož on má povinnost evidovat tržby. Podnikatel by si měl vybrat takového dodavatele, který mu zaručí, že systém bude fungovat tak, jak má. Finanční správa ČR ani Ministerstvo financí ČR nebude garantovat funkčnost pokladních zařízení ani programů, které zajišťují zasílání dat. Je to podobné jako u účetních programů, u kterých výrobce ručí podnikateli za jejich funkcionalitu, která musí být v souladu s platnými právními předpisy.
+
+
+
+
+
+Je zajištěna bezpečnost systému, který sbírá údaje o tržbách?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Bezpečnosti je soustavně věnována maximální pozornost.  Jedná se nejen o zabezpečení komunikace při zasílání dat do datového centra, ale také o samotné zabezpečení dat ve Finanční správě.    
+
+
+
+
+
+Jakým způsobem chce ministerstvo zajistit, že při zavádění evidence tržeb nebude docházet k výpadkům systému podobným těm, jakých jsme byli v minulosti při zavádění některých systémů svědky?
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Za účelem minimalizace veškerých podobných rizik bylo 13. června 2016 spuštěno testovací prostředí. Ke stejnému účelu slouží také postupný náběh povinnosti evidovat tržby pro jednotlivé tržní segmenty. Tento postup má za cíl zajistit bezproblémový náběh a funkčnost evidence tržeb a umožnit podnikatelům hladkou adaptaci na nové, již v praxi úspěšně vyzkoušené a funkční prostředí.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Nacházíte se zde:
+
+Úvodní stránka
+
+IT/Vývojář
+
+
+Nejčastější dotazy vývojářů
+
+
+
+
+
+
+O projektu
+
+Základní informace
+
+Média
+
+Novinky
+
+Mýty a fakta
+
+Dokumenty
+
+Materiály z akcí
+
+Akce
+
+Informace o provozu
+
+Kontakty
+
+
+
+Podnikatel/Firma
+
+Jak se připravit
+
+Kontrola plnění povinností a správní trestání
+
+Běžný a zjednodušený režim
+
+Webová aplikace EET a certifikáty
+
+Zvláštní režim
+
+Specifické případy
+
+Nejčastější dotazy podnikatelů
+
+Stále si nevíte rady?
+
+
+
+Zákazník
+
+Základní informace pro zákazníky
+
+Účtenková loterie pro zákazníky
+
+Nejčastější dotazy zákazníků
+
+Stále si nevíte rady
+
+Komunikace s veřejností
+
+
+
+IT/Vývojář
+
+Základní informace pro vývojáře
+
+Technická specifikace
+
+Archiv technické specifikace
+
+Oznámení pro vývojáře
+
+Certifikační autorita EET
+
+Nejčastější dotazy vývojářů
+
+Stále si nevíte rady
+
+
+
+
+
+
+
+
+Finanční správa ČR
+Ministerstvo financí ČR
+
+
+
+
+Média
+Nejčastější dotazy
+Dokumenty
+Kontakty
+
+
+
+
+
+
+
+                Copyright © 2016 - 2021, Finanční správa
+            
+
+ Prohlášení o obsahu
+ Mapa stránek
+
+
+
+
+
+

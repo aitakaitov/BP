@@ -1,0 +1,1051 @@
+URL: https://ags.cuzk.cz/av/
+DEPTH: 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Analýzy výškopisu
+
+
+
+
+
+
+
+
+
+
+
+Analýzy výškopisu
+Zeměměřický úřad
+
+
+
+
+
+
+
+
+Toggle dropdown menu
+
+
+
+
+
+MENU
+
+
+  2D
+  3D
+Vlastnosti reliéfu
+Pole viditelnosti
+Linie viditelnosti
+Profil
+Výpočet objemu
+Seznam vrstev
+Přidat vrstvy
+Přechod na souřadnice
+Tisk
+Měření
+Sdílení
+Nápověda
+
+
+
+
+
+Analýzy výškopisu
+
+Zeměměřický úřad
+
+
+
+
+Seznam vrstev
+
+Vlastnosti reliéfu
+Pole viditelnosti
+Linie viditelnosti
+Profil
+Výpočet objemu
+
+2D
+3D
+
+
+
+
+
+
+DomůSpustit sledování mé polohyPřiblížitOddálitObnovit orientaci kompasuVšechnyVšechnyAdresyUliceKatastrální územíMěstské obvody a částiČást obceObecGeonames Použít aktuální umístěníZadejte vyhledávací dotaz.Další aplikacePřechod do dalších aplikacíGeoprohlížečArchivní mapyArchiv leteckých měřických snímkůWGS 84 (°), elips. nadmořská výška, elipsoid WGS 84 (m) (změnit formát)WGS 84, UTM zone 33N (m), elips. nadmořská výška, elipsoid WGS 84 (m)WGS 84, UTM zone 34N (m), elips. nadmořská výška, elipsoid WGS 84 (m)WGS 84, Pseudo-Mercator (m), elips. nadmořská výška, elipsoid WGS 84 (m)ETRS89 (°), elips. nadmořská výška, elipsoid GRS-80 (m) (změnit formát)ETRS89-TM33 (m), EVRS nadmořská výška (m)ETRS89-TM34 (m), EVRS nadmořská výška (m)S-JTSK/Krovak (m), Bpv (m)Jiný SSZapněte režim Výpis souřadnic bodu100 kmAplikace je realizačním výsledkem projektu „Pořízení leteckých senzorů pro informační systém zeměměřictví a Geoportál ČÚZK“. Projekt je spolufinancován z prostředků Evropské unie, z Integrovaného operačního programu, v rámci prioritní osy: 1a a 1b -Modernizace veřejné správy, oblast intervence: 1.1a,1.1b - Rozvoj informační společnosti ve veřejné správě, cíl podpory: Konvergence, Regionální konkurenceschopnost a zaměstnanost. Registrační číslo projektu: CZ.1.06/1.1.00/17.09401.Pořízení leteckých senzorůPowered by Esri
+
+
+PřiblížitOddálitPowered by Esri
+
+
+
+
+
+
+
+
+
+Nápověda
+
+
+
+
+
+
+Analýzy výškopisu2.2
+Motiv
+
+Výchozí
+Světlý
+Tmavý
+
+
+Nová verze Analýz výškopisu postavená na ArcGIS Javascript API 4.xx
+Kontaktovat vývojáře (tomas.nemecek@cuzk.cz)
+
+Vlastnosti reliéfu
+Nástroj umožňuje provádět prostorové analýzy a prostorové výběry v rámci zadaného území. Dovoluje tak vyhledat prostory v rozmezí zadaných hodnot nadmořských výšek, sklonitosti nebo expozice svahu, nebo zjistit mezní hodnoty nadmořských výšek v zadaném území. Ke spuštění výpočtu je nutné zadat hranici území. Hranici můžete zadat libovolnou kreslením do mapového pole, převzetím hranice geomorfologického celku, podcelku nebo správní jednotky, nebo vložením/načtením geometrie ze souboru SHP. Je nutné zadat rovněž dolní a horní mez intervalu nadmořských výšek, sklonitosti nebo expozice svahu.
+
+Pole viditelnosti
+Nástroj Pole viditelnosti v mapové aplikaci slouží ke zjištění území viditelného z vybraného pozorovacího stanoviště omezeného danou vzdáleností.K provedení analýzy je nutné zadat polohu pozorovacího stanoviště a zdroj dat, stanovit rovněž výšku pozorovacího stanoviště nad terénem (DMR 4G nebo DMR 5G) nebo nad povrchem (DMP 1G) a vzdálenost, do které se má provést výpočet. Specifikovat polohu pozorovacího stanoviště můžete zadáním libovolného bodu přímo kliknutím do mapového pole, přenesením polohy vybraného stavebního nebo terénního objektu ZABAGED (vybrané stavební a terénní objekty), výškového objektu z Registru výškových objektů nebo vybraného geodetického bodu z Databáze bodových polí. Výsledkem analýzy viditelnosti je pole viditelnosti, tedy barevně znázorněné části zemského povrchu, které jsou viditelné v požadované vzdálenosti od daného bodu. Výsledek je možno stáhnout ve formátu SHP, DGN, DXF neb TXT.Nástroj Zakrytí obzoru v mapové aplikaci slouží ke zjištění linie zakrytí obzoru dělící viditelný obzor od neviditelného (zakrytého) obzoru ze zadaného stanoviště. Uživatel vybírá polohu pozorovacího stanoviště a zdroj dat, stanoví rovněž výšku pozorovacího stanoviště nad terénem ( DMR 4G nebo DMR 5G) nebo nad povrchem ( DMP 1G) a vzdálenost, do které se má provést výpočet. Výsledná červená linie zakrytí obzoru se znázorní v mapovém poli a jasně vymezuje rozsah a hranici viditelného území od území zakrytého terénními (skalními) tvary a nerovnostmi, vegetací nebo zástavbou. Graf zakrytí obzoru ukazuje míru zakrytí obzoru (míru zakrytí oblohy ve stupních) v závislosti na azimutu do zadané vzdálenosti. Výsledek je možno stáhnout ve formátu SHP, DGN, DXF nebo TXT.
+
+Linie viditelnosti
+Nástroj umožňuje znázornit přímou viditelnost, viditelnost povrchu nebo překážky přímé viditelnosti mezi dvěma vybranými body.K provedení analýzy je nutné zadat polohu pozorovacího a polohu cílového stanoviště a rovněž stanovit výšku pozorovacího stanoviště a výšku cíle nad terénem(DMR 4G nebo DMR 5G) nebo nad povrchem(DMP 1G). Specifikovat polohu pozorovacího stanoviště a polohu cíle je možné nakreslením linie v mapovém poli, přenesením polohy vybraného stavebního nebo terénního objektu ZABAGED(vybrané stavební a terénní objekty), výškového objektu z Registru výškových objektů nebo vybraného geodetického bodu z Databáze bodových polí.Výsledek provedené analýzy viditelnosti je zobrazen v grafu, který umožňuje znázornit linii přímé viditelnosti, viditelnost povrchu nebo překážky přímé viditelnosti. Výsledek je možno stáhnout ve formátu SHP, DGN, DXF nebo TXT.Nástroj lze s výhodou použít k analýzám viditelnosti na větší vzdálenosti.
+
+Profil
+Nástroj v mapové aplikaci slouží ke konstrukci výškového profilu po uživatelem definované linii nad vybraným zdrojem dat (DMR 4G, DMR 5G nebo DMP 1G). Takto zadaná linie se následně automaticky doplní o zhušťovací body v zadaném intervalu (po 1, 2, 5 nebo 10 m) nebo v zadaném počtu dílků, mezi kterými je vypočten výškový profil interpolací nad vybraným digitálním modelem reliéfu nebo povrchu. Při výběru možnosti rozlišení linie na 1000 dílků (zadaná linie je rozdělena zhruba na 1001 částí) závisí interval mezi zhušťovacími body na celkové délce linie (čím delší linie, tím větší interval). Funkčnost nástroje je zajišťována geoprocessingovou službou Profile publikovanou na ArcGIS serveru. Výsledek provedené analýzy viditelnosti je zobrazen v grafu. Výsledek je možno stáhnout ve formátu SHP, DGN, DXF nebo TXT.
+
+Výpočet objemu
+Nástroj slouží pro orientační výpočet objemu stavební jámy (terénního zářezu) nebo haldy (terénního náspu). Je nutné zadat hranici vnějšího obvodu, hranici (dno stavební jámy nebo korunu náspu) a nadmořskou výšku vnitřního obvodu. Zadaný tvar lze zpřesnit přidáním hran. Při zadání alespoň jedné zpřesňující hrany v rámci vnějšího obvodu je vnitřní obvod nepovinný. Výsledný objem je spočten z rozdílu mezi povrchem zadaného tvaru (dnem a svahy terénního zářezu nebo korunou a svahy terénního náspu) a stávajícím zemským povrchem (povrchem terénu), který reprezentuje digitální model terénu (DMR 5G).
+
+Dotykové ovládání je podporováno ve 2D i ve 3D režimu. V obou režimech použijte pro pohyb po obrazovce jeden prst. Pro oddálení sevřete dva prsty k sobě, pro přiblížení prsty ze sevření uvolněte. Pro rotaci 3D režimu použijte dva prsty ve směru nahoru nebo dolů, případně otáčení ve směru nebo v protisměru hodinových ručiček.
+Podporované webové prohlížeče:Microsoft EdgeMozilla FirefoxOperaVivaldiGoogle Chrome
+
+O projektu
+
+
+Aplikace je realizačním výsledkem projektu „Pořízení leteckých senzorů pro informační systém zeměměřictví a Geoportál ČÚZK“. Projekt je spolufinancován z prostředků Evropské unie, z Integrovaného operačního programu, v rámci prioritní osy: 1a a 1b -Modernizace veřejné správy, oblast intervence: 1.1a,1.1b - Rozvoj informační společnosti ve veřejné správě, cíl podpory: Konvergence, Regionální konkurenceschopnost a zaměstnanost. Registrační číslo projektu: CZ.1.06/1.1.00/17.09401.
+Pořízení leteckých senzorů
+
+
+
+
+
+
+
+Prohlášení o přístupnosti
+
+
+
+
+
+
+
+
+ Vlastnosti reliéfu
+
+
+
+
+
+
+
+Zadání výpočtu
+Výsledky
+
+
+
+
+
+Nakreslit plochu
+ Zadat souřadnicemi
+
+Vložení bodu pomocí souřadnic
+Y:X:
+Souřadnicový systém:
+
+EPSG:5514 (S-JTSK/Krovak)
+EPSG:4326 (WGS 84, geographic 2D)
+EPSG:32633 (WGS 84, UTM zone 33N)
+EPSG:32634 (WGS 84, UTM zone 34N)
+EPSG:4258 (ETRS89, geographic 2D)
+EPSG:3034 (ETRS89, LCC Europe)
+EPSG:3035 (ETRS89, LAEA Europe))
+EPSG:3045 (ETRS89, TM33)
+EPSG:3046 (ETRS89, TM34)
+EPSG:3835 (Pulkovo 1942(83), GK zone 3)
+EPSG:3836 (Pulkovo 1942(83), GK zone 4)
+EPSG:3857 (WGS 84, Pseudo-Mercator)
+
+
+Vložit bod
+Ukončit zadávání
+
+
+ Převzít hranice
+Editovat
+
+
+Zadání hranice převzetím orografické hranice (hranice geomorfologického celku nebo podcelku), převzetím správní hranice (hranice kraje, okresu, obce nebo katastrálního území) nebo načtením hranice (polygonu) ze souboru SHP
+Převzít orografické nebo správní hranice:
+ Geomorfologické celky a podcelky
+ Správní jednotky
+Převzít geometrii z SHP nebo GPX můžete v okně Přidat vrstvy na záložce Ostatní.
+
+Model pro výpočet:
+
+DMR 5G
+DMR 4G
+
+Zjistit v rámci zadaného území:
+
+Mezní hodnoty nadmořských výšek
+Rozmezí nadmořských výšek
+Sklonitost svahů
+Expozici a orientaci svahů
+
+
+Zadejte počáteční azimut [°]: 
+Zadejte koncový azimut [°]: 
+
+
+Zadejte minimum intervalu výšek [m n. m.]: 
+Zadejte maximum intervalu výšek [m n. m.]: 
+
+
+Zadejte minimum intervalu sklonitosti [°]: 
+Zadejte maximum intervalu sklonitosti [°]: 
+
+Spustit výpočet
+Zastavit výpočet
+
+
+
+
+Výsledky zatím nejsou k dispozici...
+
+Mezní hodnoty nadmořských výšek:
+
+
+Stažení výsledku
+SHP
+DGN
+DXF
+TXT
+
+
+
+
+Rozmezí nadmořských výšek:
+Průhlednost:
+
+
+
+Stažení výsledku
+SHP
+DGN
+DXF
+TXT
+
+
+
+
+Sklonitost svahů
+Průhlednost:
+
+
+
+Stažení výsledku
+SHP
+DGN
+DXF
+TXT
+
+
+
+
+Expozice a orientace svahů
+Průhlednost:
+
+
+
+Stažení výsledku
+SHP
+DGN
+DXF
+TXT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Pole viditelnosti a zakrytí obzoru
+
+
+
+
+
+
+
+Zadání výpočtu
+Výsledky
+
+
+
+
+Umístit bod do mapy
+
+Vložení bodu pomocí souřadnic
+Y:X:
+Souřadnicový systém:
+
+EPSG:5514 (S-JTSK/Krovak)
+EPSG:4326 (WGS 84, geographic 2D)
+EPSG:32633 (WGS 84, UTM zone 33N)
+EPSG:32634 (WGS 84, UTM zone 34N)
+EPSG:4258 (ETRS89, geographic 2D)
+EPSG:3034 (ETRS89, LCC Europe)
+EPSG:3035 (ETRS89, LAEA Europe))
+EPSG:3045 (ETRS89, TM33)
+EPSG:3046 (ETRS89, TM34)
+EPSG:3835 (Pulkovo 1942(83), GK zone 3)
+EPSG:3836 (Pulkovo 1942(83), GK zone 4)
+EPSG:3857 (WGS 84, Pseudo-Mercator)
+
+
+Vytvořit stanoviště
+
+
+Model pro výpočet:
+
+DMR 4G
+DMR 5G
+DMP 1G
+
+Výška stanoviště nad modelem [m]: 
+Nadmořská výška stanoviště: -- m
+Vzdálenost pro výpočet viditelnosti [m]: (max. 10000 m)
+ Nižší přesnost výsledku
+ Omezení území
+
+Redukce území na kruhovou výseč:
+šířka výseče:
+
+azimut výseče:
+
+
+
+ DBP (Databáze bodových polí)
+ RVO (Registr výškových objektů)
+ ZABAGED (vybrané objekty)
+
+
+
+
+Spustit výpočet viditelnosti
+Zastavit výpočet viditelnosti
+Spustit výpočet obzoru
+Zastavit výpočet obzoru
+
+
+
+
+Výsledky zatím nejsou k dispozici...
+
+Průhlednost:
+
+
+
+
+
+
+
+
+
+
+
+
+
+polární graf
+rovinný graf
+
+
+
+Stažení výsledku viditelnosti
+SHP
+DGN
+DXF
+TXT
+
+
+Stažení výsledku zakrytí obzoru
+SHP
+DGN
+DXF
+TXT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Linie viditelnosti
+
+
+
+
+
+
+
+Zadání výpočtu
+Výsledky
+
+
+
+
+Nakreslit linii do mapy
+Editovat
+
+Nakreslete linii klikem do mapy nebo pomocí souřadnic:
+Y:
+X:
+Y:
+X:
+Souřadnicový systém:
+
+EPSG:5514 (S-JTSK/Krovak)
+EPSG:4326 (WGS 84, geographic 2D)
+EPSG:32633 (WGS 84, UTM zone 33N)
+EPSG:32634 (WGS 84, UTM zone 34N)
+EPSG:4258 (ETRS89, geographic 2D)
+EPSG:3034 (ETRS89, LCC Europe)
+EPSG:3035 (ETRS89, LAEA Europe))
+EPSG:3045 (ETRS89, TM33)
+EPSG:3046 (ETRS89, TM34)
+EPSG:3835 (Pulkovo 1942(83), GK zone 3)
+EPSG:3836 (Pulkovo 1942(83), GK zone 4)
+EPSG:3857 (WGS 84, Pseudo-Mercator)
+
+
+Vytvořit linii
+
+
+Model pro výpočet:
+
+DMP 1G
+DMR 4G
+DMR 5G
+
+Výška stanoviště nad modelem [m]: 
+Nadmořská výška stanoviště: -- m
+Výška cíle nad modelem [m]: 
+Nadmořská výška stanoviště: -- m
+ DBP (Databáze bodových polí)
+ RVO (Registr výškových objektů)
+ ZABAGED (vybrané objekty)
+Spustit výpočet
+Zastavit výpočet
+
+
+
+
+Výsledky zatím nejsou k dispozici...
+
+
+
+Přímá viditelnost
+Viditelnost povrchu
+Překážky přímé viditelnosti
+
+
+
+
+Stažení výsledku viditelnosti
+SHP
+DGN
+DXF
+TXT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Profil
+
+
+
+
+
+
+
+Zadání výpočtu
+Výsledky
+
+
+
+
+Kreslení úsečky nebo lomenné čáry
+Kreslení křivky tažením v mapě
+
+Zadat souřadnicemi
+
+Vytvořte úsečku nebo lomenou čáru zadáním souřadnic
+Vložení bodu pomocí souřadnic
+Y:
+X:
+Souřadnicový systém:
+
+EPSG:5514 (S-JTSK/Krovak)
+EPSG:4326 (WGS 84, geographic 2D)
+EPSG:32633 (WGS 84, UTM zone 33N)
+EPSG:32634 (WGS 84, UTM zone 34N)
+EPSG:4258 (ETRS89, geographic 2D)
+EPSG:3034 (ETRS89, LCC Europe)
+EPSG:3035 (ETRS89, LAEA Europe))
+EPSG:3045 (ETRS89, TM33)
+EPSG:3046 (ETRS89, TM34)
+EPSG:3835 (Pulkovo 1942(83), GK zone 3)
+EPSG:3836 (Pulkovo 1942(83), GK zone 4)
+EPSG:3857 (WGS 84, Pseudo-Mercator)
+
+
+Vložit vrchol linie
+Ukončit zadávání
+
+
+Převzít geometrii
+
+Převzetí geometrie z komunikací ZABAGED:
+ KOMUNIKACE (ZABAGED)
+Převzít geometrii z SHP nebo GPX můžete v okně Přidat vrstvy na záložce Ostatní.
+
+
+
+Editovat
+
+
+Model pro výpočet:
+
+DMR 4G
+DMR 5G
+DMP 1G
+
+Rozlišení linie:
+
+cca 1000 dílků
+cca 100 dílků
+1 metr
+2 metry
+5 metrů
+10 metrů
+
+ Rozšířené možnosti výpočtu
+Spustit výpočet
+Zastavit výpočet
+
+
+
+
+Výsledky zatím nejsou k dispozici...
+
+
+
+
+
+
+Stažení výsledku výpočtu profilu
+SHP
+DGN
+DXF
+TXT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Výpočet objemu
+
+
+
+
+
+
+
+Zadání výpočtu
+Výsledky
+
+
+
+
+Nakreslit vnější obvod
+
+Nakreslete vnější obvod (vnější hranici stavební jámy, haldy, terénního zářezu nebo náspu) do mapového pole.
+
+Nakreslit vnitřní obvod
+
+Nakreslete vnitřní obvod (vodorovné dno stavební jámy nebo terénního zářezu, korunu haldy nebo náspu) do mapového pole v rámci hranic zadaného vnějšího obvodu.
+
+Přidat hrany pro zpřesnění tvaru
+
+Nakreslete hranu přímo do mapového pole. Hranu je nutné zadat v rámci hranic vnějšího obvodu.
+
+Po nakreslení hrany je nutné nastavit nadmořskou výšku každého bodu hrany.
+
+Převzít geometrii
+Ukončit kreslení
+
+Převzít vnitřní, vnější obvod nebo hrany můžete i ze SHP v okně Přidat vrstvy na záložce Ostatní.
+Určení obvodu či hrany dokončete pak kliknutím na načtené geometrie.
+
+Editovat
+Použitý model terénu pro výpočet: DMR 5G
+Uložit situaci
+Načíst situaci
+ výšky bodů vnějšího obvodu
+ výšky bodů vnitřního obvodu
+ výšky bodů hran
+Spustit výpočet
+Zastavit výpočet
+
+
+
+
+Výsledky zatím nejsou k dispozici...
+
+
+Zobrazit v mapě
+
+Plocha v náspu/zářezu
+Vrstevnice tvaru
+Vrstevnice terénu
+Rastr dna
+Skrýt vrstvy s výsledky
+
+
+
+promítnout tvar do 3D modelu
+
+
+
+Stažení výsledku výpočtu
+SHP
+DGN
+DXF
+TXT
+
+
+
+Výpočet objemu je pouze orientační. Výsledek výpočtu závisí na přesnosti modelu v dané lokalitě. Zeměměřický úřad nenese zodpovědnost za případné škody vzniklé chybnou interpretací výsledku (modelu).Další využití stažených výsledků se řídí Obchodními podmínkami Zeměměřického úřadu, především článkem 2.10 odstavec b), který se týká podmínek využití bezplatně poskytovaných vyhledávacích, prohlížecích, geoprocessingových a transformačních služeb.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Přidat vrstvy
+
+
+
+
+
+
+
+Produkty
+REST
+OGC
+Ostatní
+
+
+
+
+Katastrální mapy
+Bodová pole
+ZABAGED®
+ZABAGED® - polohopis
+
+ZABAGED® barevný
+ZABAGED® nad Ortofoto
+ZABAGED® dle ZM10
+
+ZABAGED® - výškopis
+Digitální model reliéfu ČR 4. generace
+Digitální model reliéfu ČR 5. generace
+Digitální model povrchu ČR 1. generace
+Ortofoto ČR
+Ortofoto ČR
+Archivní ortofoto
+Ortofoto CIR
+Základní mapy ČR
+Základní mapa 1 : 10 000
+Základní mapa 1 : 25 000
+Základní mapa 1 : 50 000
+Základní mapa 1 : 100 000
+Základní mapa 1 : 200 000
+Státní mapa 1:5000
+Vektorová data nové podoby SM 5
+Rastrová data nové podoby SM 5
+Správní jednotky
+Správní hranice a hranice KÚ
+Územní jednotky (UX)
+Ostatní
+RUIAN
+DATA 50
+DATA 200
+Geomorfologické jednotky
+Geonames
+Metadata
+Klady mapových listů
+
+
+
+Přidat službu z ArcGIS ServeruNápověda
+
+
+Název služby (volitelné):
+
+
+URL služby:
+
+
+
+Přidat
+
+
+
+
+Přidat službu OGCNápověda
+
+
+Typ služby:
+
+WMS
+WMTS
+
+
+
+URL služby:
+
+
+
+Načíst službu
+
+
+
+Název služby (volitelné):
+
+
+
+Podvrstvy:
+
+
+
+Souřadnicové systémy:
+
+
+
+Přidat službu do mapy
+
+
+
+
+
+Přidat lokální soubor:Nápověda
+
+Vyberte formát souboru
+Shapefile
+GeoJSON
+GPX
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Seznam vrstev
+
+
+
+
+
+
+Momentálně nejsou k zobrazení žádné položky.
+Odstranit vrstvy
+
+Archivní ortofoto:
+
+1998
+1999
+2000
+2001
+2002
+2003
+2004
+2005
+2006
+2007
+2008
+2009
+2010
+2011
+2012
+2013
+2014
+2015
+2016
+
+
+Měřítko mapy:  1 : 3 870 720
+Zdroj výškopisných dat:
+
+Žádný
+DMR 4G
+DMR 5G
+DMP 1G
+
+Rastrová funkce:
+
+Obarvený stínovaný reliéf
+Sklonitost svahů
+Orientace svahů
+Stínovaný reliéf
+Stínovaný reliéf Z-factor 10
+
+Průhlednost:
+0%100%
+
+Podkladová mapa:
+
+Základní mapy ČR
+Ortofoto ČR
+Prázdná
+
+
+
+Kvalita 3D modelu:
+
+Vysoká
+Střední
+Nízká
+
+3D model:
+
+Digitální model reliéfu ČR 4. generace
+Digitální model reliéfu ČR 5. generace
+
+
+
+
+
+
+
+
+
+Přechod na souřadnice
+
+
+
+
+
+
+Souřadnicový systém:NápovědaEPSG:5514 (S-JTSK/Krovak)
+Souřadnice X:
+
+
+Souřadnice Y:
+
+
+Souřadnicový systém hledaného bodu:
+
+EPSG:5514 (S-JTSK/Krovak)
+EPSG:4326 (WGS 84, geographic 2D)
+EPSG:32633 (WGS 84, UTM zone 33N)
+EPSG:32634 (WGS 84, UTM zone 34N)
+EPSG:4258 (ETRS89, geographic 2D)
+EPSG:3034 (ETRS89, LCC Europe)
+EPSG:3035 (ETRS89, LAEA Europe))
+EPSG:3045 (ETRS89, TM33)
+EPSG:3046 (ETRS89, TM34)
+EPSG:3835 (Pulkovo 1942(83), GK zone 3)
+EPSG:3836 (Pulkovo 1942(83), GK zone 4)
+EPSG:3857 (WGS 84, Pseudo-Mercator)
+
+
+Zobrazit na mapě
+Vymazat body
+
+
+
+
+
+
+
+Tisk
+
+
+
+
+
+
+
+
+
+
+Formát:
+
+PDF
+BMP
+GIF
+JPG
+PNG
+TIF
+
+Nastavení stránky:
+
+A4 na výšku
+A4 na šířku
+A3 na výšku
+A3 na šířku
+
+Šířka obrázku:
+
+Výška obrázku:
+
+ Pouze mapa
+ Uložit lokalizaci do PDF
+Připravit k tisku
+Připravit pouze zachycení obrazovky
+
+
+
+Ve 3D prostředí je možné pořídit pouze zachycení celé obrazovky.
+
+Šířka obrázku:
+
+Výška obrázku:
+
+Formát:
+
+JPG
+PNG
+
+Připravit k tisku
+
+
+
+
+
+
+
+
+Měření
+
+
+
+
+
+
+ Měření vzdálenosti
+ Měření plochy
+Ukončit a smazat měření
+
+
+
+
+
+
+
+Sdílení
+
+
+
+
+
+
+Sdílení aplikace
+ Zkopírováno do schránky!
+
+Sdílení aplikace s rozsahem mapového okna
+ Zkopírováno do schránky!
+ Vygenerovat a zkopírovat odkaz
+
+
+
+
+ 
+
+

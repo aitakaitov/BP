@@ -1,0 +1,212 @@
+URL: https://obalkyknih.cz/about#tos
+DEPTH: 1
+
+
+
+
+Obálky knih - Databáze obálek knih
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Úvod
+Přidat obálku
+API a dokumentace
+O projektu
+
+
+
+
+
+
+Zadejte ISBN…
+
+Vyhledávat v databázi titulů je možné dle ISBN, ISSN, EAN, č. ČNB, OCLC či vlastního identifikátoru. Vyhledávat lze i v databázi autorů dle id autority či jména.
+
+
+Projekt ObalkyKnih.cz sdružuje různé zdroje informací
+				o knížkách do jedné, snadno použitelné webové služby. Naše databáze v tuto chvíli obsahuje 2298906 obálek
+				a 579261 obsahů českých a zahraničních publikací. Naše API využívá většina knihoven v ČR. 
+
+
+
+E-mailová adresa
+Heslo
+
+
+Registrovat »    Zapomenuté heslo? 
+
+
+
+
+
+O projektu Obálkyknih.cz
+
+Služba obalkyknih.cz vznikla v roce 2008 díky projektu Moravské zemské knihovny v rámci programu VISK3. 
+Jejím původním cílem bylo stát se centrálním repozitářem obrázků obálek knih určených pro integraci do katalogů knihoven. 
+V dalších letech projekt prošel intenzivním vývojem, který umožnil rozšíření služeb poskytování nejen obálek knih, ale také dalších prvků (obsahy knih, anotace, ...).
+
+
+Na technickém řešení implementace obálek knih se v počátcích podílela Vědecká knihovna Olomouc. 
+V letech 2011 a 2012 byla správcem projektu Městská knihovna v Praze.
+
+
+V roce 2013 Moravská zemská knihovna předala práva k projektu na Sdružení knihoven ČR (SDRUK).
+SDRUK následně předal oprávnění k provozování projektu a jeho dalšímu vývoji Jihočeské vědecké knihovně v Českých Budějovicích.
+
+
+Pro OCR zpracování obsahů dokumentů projekt Obálkyknih.cz využívá OCR engine Národní knihovny České republiky. 
+
+
+
+V roce 2016 Jihočeská vědecká knihovna v Českých Budějovicích spolu s Moravskou zemskou knihovnou v Brně získala za rozvoj projektu ObalkyKnih.cz cenu KNIHOVNA ROKU 2016.
+
+
+Další české knihovny zůstávají v pozici spolupracující instituce, které dodávají svá data a trpělivě pomáhají odstraňovat případné potíže.
+
+
+V současnosti projekt Obálkaknih.cz databáze nabízí:
+
+
+Obálky knih a periodik - uložit obálku je však možno i u speciálních dokumentů - map, hudebnin, CD, DVD, ...
+Obsahy knih a periodik - naskenované obsahy zpřístupněné v podobě PDF souborů
+Fulltexty obsahů - převedené obsahy na text pomocí technologie OCR a zpřístupněné pro indexaci knihovním systémem
+Anotace - autorské, nakladatelské, ale i uživatelské popisy dokumentů pro snadnější výběr  čtenáři
+Komentáře a hodnocení  -  možnost stažení dostupných komentářů a zároveň i možnost exportu komentářů z jiných systémů na obálkyknih.cz a tím zpřístupnění ostatním  knihovnám
+Autority  - obrazové a jiné materiály napojené na ID autority, např. fotografie osob, GPS souřadnice míst, www odkazy, ...
+Citace  - citace podle normy ISO 690 generované z oveřených zdrojů či generované z vlastních dat knihoven
+
+
+Statistická data projektu
+
+databáze aktuálně obsahuje 2298906 obálek a 579261 obsahů českých a zahraničních publikací
+hlavní servery jsou provozovány v Jihočeské vědecké knihovně v Českých Budějovicích, záložní server je umístěn v Moravské zemské knihovně v Brně (v případě výpadku jednoho ze serverů mají knihovní systémy možnost přejít během několika vteřin na záložní stroj bez ztráty dostupnosti služeb pro své čtenáře)
+měsíčně hlavní server odbaví 55 miliónů požadavků, cca. 2 milióny denně, průměrně 20 dotazů za vteřinu , ve špičkách (9-15:00) odbavují servery 40-80 požadavků za vteřinu
+denně do databáze je nově nahráno nebo je upraveno průměrně 500 dokumentů
+další dokumenty se automaticky sklízejí z externích zdrojů - nakladatelé, vydavatelé, webové portály,  ...
+denní přírůstek dat činí  6 GB, z nich se následně generují náhledy obálek v různých rozlišeních, PDF dokumenty s obsahy a rozpoznává se text pomocí OCR 
+20 Mbit za vteřinu je průměrný datový tok z a na servery
+
+
+Závěrečná zpráva projektu VISK3 za rok 2013.
+
+Závěrečná zpráva projektu VISK3 za rok 2014.
+
+Závěrečná zpráva projektu VISK3 za rok 2015.
+
+Závěrečná zpráva projektu VISK3 za rok 2016.
+
+Závěrečná zpráva projektu VISK3 za rok 2017.
+
+Závěrečná zpráva projektu VISK1 za rok 2018.
+
+Závěrečná zpráva projektu VISK1 za rok 2019.
+
+Závěrečná zpráva projektu VISK1 za rok 2020.
+
+
+
+Podmínky užití
+Projekt využívá vyjímky autorského zákona (č. 121/2000 Sb., § 37) umožnující pro knihovny, archivy, muzea, galerie, školy a jiné nevýdělečné školské 
+a vzdělávací zařízení za účelem nabídky k půjčení a zpřístupnění obsahu svých sbírek užít rozmnoženinu díla či jeho části obsažené na obálce, případně včetně tématického obsahu díla v katalogu sbírek; tento katalog sbírek 
+může také zpřístupňovat veřejnosti, zamezí-li zhotovení rozmnoženiny výtvarného díla, která by mohla být užita k přímému či nepřímému hospodářskému nebo obchodnímu účelu. Instituce je vždy povinna v katalogu sbírek uvést jméno autora, je-li to možné a nejde-li o dílo anonymní, nebo jméno osoby, pod jejímž jménem se dílo uvádí na veřejnost.
+
+
+
+Podmínkou využívání služeb projektu knihovnami a jinými institucemi je bezplatná registrace na stránkách projektu a 
+vložení jmen a IP adres serverů přistupujích serverů (viz API projektu). 
+Na servery knihovních systémů není možné z důvodů omezení danných dohodou s vydavateli a nakladateli trvale obálky ukládat. Znemožňuje se tímto i možnost automatických oprav nesprávných obálek a aktualizací stahovaných dat.     
+
+
+Knihovny jsou povinny uvádět ve svých knihovních katalozích zpětný odkaz na titul na stránkách projektu. 
+Odkaz doporučujeme v katalogu umístit až na detail výpisu dokumentu. Volitelně může obsahovat logo a název projektu - viz příklad.  
+Zpětný odkaz je i důležitý pro čtenáře knihoven pro přístup k dalším informacím o titulu (obsah, anotace, komentáře, ...) - některé knihovní systémy nepodporují zobrazení všech dostupných informací k titulu, které projekt obálkyknih.cz poskytuje.    
+
+
+
+Kontakt
+
+Pokud máte jakékoliv dotazy, neváhejte se na nás obrátit:
+
+info (at) obalkyknih.cz
+
+
+
+Logo služby obalkyknih.cz je ke stažení zde.
+
+
+
+
+
+
+Informace pro uživatele
+
+Pro knihovny
+Pro nakladatele
+Pro dodavatele IS
+Pro čtenáře
+
+
+
+Kontaktní informace
+
+
+info@obalkyknih.cz
+
+
+
+O projektu
+
+Podmínky užití
+O projektu
+
+
+
+Projekt spravují:
+Moravská zemská knihovna
+Jihočeská vědecká knihovna v Českých Budějovicích
+
+
+© Copyright 2008-2020 Obalkyknih.cz
+
+
+
+
+

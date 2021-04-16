@@ -1,0 +1,129 @@
+URL: https://is.fotbal.cz/souteze/tabulky-souteze.aspx?req=65f9551c-e1dd-4ec8-84fc-44caf2e27c26/
+DEPTH: 1
+
+
+
+
+
+	IS FAČR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Informační systém FAČR
+Přihlášení
+
+
+Úvod
+Podatelna
+Licenční systém
+Soutěže
+Databáze členů
+Přehled hráčů
+Platba členství
+Nápověda
+
+
+
+
+
+
+
+
+
+        ----
+        
+
+
+
+
+
+
+
+                                Tabulky soutěže
+
+
+                                
+
+                                
+
+Tabulky soutěže
+
+
+
+
+
+
+
+Rychlá navigace soutěžemi
+
+
+Soutěže - vyhledání a přehled soutěží
+
+
+Utkání - vyhledání a přehled utkání
+
+Výsledkový servis - vyhledejte požadovanou soutěž a otevřete její detail
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FACEBOOK členství
+clenstvi.fotbal.cz
+fotbal.cz
+bytclenemsevyplati.cz
+
+
+
+
+
+
+
+
+
+
+
+Upozorněníclose
+Chyba při načtení utkání! Zkuste to prosím později!There is no row at position 0.   at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)   at System.Data.DataRowCollection.get_Item(Int32 index)   at FACR.Clenstvi.souteze.NadpisSouteze.LoadData(DataTable tab)   at FACR.Clenstvi.souteze.tabulky_souteze.LoadData()
+OK

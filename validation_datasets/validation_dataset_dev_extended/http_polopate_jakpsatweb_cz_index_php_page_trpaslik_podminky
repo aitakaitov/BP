@@ -1,0 +1,166 @@
+URL: http://polopate.jakpsatweb.cz/index.php?page=trpaslik-podminky
+DEPTH: 1
+
+
+
+Polopatě - naučte se tvořit web správně
+
+
+
+úvod
+Obsah stránek - HTML
+
+co a proč dělat
+programové vybavení
+struktura kódu (1)
+struktura kódu (2)
+obsah stránky
+tagy HTML
+relativní a absolutní adresa
+textové odkazy
+obrázkové odkazy
+správná úprava kódu
+HTML - shrnutí
+
+Vzhled stránek - CSS
+
+úvod do CSS
+zápis stylu
+formátování textu
+třídy a identifikátory
+spany a divy
+formátování spanů a divů
+formátování odkazů
+vnořování prvků
+co na dobrý web nepatří
+
+S trpaslíkem na PHP
+
+o trpaslíčkovi
+o proměnných (1)
+o proměnných (2)
+o polích
+o cyklech
+o podmínkách
+podmíněné cykly
+parametry v adrese
+
+PHP
+
+úvod do PHP
+echo
+include - základ
+include - využití (1)
+include - využití (2)
+zvýraznění aktivní položky v menu
+formuláře a PHP (1)
+formuláře a PHP (2)
+
+Tipy
+
+nezobrazují se mi obrázky...
+jak na počítadlo
+
+A to ostatní...
+
+odkazy
+vzkazník
+moje práce
+projekt TNPW
+feedback
+
+ 
+
+
+
+
+
+
+Trpaslík a podmínky
+Předchozí: o cyklech FOR. 
+Pokud jste vstoupili přímo na tuto stránku, vysvětlení analogie s trpaslíkem najdete zde.
+Co jsou podmínky
+Některé povely pro trpaslíčka mu můžeme nějak podmínit, to znamená, že je vykoná jen v případě, že nám zadaná podmínka platí.
+
+Trpaslíčku, pokud je číslo v šuplíku $cislo větší než 10, napiš "větší"; jinak napiš "menší".
+
+
+Potřebná slovíčka: if = "jestliže", else = "jinak", elseif = "nebo jestliže".
+
+
+if ($i>10) {
+   echo "větší";
+} else {
+   echo "menší";
+}
+
+
+Základní zápis podmíněných příkazů je pak takovýchle:
+
+
+if (podmínka) {
+   1. blok příkazů
+} 
+
+
+Pokud bude splněna podmínka, vykoná se 1. blok příkazů; v opačném případě tento zápis nic neovlivní a pokračuje se dál. Zápis můžeme rozšířit:
+
+
+if (podmínka) {
+   1. blok příkazů
+} else {
+   2. blok příkazů
+}
+
+
+Pokud bude splněna podmínka, vykoná se 1. blok příkazů; v opačném případě se vykoná 2. blok příkazů.
+A to stále ještě není všechno. Ne vždy je něco jen černé nebo bílé a my nechceme rozhodovat jen buď a nebo, ale máme variant víc; ani to není pro trpaslíka problém:
+
+
+if (podmínka) {
+   1. blok příkazů
+} elseif (jiná podmínka) {
+   2. blok příkazů
+} elseif (ještě jiná podmínka) {
+   3. blok příkazů
+} else {
+   4. blok příkazů
+}
+
+
+A tady zase může a nemusí být poslední blok bez podmínky, záleží na našich potřebách. Pokud nevyjde žádná, může se za else dát blok příkazů pro takový případ; možná ale v takovém případě nechceme dělat nic, takže skončíme posledním elseif.
+Ptáte se, kdy použít vícekrát if, a kdy zkombinovat celý zápis od if přes elseif a snad i včetně else? Záleží na tom, jak chcete, aby se trpaslík zachoval. Pokud mu sestavíte několikrát if, každou podmínku poctivě projde a vyhodnotí. Pokud uděláte jeden blok od if včetně elseif, tak jakmile některá z podmínek vyhoví, udělá co je za ní napsáno, zbytek přeskočí až za poslední složenou závorku, a pokračuje dál, i kdyby byla splněná rovněž některá z dále uvedených podmínek. Možná to zní složitě, ale podívejte se na tenhle příklad a hlavně na to, jak funguje. Malé objasnění a překlad: Máme číslo 10. V prvním příkladě trpaslíkovi říkáme "pokud je číslo větší než 3, napiš že je větší; nebo pokud je číslo menší než 15, napiš že je menší; a jestli nic z toho, napiš že nic. Ačkoli i malé dítě pozná, že 10 je nejen větší než 3 (což trpaslík napíše), tak také menší než 15 - tak ale to už nenapíše, protože mu vyšla splněná hned první podmínka, a tím pádem související elseif ani else neřešil. To až v druhém příkladě, kde chceme, aby ty podmínky zjišťoval naprosto nezávisle na sobě, neboli - jestli je větší než 3, napiš to. Jestli je menší než 15, napiš to. Tady už napíše obojí.
+Zápis podmínek, podle kterých se má trpaslík rozhodovat, může být docela komplikovaná záležitost. Doporučuju najít si to v odborné literatuře, já vám tady předvedu pár základních podmínek s překladem, hloubější studium podmínek a operátorů (matematických i logických) máte za domácí úkol podle svých vlastních potřeb. Chceme-li podmínky spojovat, můžeme použít || jako NEBO a && jako A ZÁROVEŇ; operátorů je více, jsou i další ekvivalenty, které se malinko jinak vyhodnocují, ale tím se tady zabývat nebudeme. Princip podmínek hodně souvisí s logikou; u těch jednoduchých si vystačíme s tou přirozenou logikou, ale jinak je to věda.
+
+$promenna > $jina_promenna - proměnná je větší než jiná proměnná;
+$promenna <= $jina_promenna - proměnná je menší nebo stejná jako jiná proměnná;
+$promenna == $jina_promenna - proměnná je stejná jako jiná proměnná; všimněte si, že sem patří DVĚ rovnítka a až vám nepůjde skript, a zkontrolujete si chybějící středníky, ve druhé fázi hledání chyby se zaměřte právě na rovnítka v podmínkách;
+$promenna != $jina_promenna - proměnná není stejná jako jiná proměnná;
+$promenna%5 > 0 - zbytek po dělení proměnné pěti je větší než nula; jinými slovy proměnná není dělitelná pěti beze zbytku (zápis $promenna%5 znamená vyděl proměnnou pěti (celočíselně, tj. bez desetinných míst) a počítej s tím, co ti zbyde);
+$promenna > 3 && $promenna < 9 - proměnná je větší než 3 a zároveň menší než 9 (čili podmínka bude splněná, pokud proměnná bude mít hodnotu 4, 5, 6, 7 nebo 8;
+$promenna > 3 || $promenna < 9 - proměnná je větší než 3 nebo je menší než 9 (čili podmínka bude splněná vždycky, zdá se že každé číslo je buď větší než 3 nebo menší než 9 ;-) );
+$adresa == "" || ($telefon == "" && $mail == "") - dejme tomu že kontrolujeme, jestli byla vyplněna správná pole formuláře, u kontaktu nám stačí buď telefon NEBO mail. Podmínku stavíme tak, že pokud je splněná, znamená to, že formulář nebyl správně vyplněn. V závorce je napsáno "když zároveň není vyplněn telefon ani mail", k tomu doplňujeme "nebo není vyplněná adresa".
+
+
+Na ty operátory se hlouběji podívejte třeba na linuxsoft.cz.
+
+
+
+
+<< trpaslík a cykly<<
+
+
+
+
+>>podmíněný cyklus>>
+
+
+
+
+
+
+
+
+píše -dis- bb(zavináč)choltice.eu
+
+
